@@ -1,0 +1,292 @@
+<?php echo $this->view->getPartial('yyznsplitmobile/header'); ?>
+<style>
+.main {
+ background: #f4f4f4;
+ padding: .3rem .15rem;
+ min-height: 100vh;
+}
+
+.person-head {
+ padding: 0 .3rem;
+ display: flex;
+ justify-content: start;
+ align-items: start;
+ margin-bottom: .38rem;
+}
+
+.person-head .portrait {
+ width: 1.3rem;
+ height: 1.3rem;
+ overflow: hidden;
+ border-radius: 8px;
+ margin-right: .3rem;
+}
+
+.person-head .portrait img,
+.lists .item .cover img {
+ width: 100%;
+}
+
+.lists .item .cover a {
+ display: block;
+}
+
+.person-head .information {}
+
+.person-head .information p {
+ margin-bottom: .2rem;
+}
+
+.person-head .information .t1 {
+ font-size: .26rem;
+ color: #666;
+}
+
+.person-head .information .t2 {
+ font-size: .4rem;
+ color: #333;
+ font-weight: bold;
+}
+
+.person-head .information .t3 {
+ font-size: .28rem;
+ color: #666;
+ margin-right: .3rem;
+}
+
+.person-head .information .t4 {
+ font-size: .28rem;
+ color: #fc3f14;
+}
+
+.lists {
+ padding-bottom: 1.15rem;
+}
+
+.lists .item {
+ position: relative;
+ border-radius: 4px;
+ box-shadow: 0 0 10px #e3e3e3;
+ padding: .28rem .18rem .23rem;
+ background: #fff;
+ display: flex;
+ justify-content: start;
+ align-items: start;
+ overflow: hidden;
+ margin-bottom: .2rem;
+}
+.lists .item {
+ position: relative;
+ border-radius: 4px;
+ box-shadow: 0 0 10px #e3e3e3;
+ padding: .28rem .18rem .23rem;
+ background: #fff;
+ display: flex;
+ justify-content: start;
+ align-items: start;
+ overflow: hidden;
+ margin-bottom: .2rem;
+}
+.lists .item .tag {
+ position: absolute;
+ top: 0.09rem;
+ right: -0.9rem;
+ font-size: .24rem;
+ line-height: .24rem;
+ padding: .2rem 1rem;
+ background: #fe5b35;
+ color: #fff;
+ transform: rotate(45deg);
+}
+
+.lists .item.none .tag {
+ background: #aaaaaa;
+}
+
+.lists .item .cover {
+ width: 1.65rem;
+ height: 1.65rem;
+ background: #f8fafc;
+ margin-right: .17rem;
+}
+
+.lists .item .information {
+ width: 3.7rem;
+ margin-right: .1rem;
+}
+
+.lists .item .information .title {
+ font-size: .28rem;
+ line-height: .38rem;
+ margin-bottom: .3rem;
+ padding-top: .1rem;
+ color: #333;
+ display: block;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+.lists .item .information .number {
+  font-size: 0.24rem;
+  line-height: 0.34rem;
+  margin-bottom: 0.09rem;
+  color: #999;
+}
+
+.lists .item .information .info {
+ font-size: .24rem;
+ line-height: .34rem;
+ color: #999999;
+ margin-bottom: .1rem;
+}
+
+.lists .item .information .price {
+ text-decoration: line-through;
+ display: inline-block;
+ min-width: 2rem;
+}
+
+.lists .item .information .count {
+ display: inline-block;
+}
+.lists .item.none {
+  background: #dadada;
+}
+.lists .item.none .information .count span {
+ color: #fe5b35;
+}
+
+.lists .item .btns {
+ padding-top: 1.1rem;
+}
+
+.lists .item .btns button {
+ font-size: .24rem;
+ color: #fe5a23;
+ height: .46rem;
+ width: 1.32rem;
+ text-align: center;
+ border-radius: 4px;
+ background: #feeee9;
+ border: none;
+}
+
+.lists .item .btns button.none {
+ background: #cccccc;
+ color: #fff;
+}
+
+.lists .item.none .btns button {
+ background: #cccccc;
+ color: #fff;
+}
+
+.footer-btns {
+ height: 1.15rem;
+ background: #fff;
+ box-shadow: 0 -5px 10px #e3e3e3;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: .1rem .05rem;
+}
+
+.footer-btns .more {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ font-size: .24rem;
+ color: #fe5a23;
+ padding: 0 .2rem;
+ cursor: pointer;
+}
+
+.footer-btns .more img {
+ margin-bottom: .1rem;
+ width: .36rem;
+}
+
+.footer-btns .btns {}
+
+.footer-btns .btns a {
+ height: .9rem;
+ width: 5.8rem;
+ background-image: linear-gradient(to right, #fea30d, #fe5924);
+ font-size: .3rem;
+ line-height: .9rem;
+ border-radius: 40px;
+ text-align: center;
+ color: #fff;
+ display: block;
+}
+</style>
+<div class="main">
+ <div class="person-head">
+  <div class="portrait">
+   <img src="{{ wechat['coverimg'] }}" alt="">
+  </div>
+  <div class="information">
+   <p><span class="t1">举办方：</span><span class="t2">{{ wechat['name'] }}</span></p>
+   <p><span class="t3">{{ split['title'] }}</span><a href="/new/yyznsplitmobile/ranking?splitid={{ split['id'] }}&code={{ h5code }}" class="t4">查看排行</a></p>
+  </div>
+ </div>
+ <div class="content">
+  <ul class="lists">
+    {% for postage in postagelist %}
+    {% if postage['inventory'] > 0 %}
+   <li>
+    <a class="item" href="/new/yyznsplitmobile/goods_detail?splitid={{ split['id'] }}&id={{ postage['id'] }}&code={{ h5code }}">
+    <p class="tag">免费</p>
+    {% else %}
+    <li class="item none">
+    <p class="tag">无库存</p>
+    {% endif %}
+    <div class="cover">
+     <img src="{{ postage['images'][0] }}" alt="">
+    </div>
+    <div class="information">
+     <div class="title">{{ postage['title'] }}</div>
+     <div class="number">所需人气值：{{ postage['number'] }}</div>
+     <div class="info">
+      <p class="price">原价￥{{ postage['market_money'] }}</p>
+      <p class="count">库存<span>{{ postage['inventory'] }}</span></p>
+     </div>
+    </div>
+    {% if postage['infoid'] > 0 %}
+    <div class="btns">
+     <button class="none">已领取</button>
+    </div>
+    {% else %}
+    <div class="btns">
+     <button>未领取</button>
+    </div>
+    {% endif %}
+    
+    </a>
+   </li>
+   {% endfor %}
+   
+  </ul>
+ </div>
+</div>
+<div class="footer-btns">
+ {% if user_in_status > 0 %}
+  <a href="/new/yyznsplitmobile/user_info?splitid={{ split['id'] }}&code={{ h5code }}" class="more">
+{% else %}
+  <a href="javascript:void(0)" class="more split_qrcode_btn">
+ {% endif %}
+  <img src="https://bdn.135editor.com/files/202010/fd7d12a9ee126388b343e5537b815d9b.png" alt="">
+  个人中心
+ </a>
+   <div class="btns on">
+    <a href="javascript:void(0)" class="split_qrcode_btn">了解活动</a>
+   </div>
+</div>
+<?php echo $this->view->getPartial('yyznsplitmobile/footer'); ?>

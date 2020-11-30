@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}-运营指南</title>
+    <meta NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+    <meta name="Keywords" content="{{ seokeywords }}" />
+    <meta name="Description" content="{{ seodescription }}" />
+    <meta name="author" content="order by https://www.yunyingzhinan.com">
+    <link rel="icon" href="/vue/dist/favicon.ico">
+    <meta name="baidu-site-verification" content="B00HOS9cDd" />   
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="https://bdn.135editor.com/files/202005/swiper.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://bdn.135editor.com/files/202006/mob-share.css" rel="stylesheet">
+    <link href="https://bdn.135editor.com/files/202006/slimmenu.min.css" rel="stylesheet">
+    <link href="/css/yyzn/common.css" rel="stylesheet">
+    <link href="/css/yyzn/template.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://bdn.135editor.com/files/202005/swiper.min.js"></script>
+    <script src="https://bdn.135editor.com/files/202006/mob-share.js"></script>
+    <script src="https://bdn.135editor.com/files/202006/jquery.easing.1.3.min.js"></script>
+    <script src="https://bdn.135editor.com/files/202006/jquery.slimmenu.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+</head>
+<style type="text/css">
+    
+</style>
+<body style="font-size: 18px; font-weight: normal; font-style: normal;">
+    <!-- 头部 -->
+    <header class="header header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <h2>
+                            <a href="/">运营指南</a>
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="main-menu">
+                        <nav class="main-navigation">
+                            <ul class="slimmenu pull-right">
+                                <li >
+                                    <a href="/">首页</a>
+                                </li>
+                                <style type="text/css">
+                                @media (max-width: 575.98px) {
+                                    .cpzx-down{
+                                        display: none;
+                                    }
+                                    ul.slimmenu.collapsed li .login{
+                                        display: none;
+                                    }
+                                }
+                                </style>
+                                <li class="on">
+                                    <a href="javascript:;">产品中心<em class="cpzx-down fa fa-chevron-down" style="font-size: 0.4rem;"></em></a>
+                                    <ul>
+                                        <li><a href="/new/lbb.html">裂变宝</a>
+                                        </li>
+                                        <li><a href="/new/qfb.html">群发宝</a>
+                                        </li>
+                                        <li><a href="/new/qwlb.html">企微裂变</a>
+                                        </li>
+                                        <li><a href="/new/sqhm.html">社群活码</a>
+                                        </li>
+                                        <li><a href="/new/grhm.html">个人活码</a>
+                                        </li>
+                                        <!-- <li><a href="/new/fx.html">分销系统</a>
+                                        </li> -->
+                                        <li><a href="/new/qy.html">公众号迁移</a>
+                                        </li>
+                                        <li><a href="/new/traffic.html">私域裂变系统</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/248.html">客户案例</a>
+                                </li>
+                                <li><a href="/233.html">运营资讯</a>
+                                </li>
+                                <!-- <li><a href="#">关于我们</a>
+                                </li>
+                                <li><a href="#">渠道代理</a>
+                                </li> -->
+                                <li>
+                                    <?php 
+                                        if(isset($_SESSION['Auth']['User'])){
+                                            echo '<a class="login" href="/vue/home" target="_blank">返回后台</a>';
+                                        }else{
+                                             echo '<a class="login" href="/vue/login" target="_blank">登录/注册</a>';
+                                        }
+                                    ?>
+                                    
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

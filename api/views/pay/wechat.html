@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>{{ title}} -立即支付</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		.footer-btn{
+			text-align: center;
+			background: #3cb371;
+			color: #fff;
+			width: 100%;
+			font-size: 1.7rem;
+			padding-top: 1.5rem; 
+			padding-bottom: 1.5rem; 
+		}
+		.header{
+			margin-top: 1.5rem;
+			font-size: 1.3rem;
+			color: #504a4a;
+			height: 3rem;
+		}
+		.table,tr,th,td{
+			text-align: center;
+			font-size: 1.2rem;
+		}
+		th{
+			background: #e4e4e4;
+		}
+		.xian{
+			width: 100%;
+			height: 1rem;
+			margin-bottom: 1rem;
+			border-bottom: solid #504a4a 1px;
+		}
+		.money{
+			color: #504a4a;
+			font-size: 1.3rem;
+			text-align: right;
+			margin-top: 4rem;
+		}
+		.money > div{
+			padding-bottom: 1rem;
+		}
+		.shifu{
+			font-size: 2rem;
+			color: #f57970;
+		}
+		.logo{
+			margin: 1rem auto;
+		}
+
+	</style>
+</head>
+		
+<body>
+
+	<div class="container-fluid centent">
+		<div class="header">
+			<div class="col-md-12 col-xs-12 col-sm-12" >
+				<h5>{{ res['server_type_text'] }} ：{{ res['wx_name'] }}</h5>
+			</div>
+		</div>
+		<div class="xian"></div>
+		
+		<div>
+			<div class="col-md-12 col-xs-12 col-sm-12">
+			<h5>商品清单</h5></div>
+			<table class="table table-bordered">
+				<tr>
+					<th>商品名称</th>
+					<!-- <th>单价</th> -->
+					<th>数量</th>
+					<th>合计</th>
+				</tr>
+				<tr>
+					<td>{{ res['name'] }}</td>
+					<!-- <td>{{ res['price'] }}</td> -->
+					<td>{{ res['num'] }}</td>
+					<td>{{ res['count_price'] }}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-12 col-xs-12 col-sm-12 money">
+			<div>商品原价：<span style="text-decoration:line-through"> {{ res['count_price'] }} </span></div>
+			<div>促销优惠：{{ res['sale_price'] }}</div>
+			<div>优惠券：{{ res['code_price'] }}</div>
+			<div>合计：	<span class="shifu">￥{{ res['total_price'] }}</span>	</div>
+		</div>
+		<img class="logo img-responsive center-block" src="https://bdn.135editor.com/files/201908/yyznpromot/logo.jpg"></img>
+	</div>
+
+	<div class="rows navbar-fixed-bottom footer">
+		<input type="hidden" id="orderId" value="{{ orderId }}">
+		<div class='footer-btn' id="ljipay">
+			微信立即支付
+		</div>
+	</div>
+</body>
+<script src="http://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script  src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	function jsApiCall(jsApiParameters)
+	{
+		var Parameters = JSON.parse(jsApiParameters)
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest',
+			Parameters,
+			function(res){
+				if(res.err_msg == "get_brand_wcpay_request:ok" ){
+					alert("支付成功")
+			    }else if( res.err_msg == "get_brand_wcpay_request:fail"){
+			    	alert("支付失败")
+			    }
+			}
+		);
+	}
+		 
+	function callpay()
+	{
+		if (typeof WeixinJSBridge == "undefined"){
+			if( document.addEventListener ){
+				document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+			}else if (document.attachEvent){
+				document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+				document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+			}
+		}else{
+			jsApiCall();
+		}
+	}
+	//点击也请求支付
+	$('#ljipay').click(function(){
+		pay();
+	});
+
+	//立即支付
+	function pay(){
+		var orderId = $("#orderId").val();
+		$.ajax({
+			url: '/new/pay/wechatpay',
+			type: 'POST',
+			data: {order_id:orderId},
+			success: function(payres) {
+				if (payres.code == 200) {
+						jsApiCall(payres.data.jsApiParameters)
+				}else{
+					alert(payres.info)
+				}
+			}
+		});
+	}
+
+	$(document).ready(function(){
+		pay();
+	});
+});
+
+</script>
+</html>

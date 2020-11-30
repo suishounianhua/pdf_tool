@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="referrer" content="never">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>审核详情</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	{{ assets.outputCss() }}
+	<style type="text/css">
+	a {
+		text-decoration: none
+	}
+
+	a:hover {
+		text-decoration: none
+	}
+
+	a,
+	a:link {
+		text-decoration: none
+	}
+
+	.header {
+		margin-top: 1rem;
+		border-bottom: 1px solid rgba(0, 0, 0, .1);
+		height: 2.5rem;
+		line-height: 2.5rem;
+
+	}
+	.footer{
+		border-top: 1px solid #cccccc;
+		height: 4rem;
+		line-height: 4rem;
+	}
+	.footer>.off{
+		background-color:#fff; 
+		color: #776e6e;
+	}
+	.footer>.ok{
+		background-color:#d9534f; 
+		color: #fff;
+	}
+	.control{
+		font-size: 1rem;
+	}
+	.control  img{
+		max-width: 100%;
+	}
+	.cententss{
+		background: #fff;
+		margin-top:0.5rem; 
+		padding: 1rem;
+	}
+	body{
+		background: #f5f5f5;
+	}
+	.centent{
+		margin-bottom: 4rem;
+	}
+	</style>
+</head>
+
+<body>
+		<div class="container-fluid centent">
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">公众号名称：</label>
+			    <div class="control">{{ list['wx_name'] }}</div>
+			</div>
+			  
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">商品名称：</label>
+			    <div class="control">{{ list['goods_title'] }}</div>
+			</div>
+			
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">商品摘要：</label>
+			    <div class="control">{{ list['goods_description'] }}</div>
+			</div>
+			
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">商品图片：</label>
+			    <div class="control">
+			    	<img class="img-responsive center-block" alt="Responsive image" src="{{ list['goods_image'] }}">
+			    </div>
+			</div>
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">商品详情：</label>
+			    <div class="control">
+			    	{{ list['goods_detail'] }}
+			    </div>
+			</div>
+			
+
+
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">客服二维码：</label>
+			    <div class="control">
+			    	<img class="img-responsive center-block" alt="Responsive image" src="{{ list['support_qrcode'] }}">
+			    </div>
+			</div>
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">支付跳转类型：</label>
+			    <div class="control">
+			    	{{ list['redirect_type_text'] }}
+			    </div>
+			</div>
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">按钮文案：</label>
+			    <div class="control">{{ list['btn_text'] }}</div>
+			</div>
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">收录信息文案：</label>
+			    <div class="control">{{ list['form_text'] }}</div>
+			</div>
+			
+			<div class="form-group cententss">
+			    <label for="exampleInputEmail1">公众号描述：</label>
+			    <div class="control">{{ list['wechat_text'] }}</div>
+			</div>
+		</div>
+	<div class="rows navbar-fixed-bottom footer">
+		<div class="col-md-6 col-xs-6 col-sm-6 off" style="text-align: center;" data-toggle="modal" data-target="#offModal">
+	      		拒绝
+	    </div>	
+	    <div class="col-md-6 col-xs-6 col-sm-6 ok" style="text-align: center;" data-toggle="modal" data-target="#okModal">
+	      		通过
+	    </div>	
+	</div>
+
+	<!-- 购买 -->
+	<div class="modal fade" id="offModal" tabindex="-1" role="dialog" aria-labelledby="offModalLabel">  
+	    <div class="modal-dialog" role="document">  
+	        <div class="modal-content orderdia">  
+	            <div class="modal-header">  
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+	                <h5 class="modal-title" id="exampleModalLabel">您是否拒绝该商品！</h5>  
+	            </div>  
+	            <div class="modal-body">  
+	                <form>
+	                	<div class="form-group">  
+	                        <label for="message-text" class="control-label">拒绝说明:</label> 
+	                        <textarea class="form-control" id="recipient-remark"></textarea>
+	                    </div> 
+	                </form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
+	                <button type="button" id="off_btn" class="btn btn-danger" onclick="off()">确认</button>  
+	            </div>  
+	        </div>  
+	    </div>  
+	</div>
+
+	<!-- 通过 -->
+	<div class="modal fade" id="okModal" tabindex="-1" role="dialog" aria-labelledby="okModalLabel">  
+	    <div class="modal-dialog" role="document">  
+	        <div class="modal-content orderdia">  
+	            <div class="modal-header">  
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+	                <h5 class="modal-title" id="exampleModalLabel">您是否审核通过该商品！</h5>  
+	            </div>  
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
+	                <button type="button" id="ok_btn" class="btn btn-danger" onclick="ok()">确认</button>  
+	            </div>  
+	        </div>  
+	    </div>  
+	</div>
+	<input type="hidden" id="promot_id" value="{{ list['id'] }}">
+	{{ assets.outputJs() }}
+	<script type="text/javascript">
+		function ok(){
+			var id = $("#promot_id").val();
+			$.ajax({
+				url: '/new/yyznpromot/adminSwitch',
+				type: 'POST',
+				data: {id:id,status:1},
+				success: function(payres) {
+					if (payres.code == 200) {
+						alert(payres.info)
+						window.location.href = '/new/yyznpromot/adminList'
+					}else{
+						alert(payres.info)
+					}
+				}
+			});
+		};
+
+		function off(){
+			var id = $("#promot_id").val();
+			var remark = $("#recipient-remark").val();
+			$.ajax({
+				url: '/new/yyznpromot/adminSwitch',
+				type: 'POST',
+				data: {id:id,status:2,remark:remark},
+				success: function(payres) {
+					if (payres.code == 200) {
+						alert(payres.info)
+						window.location.href = '/new/yyznpromot/adminList'
+					}else{
+						alert(payres.info)
+					}
+				}
+			});
+			
+		};
+
+	</script>
+</body>
+
+</html>

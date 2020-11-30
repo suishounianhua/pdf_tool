@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="referrer" content="never">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>管理员审核</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	{{ assets.outputCss() }}
+	<style type="text/css">
+	a {
+		text-decoration: none
+	}
+
+	a:hover {
+		text-decoration: none
+	}
+
+	a,
+	a:link {
+		text-decoration: none
+	}
+
+	.header {
+		margin-top: 1rem;
+		border-bottom: 1px solid rgba(0, 0, 0, .1);
+		height: 2.5rem;
+		line-height: 2.5rem;
+
+	}
+	</style>
+</head>
+
+<body>
+	<section class="ranking">
+		<h4><i class="flg"></i>待审列表<i class="flg"></i></h4>
+		<table class="table">
+			<tr>
+				<th>商品id</th>
+				<th>商品名称</th>
+				<th>提交时间</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+				{% for userkey,uservalue in list %}
+					<tr>
+						<td>{{ uservalue['id'] }}</td>
+						<td>{{ uservalue['goods_title'] }}</td>
+						<td>{{ uservalue['updated'] }}</td>
+						<td>
+							<a href="/new/yyznpromot/admin?id={{ uservalue['id'] }}">查看</a>
+						</td>
+					</tr>
+				{% elsefor %}
+					<tr>
+						<td colspan="4">暂无审核记录</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+	{{ assets.outputJs() }}
+</body>
+
+</html>

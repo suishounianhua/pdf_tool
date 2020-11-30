@@ -1,0 +1,496 @@
+<?php echo $this->view->getPartial('yyznsplitmobile/header'); ?>
+<style>
+.main {
+ background: #f4f4f4;
+ padding: .3rem .15rem;
+ min-height: 100vh;
+ /*padding-bottom: 2.15rem;*/
+}
+
+.person-head {
+ padding: 0 .3rem;
+ display: flex;
+ justify-content: start;
+ align-items: start;
+ margin-bottom: .48rem;
+}
+
+.person-head .portrait {
+ width: 1.3rem;
+ height: 1.3rem;
+ overflow: hidden;
+ border-radius: 8px;
+ margin-right: .3rem;
+}
+
+.person-head .portrait img {
+ width: 100%;
+}
+
+.person-head .information {}
+
+.person-head .information p {
+ margin-bottom: .2rem;
+}
+
+.person-head .information .t1 {
+ font-size: .26rem;
+ color: #666;
+}
+
+.person-head .information .t2 {
+ font-size: .4rem;
+ color: #333;
+ font-weight: bold;
+}
+
+.person-head .information .t3 {
+ font-size: .28rem;
+ color: #666;
+ margin-right: .3rem;
+}
+
+.person-head .information .t4 {
+ font-size: .28rem;
+ color: #fc3f14;
+}
+
+.content .nav {
+ display: flex;
+}
+
+.content .nav a {
+ width: 50%;
+ display: inline-block;
+ font-size: .3rem;
+ height: .83rem;
+ line-height: .83rem;
+ text-align: center;
+ background: #e5e5e5;
+ color: #aaa;
+}
+
+.content .nav a.on {
+ background: #fff;
+ color: #333;
+}
+
+.content .boxs {
+ background: #fff;
+ box-shadow: 0 6px 10px #e3e3e3;
+}
+
+.boxs .tab2 {
+ display: none;
+}
+
+.boxs .tab1 .header {
+ padding: .4rem 0 .15rem;
+ font-size: .26rem;
+ color: #999999;
+ display: flex;
+ text-align: center;
+}
+
+.boxs .tab1 .header .column-3 {
+ color: #999999;
+}
+
+.boxs .tab1 .body li {
+ display: flex;
+ align-items: center;
+ padding-bottom: .2rem;
+ padding-top: .15rem;
+ border-bottom: 1px solid #f4f4f4;
+ text-align: center;
+}
+
+.boxs .tab1 .column-1 {
+ width: 20%;
+}
+
+.boxs .tab1 .column-2 {
+ width: 60%;
+ text-align: left;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+}
+
+.boxs .tab1 .column-3 {
+ width: 20%;
+ color: #198863;
+}
+
+.boxs .tab1 .column-1 img {
+ width: .9rem;
+ border-radius: 50%;
+ overflow: hidden;
+}
+
+.boxs .tab1 .column-3.none {
+ color: #fe5a23;
+}
+
+.boxs .tab2 .header {
+ padding: .4rem 0 .15rem;
+ font-size: .26rem;
+ color: #999999;
+ display: flex;
+ text-align: center;
+}
+
+.boxs .tab2 .body li {
+ display: flex;
+ align-items: center;
+ padding-bottom: .2rem;
+ padding-top: .15rem;
+ border-bottom: 1px solid #f4f4f4;
+ text-align: center;
+}
+
+.boxs .tab2 .column-1 {
+ width: 20%;
+}
+
+.boxs .tab2 .column-2 {
+ width: 20%;
+}
+
+.boxs .tab2 .column-3 {
+ width: 40%;
+ text-align: left;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+}
+
+.boxs .tab2 .column-4 {
+ width: 20%;
+}
+
+.boxs .tab2 .column-2 img {
+ width: .9rem;
+ border-radius: 50%;
+ overflow: hidden;
+}
+
+.footer-btns {
+ height: 1.15rem;
+ background: #fff;
+ box-shadow: 0 -5px 10px #e3e3e3;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: .1rem .05rem;
+}
+
+.footer-btns .more {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ font-size: .24rem;
+ color: #fe5a23;
+ padding: 0 .2rem;
+ cursor: pointer;
+}
+
+.footer-btns .more img {
+ margin-bottom: .1rem;
+ width: .36rem;
+}
+
+.footer-btns .btns {}
+
+.footer-btns .btns a {
+ height: .9rem;
+ width: 5.8rem;
+ background-image: linear-gradient(to right, #fea30d, #fe5924);
+ font-size: .3rem;
+ line-height: .9rem;
+ border-radius: 40px;
+ text-align: center;
+ color: #fff;
+ display: block;
+}
+
+.code-mask {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .5);
+ display: none;
+}
+
+.code-main {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 5.9rem;
+ background: #fff;
+ border-radius: 10px;
+ transform: translate(-50%, -50%);
+ padding: .9rem .45rem .7rem;
+}
+
+.code-main .img {
+ width: 2.5rem;
+ margin: 0 auto;
+ overflow: hidden;
+}
+
+.code-main .img img {
+ width: 100%;
+}
+
+.code-main .tips {
+ font-size: .26rem;
+ line-height: .36rem;
+ color: #666;
+ padding: .3rem 0 .9rem;
+ text-align: center;
+}
+
+.code-main .close {
+ display: block;
+ width: 3.85rem;
+ height: .8rem;
+ line-height: .8rem;
+ font-size: .3rem;
+ color: #aaa;
+ border: 1px solid #aaa;
+ border-radius: 40px;
+ text-align: center;
+ background: #fff;
+ margin: 0 auto .38rem;
+}
+
+</style>
+<div class="main">
+ <div class="person-head">
+  <div class="portrait">
+   <img src="{{ wechat['coverimg'] }}" alt="">
+  </div>
+  <div class="information">
+   <p><span class="t1">举办方：</span><span class="t2">{{ wechat['name'] }}</span></p>
+   <p><span class="t3">{{ split['title'] }}</span><a href="/new/yyznsplitmobile/goods_list?splitid={{ split['id'] }}&code={{ h5code }}" class="t4">查看奖品</a>
+  </div>
+ </div>
+ <div class="content">
+  <div class="nav">
+   <a href="javascript:void(0)" data-target="tab1" class="on">好友助力详情</a>
+   <a href="javascript:void(0)" data-target="tab2">人气值排行榜</a>
+  </div>
+  <div class="boxs">
+   <div class="tab1">
+    <div class="header">
+     <span class="column-1">头像</span>
+     <span class="column-2">昵称</span>
+     <span class="column-3">状态</span>
+    </div>
+    <ul class="body">
+    </ul>
+   </div>
+   <div class="tab2">
+    <div class="header">
+     <span class="column-1">序号</span>
+     <span class="column-2">头像</span>
+     <span class="column-3">昵称</span>
+     <span class="column-4">总人气</span>
+    </div>
+    <ul class="body">
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+<div class="footer-btns">
+ {% if user_in_status > 0 %}
+  <a href="/new/yyznsplitmobile/user_info?splitid={{ split['id'] }}&code={{ h5code }}" class="more">
+{% else %}
+  <a href="javascript:void(0)" class="more split_qrcode_btn">
+ {% endif %}
+  <img src="https://bdn.135editor.com/files/202010/fd7d12a9ee126388b343e5537b815d9b.png" alt="">
+  个人中心
+ </a>
+ <div class="btns on">
+    <a href="javascript:void(0)" class="split_qrcode_btn">了解活动</a>
+   </div>
+</div>
+
+<script>
+//这是一个示范回调函数
+// request('all', 1, 10, function(data) {
+//  console.log(data);
+// });
+
+//封装请求
+/*
+* @title 封装请求
+* @param type 类型 all:人气排行（默认），user:好友助力
+* @param page 偏移量
+* @param limit 行数
+* @param func 回调方法  带回参数有 page limit type  data 注意：(data 为数据体需要回调处理显示，另外三个为本次请求的参数，使用者应该自行判断处理，举例page可以结束后自增1)
+
+    data说明：                                                                                  
+        users: 包含字段：nickname headimg status（1=正常，2=取关）
+        all: 包含字段：nickname headimg number=助力数
+*/
+
+function request(type, page, limit, func) {
+ var url = '/new/yyznsplitmobile/ranking_';
+ if (type == 'user') {
+  url += 'users';
+ } else {
+  url += 'all';
+ }
+ var splitid = "{{ split['id'] }}";
+ url += '?split=' + splitid;
+ var user_in_status = "{{ user_in_status }}";
+ var uid = 0;
+
+ if (user_in_status > 0) {
+  uid = "{{ split_user['uid'] }}"
+ }
+ url += '&uid=' + uid;
+
+ url += '&page=' + page + "&limit=" + limit;
+ $.ajax({
+  url: url,
+  type: "GET",
+  success: (result => {
+   if (result.code == 200) {
+    var res = {
+     'page': page,
+     'limit': limit,
+     'type': type,
+     'data': result.data,
+    }
+    func(res);
+   } else {
+    var res = {
+     'page': page,
+     'limit': limit,
+     'type': type,
+     'data': [],
+    }
+    func(res);
+   }
+  }),
+  error: function(xhr, status, p3, p4) {
+   alert("网络异常！")
+  }
+ });
+}
+
+ var type = ''
+ var page = 0
+ var limit = 10
+ window.SHOW_TAB = 'tab1'
+ // dropload
+ $('.main').dropload({
+  scrollArea: window,
+  loadUpFn: function(me) {
+   if (window.SHOW_TAB == 'tab1') {
+    type = 'user'
+    page = 1
+   } else {
+    type = 'all'
+    page = 1
+   }
+   request(type, page, limit, function(data) {
+    var result = '';
+    if (window.SHOW_TAB == 'tab1') {
+     for (var i = 0; i < data.data.length; i++) {
+      result += '<li><span class="column-1"><img src="' + data.data[i].headimg + '" alt=""></span><span class="column-2">' + data.data[i].nickname + '</span><span class="column-3 ' + (data.data[i].status == 1 ? '' : 'none') + '">' + (data.data[i].status == 1 ? '正常' : '取消') + '</span></li>';
+     }
+    } else {
+     for (var i = 0; i < data.data.length; i++) {
+      result += '<li><span class="column-1">' + (i + 1) + '</span><span class="column-2"><img src="' + data.data[i].headimg + '" alt=""></span><span class="column-3">' + data.data[i].nickname + '</span><span class="column-4">' + data.data[i].number + '</span></li>';
+     }
+    }
+    $('.' + window.SHOW_TAB + ' .body').html(result);
+    // 每次数据加载完，必须重置
+    me.resetload();
+    // 解锁loadDownFn里锁定的情况
+    me.unlock();
+    me.noData(false);
+    window.dropload_me = me
+   })
+  },
+  loadDownFn: function(me) {
+   page = page + 1;
+   if (window.SHOW_TAB == 'tab1') {
+    type = 'user'
+   } else {
+    type = 'all'
+   }
+   request(type, page, limit, function(data) {
+    // 拼接HTML
+    var result = '';
+    var arrLen = data.data.length;
+    if (arrLen > 0) {
+     if (window.SHOW_TAB == 'tab1') {
+      for (var i = 0; i < data.data.length; i++) {
+       result += '<li><span class="column-1"><img src="' + data.data[i].headimg + '" alt=""></span><span class="column-2">' + data.data[i].nickname + '</span><span class="column-3 ' + (data.data[i].status == 1 ? '' : 'none') + '">' + (data.data[i].status == 1 ? '正常' : '取消') + '</span></li>';
+      }
+     } else {
+      for (var i = 0; i < data.data.length; i++) {
+       result += '<li><span class="column-1">' + ((page-1) * 10 + (i + 1)) + '</span><span class="column-2"><img src="' + data.data[i].headimg + '" alt=""></span><span class="column-3">' + data.data[i].nickname + '</span><span class="column-4">' + data.data[i].number + '</span></li>';
+      }
+     }
+     // 如果没有数据
+    } else {
+     // 锁定
+     me.lock();
+     // 无数据
+     me.noData();
+    }
+    window.dropload_me = me
+    // 插入数据到页面，放到最后面
+    $('.' + window.SHOW_TAB + ' .body').append(result);
+    // 每次数据插入，必须重置
+    me.resetload();
+   })
+  },
+  threshold: 50
+ });
+
+//tab选项
+$(document).on('click', '.nav a', function() {
+ $(this).addClass('on').siblings().removeClass('on')
+ window.SHOW_TAB = $(this).data('target')
+ $('.' + window.SHOW_TAB).show().siblings().hide()
+ page = 1
+ if (window.SHOW_TAB == 'tab1') {
+  type = 'user'
+ } else {
+  type = 'all'
+ }
+ request(type, page, limit, function(data) {
+  var result = '';
+  if (window.SHOW_TAB == 'tab1') {
+   for (var i = 0; i < data.data.length; i++) {
+    result += '<li><span class="column-1"><img src="' + data.data[i].headimg + '" alt=""></span><span class="column-2">' + data.data[i].nickname + '</span><span class="column-3 ' + (data.data[i].status == 1 ? '' : 'none') + '">' + (data.data[i].status == 1 ? '正常' : '取关') + '</span></li>';
+   }
+  } else {
+   for (var i = 0; i < data.data.length; i++) {
+    result += '<li><span class="column-1">' + (i + 1) + '</span><span class="column-2"><img src="' + data.data[i].headimg + '" alt=""></span><span class="column-3">' + data.data[i].nickname + '</span><span class="column-4">' + data.data[i].number + '</span></li>';
+   }
+  }
+  $('.' + window.SHOW_TAB + ' .body').html(result);
+ window.dropload_me ? window.dropload_me.unlock() : '';
+ window.dropload_me ? window.dropload_me.noData(false) : '';
+ window.dropload_me ? window.dropload_me.resetload() : '';
+ })
+})
+</script>
+<?php echo $this->view->getPartial('yyznsplitmobile/footer'); ?>

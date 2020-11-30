@@ -1,0 +1,158 @@
+{% extends "yyznchannel/base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+	<style type="text/css">
+		.background-card.draw { padding-top: 3rem; background-color: #f5f6f7; box-shadow: 1px 2px 5px #00a971; }
+		.draw-card { background-color: white; border-radius: 1rem; padding: 2rem; }
+		.draw-card .message { color: #888888; font-size: 1.65rem; }
+		.draw-card .money-box { margin-top: 5rem; display: flex; flex-direction: column; }
+		.draw-card .money-box .group-input { display: flex; flex-direction: row; border-bottom: 1px solid #f9f9f9; margin-bottom: 2rem; }
+		.draw-card .money-box .group-input input { margin-left: 2rem; border: none; padding-left: 1rem; width: calc(100% - 3rem); }
+		.draw-card .money-box .icon { color: #444444; font-size: 2.4rem; }
+		.money-card { display: flex; justify-content: flex-start;  }
+		.money-card * { line-height: 2rem; vertical-align: top; display: inline-block; height: 2rem; }
+		.money-card .text { color: #888888; font-size: 1.35rem; }
+		.money-card i.fa { color: #82ceb7; font-size: 1.35rem; margin-right: 1rem; }
+		.money-card a.all-money { color: #fc9a6c; font-size: 1.35rem; margin-left: 1rem; }
+		.draw .btn-login { border-radius: .5rem; }
+		.draw-list { margin-top: 3rem; }
+		.draw-list h3.title { color: #757575; font-size: 1.55rem; font-weight: 500; }
+		.draw-list ul { list-style: none; padding-left: 0; margin-top: 1.5rem; }
+		.draw-list li { background-color: white; border-radius: 1rem; padding: 1rem; display: flex; flex-direction: column; margin-bottom: 1rem; box-shadow: none; }
+		.draw-list li .title { color: #888888; font-size: 1.35rem; margin-bottom: 1rem; }
+		.draw-list li .money { display: flex; flex-direction: row; justify-content: space-between; }
+		.draw-list li .money .number { color: #444444; font-size: 1.65rem; vertical-align: text-bottom; font-weight: bold; }
+		.draw-list li .money .time { color: #888888; font-size: 1.35rem; vertical-align: text-bottom; }
+		.invalid-feedback { text-align: left; text-indent: 3rem; display: none; }
+		.invalid-feedback.invalid { display: block; }
+		.background-card { height: auto; }
+		#draw-btn.disabled { background-color: #b4bbb9; color: white; box-shadow: 1px 2px 5px #b4bbb9; }
+		#draw-btn:hover {}
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="background-card draw">
+		<div class="draw-card">
+			<div class="message">
+				<span>提现金额</span>
+			</div>
+			<div class="money-box">
+				<div class="group-input">
+					<span class="icon">
+						<i class="fa fa-rmb"></i>
+					</span>
+					<input type="number" id="draw-price" placeholder="提现金额必须大于等于1元">
+				</div>
+				<div class="money-card">
+					<div class="text"> <i class="fa fa-question-circle"></i> 可提现金额<span>{{ draw_price }}</span>元</div>
+					<a href="JavaScript:;" class="all-money" id="all-draw" data-price="{{ draw_price }}">全部提现</a>
+				</div>
+				<div class="invalid-feedback" id="validDraw"></div>
+			</div>
+			<a href="JavaScript:;" class="btn btn-login" data-status="true" id="draw-btn">提现</a>
+		</div>
+		{% if total > 0 %}
+			<div class="draw-list">
+				<h3 class="title">历史提现记录</h3>
+				<ul class="draw-items">
+					{% for draw in draw_list %}
+						<li>
+							<div class="title">提现金额 (元) </div>
+							<div class="money">
+								<span class="number">{{ draw['total_price'] }}</span>
+								<span class="time">{{ date("Y-m-d H:i:s",draw['created']) }}</span>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% else %}
+			<div class="draw-list">
+				<div class="message-text">
+					<img src="https://bdn.135editor.com/files/yyznchannel/notdata.png">
+				</div>
+			</div>
+		{% endif %}
+	</div>
+	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content"><p id="messageTxt"></p></div>
+	  </div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+	$(function() {
+		if(Number($('#all-draw').attr("data-price")) == 0){
+			$('#draw-price').attr('disabled', 'disabled');
+		}else{
+			$('#draw-price').removeAttr('disabled');
+		}
+		
+		if ($('#draw-price').val() == '' || Number($('#draw-price').val()) <= 0) {
+			$('#draw-btn').addClass('disabled')
+		}
+		
+		$('#draw-price').on('change, keydown, keyup',function() {
+			// $('#draw-price').change(function() {
+			if ($(this).val() == '' || parseFloat($(this).val()) == 0) {
+				$('#draw-btn').addClass('disabled');
+				$('#validDraw').addClass('invalid').text('提现金额不能为空');
+			} else {
+				$('#validDraw').removeClass('invalid');
+				if(parseFloat($(this).val()) < 0){
+					$('#draw-btn').addClass('disabled');
+					$('#validDraw').addClass('invalid').text('提现金额不能为空');
+				}else{
+					if(parseFloat($(this).val()) <= parseFloat($('#all-draw').attr("data-price"))){
+						$('#draw-btn').removeClass('disabled');
+						$('#validDraw').removeClass('invalid');
+					}else{
+						$('#draw-btn').addClass('disabled');
+						$('#validDraw').addClass('invalid').text('提现金额不能大于可提现金额');
+					}
+				}
+			}
+		});
+
+		$("#all-draw").click(function() {
+			if(Number($(this).attr("data-price")) > 0){
+				$("#draw-price").val($(this).attr("data-price"));
+				$('#draw-btn').removeClass('disabled');
+			}
+		});
+
+		$("#draw-btn").click(function() {
+			if($(this).hasClass('disabled')){ return false; }
+			var draw_price = $("#draw-price").val();
+			$.ajax({
+				url: '/new/yyznchannel/admin_draw',
+				type: 'POST',
+				data: {
+					price: draw_price
+				},
+				success: function(res) {
+					if (res.code == 200) {
+						$('#messageModal').find('.modal-sm').addClass('success');
+						$('#messageTxt').text(res.info);
+						$('#messageModal').modal('show');
+						setTimeout(function(res){
+							window.location.href = location.href
+						}, 2000)
+					} else {
+						$('#messageModal').find('.modal-sm').addClass('error');
+						$('#messageTxt').text(res.info);
+					}
+					
+				}
+			});
+		});
+	});
+</script>
+{% endblock %}

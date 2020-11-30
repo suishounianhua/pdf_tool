@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>请选择投诉原因</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style type="text/css">
+    body {
+ font: normal normal 18px;
+ color: #333;
+ background: #fff;
+ width: 100%;
+ margin: 0 auto;
+ font-family: -apple-system, "Helvetica Neue", Helvetica, "Microsoft YaHei", "氓戮庐猫陆炉茅鈥衡€γ┞烩€�", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+        ul li{
+            list-style-type: none;
+            
+            
+        }
+        .list{
+            padding: 0px;
+           height: 3rem;
+            line-height: 3rem; 
+            border-bottom: 1px solid #d4d6d7;
+            position:relative;
+        }
+        .list span{
+            font-size: 1rem;
+            color: #43484c;
+        }
+        .right{
+            color: #43484c;
+            position: absolute;
+            right:0;
+            top: 1.2rem;
+            font-size: 1rem;
+        }
+        h4{
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .content{
+            padding: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container content">
+        <div class="row">
+            <h4 class="col-md-12">请选择投诉原因</h4>
+            <div class="col-md-12">
+               
+                <div class="col-md-12 list" data="1">
+                    <span>新冠肺炎疫情相关</span>
+                    <em class="right fa fa-angle-right" ></em>
+                </div>
+                <div class="col-md-12 list" data="2">
+                    <span>欺诈</span>
+                    <em class="right fa fa-angle-right" ></em>
+                </div>
+                <div class="col-md-12 list" data="3">
+                    <span>色情</span>
+                    <em class="right fa fa-angle-right"></em>
+                </div>
+                <div class="col-md-12 list" data="4">
+                    <span>诱导行为</span>
+                    <em class="right fa fa-angle-right"></em>
+                </div>
+                <div class="col-md-12 list" data="5">
+                    <span>不实信息</span>
+                    <em class="right fa fa-angle-right"></em>
+                </div>
+                <div class="col-md-12 list" data="6">
+                    <span>违法犯罪</span>
+                    <em class="right fa fa-angle-right"></em>
+                </div>
+                <div class="col-md-12 list" data="7">
+                    <span>骚扰</span>
+                    <em class="right fa fa-angle-right"></em>
+                </div>
+                <div class="col-md-12 list" data="8">
+                    <span>其他</span>
+                    <em class="right fa fa-angle-right"></em>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $('.list').click(function(){
+        let id = $(this).attr('data');
+        console.log(id)
+    });
+</script>

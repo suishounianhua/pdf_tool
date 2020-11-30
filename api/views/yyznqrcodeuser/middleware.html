@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ middleware['middleware_title'] }}</title>
+	{{ assets.outputCss() }}
+	<style type="text/css">
+	body {
+		font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+	}
+
+	.banner-box .carousel-control {
+		background-image: none;
+		text-shadow: 0px 0px 4px rgba(0, 0, 0, .6);
+	}
+
+	.detail-box {
+		border-top: 1px solid #ddd;
+		margin-bottom: 40px;
+		min-height: 370px;
+		position: relative;
+	}
+
+	.detail-box img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.detail-box .footer {
+		position: absolute;
+		left: 0;
+		bottom: -40px;
+		right: 0;
+		text-align: center;
+		font-size: 14px;
+		color: #999;
+	}
+
+	ul.footer-nav.affix {
+		bottom: 0px;
+	}
+
+	ul.footer-nav {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		border-top: 1px solid #ddd;
+	}
+
+	ul.footer-nav li {
+		margin: 0;
+		width: 100%;
+		border-radius: 0;
+	}
+
+	ul.footer-nav li .btn {
+		border: none;
+		padding: 12px 15px;
+		border-radius: 0;
+	}
+
+	ul.footer-nav li .btn.primary {
+		color: #fff;
+		background-color: #397dff;
+		border-color: #397dff;
+	}
+
+	ul.footer-nav li .btn.primary:hover {
+		color: #fff;
+		background-color: #57a3f3;
+		border-color: #57a3f3;
+	}
+
+	ul.footer-nav li:first-child {
+		border-right: 1px solid #ddd;
+		width: 30%;
+	}
+
+	ul.footer-nav li:nth-child(2) {
+		width: 70%;
+	}
+
+	.modal-dialog {
+		margin: 180px 40px;
+	}
+
+	@media (min-width: 768px) {
+		.container-fluid {
+			width: 450px;
+			margin: 0 auto;
+			border: 1px solid #ddd;
+		}
+
+		ul.footer-nav {
+			width: 450px;
+			left: 50%;
+			margin-left: -225px;
+			border: 1px solid #ddd;
+		}
+	}
+	</style>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row banner-box">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					{% for key, value in middleware['middleware_banner'] %}
+					{% if key == 0 %}
+					<li data-target="#carousel-example-generic" data-slide-to="{{key}}" class="active"></li>
+					{% else %}
+					<li data-target="#carousel-example-generic" data-slide-to="{{key}}"></li>
+					{% endif %}
+					{% endfor %}
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					{% for key, value in middleware['middleware_banner'] %}
+					{% if key == 0 %}
+					<div class="item active">
+						<img src="{{ value }}">
+					</div>
+					{% else %}
+					<div class="item">
+						<img src="{{ value }}">
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</a>
+			</div>
+		</div>
+		<div class="row pagetitle-box">
+			<div class="col-xs-12">
+				<h3>{{ middleware['middleware_title'] }}</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="detail-box">
+					{{ middleware['middleware_detail'] }}
+					<p class="footer">运营指南提供技术支持</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ul class="nav footer-nav nav-stacked" data-spy="affix" data-offset-bottom="0" style="position: fixed;">
+		{% if middleware['is_server'] > 0 %}
+		<li> <a class="btn btn-default btn-sm" role="button" data-toggle="modal" data-target="#service-qrcode"> 客服 </a> </li>
+		{% endif %}
+		<li> <a class="btn btn-default primary btn-sm" href="{{ middleware['url'] }}"> 添加客服 </a> </li>
+	</ul>
+	{% if middleware['is_server'] > 0 %}
+	<div class="modal fade bs-example-modal-sm" id="service-qrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body ">
+					<div class="center-block text-center">
+						<img src="{{ middleware['server_qrcode'] }}" class="img-responsive img-thumbnail">
+						<h4>{{ middleware['server_msg'] }}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{{ assets.outputJs() }}
+	<script type="text/javascript">
+	getWeChatSign();
+
+	function getWeChatSign() {
+		var wxid = "{{ middleware['wx_id'] }}";
+		$.ajax({
+			url: "/new/yyzn/getSignPackage",
+			type: 'post',
+			data: { wx_id: wxid },
+			success: function(res) {
+				console.log(res);
+				if (res.code == 200) {
+					var resData = res.data;
+					wx.config({
+						debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+						appId: resData.appId, // 必填，公众号的唯一标识
+						timestamp: resData.timestamp, // 必填，生成签名的时间戳
+						nonceStr: resData.nonceStr, // 必填，生成签名的随机串
+						signature: resData.signature, // 必填，签名
+						jsApiList: ["onMenuShareTimeline", // 分享给好友
+							"onMenuShareAppMessage", // 分享到朋友圈
+							"onMenuShareAppMessage", // 分享到朋友圈
+							"hideMenuItems",
+						] // 必填，需要使用的JS接口列表
+					});
+				}
+			},
+			error: function(data) {
+				console.log(JSON.stringify(data));
+			}
+		});
+
+		wx.ready(function() {
+			wx.hideMenuItems({
+				menuList: ["menuItem:copyUrl", "menuItem:editTag", "menuItem:delete", "menuItem:originPage", "menuItem:readMode", "menuItem:openWithQQBrowser", "menuItem:openWithSafari", "menuItem:share:email", "menuItem:share:brand", "menuItem:share:qq", "menuItem:share:QZone"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+			});
+			wx.onMenuShareTimeline({
+				title: "{{ share['title'] }}",
+				link: "{{ share['link'] }}",
+				imgUrl: "{{ share['image']}}",
+				success: function() {}
+			});
+			wx.onMenuShareAppMessage({
+				title: "{{ share['title'] }}",
+				desc: "{{ share['description']}}", // 这里请特别注意是要去除html
+				link: "{{ share['link'] }}",
+				imgUrl: "{{ share['image']}}",
+				type: '',
+				success: function() {}
+			});
+		});
+	}
+	</script>
+</body>
+
+</html>

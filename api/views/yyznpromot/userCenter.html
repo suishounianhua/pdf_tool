@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+ <meta name="referrer" content="never">
+ <title>个人中心</title>
+ {{ assets.outputCss() }}
+ <script type="text/javascript" src="https://bdn.135editor.com/files/202003/rem.js"></script>
+ <script src="http://static.135editor.com/js/jquery/jquery-3.3.1.min.js"></script>
+</head>
+<style type="text/css" media="screen">
+.grzx-fix-link {
+ position: fixed;
+ top: 70%;
+ right: 0;
+ z-index: 99;
+}
+
+.grzx-fix-link img {
+ width: 1.16rem;
+}
+
+.grzx-nav {
+ background-color: #ededed;
+ padding: .53rem .1rem 0.11rem 0.1rem;
+ display: flex;
+ justify-content: center;
+}
+
+.grzx-nav-to {
+ display: inline-block;
+ width: 1.9rem;
+ line-height: .5rem;
+ text-align: center;
+ font-size: .23rem;
+ color: #333;
+ border: 1px solid #333;
+ background-color: #fff;
+ cursor: pointer;
+}
+
+.grzx-nav-to.on {
+ color: #ffc640;
+ background-color: #333;
+}
+
+.grzx-nav-to:first-child {
+ border-radius: .4rem 0 0 .4rem;
+}
+
+.grzx-nav-to:last-child {
+ border-radius: 0 .4rem .4rem 0;
+}
+
+.income-details {
+ position: relative;
+ display: none;
+}
+
+.record-buy {
+ position: relative;
+ display: none;
+}
+
+.income-details.on,
+.record-buy.on {
+ display: block;
+}
+
+.income-details .grzx-top {
+ background-color: #ededed;
+ height: 3rem;
+}
+
+.income-details .grzx-card {
+ background: url('https://bdn.135editor.com/files/202003/52b2cdf59ecf04659430988a3e34ca18.png') no-repeat center top;
+ background-size: contain;
+ position: absolute;
+ top: .2rem;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 6.96rem;
+ height: 3.77rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ z-index: 9;
+ padding: .54rem .44rem;
+}
+
+.income-details .grzx-card-1,
+.income-details .grzx-card-2 {
+ display: flex;
+ justify-content: space-between;
+}
+
+.income-details .grzx-card-money p {
+ font-size: .44rem;
+ line-height: .54rem;
+ color: #fff;
+ margin-bottom: .15rem;
+ text-align: left;
+}
+
+.income-details .grzx-card-money p:last-child {
+ font-size: .24rem;
+ line-height: .34rem;
+ letter-spacing: 1px;
+ margin-bottom: 0;
+}
+
+.income-details .grzx-card-money a {
+ font-size: .18rem;
+ line-height: .3rem;
+ display: inline-block;
+ border: 1px solid #fff;
+ border-radius: .06rem;
+ padding: 0 .14rem;
+ color: #fff;
+}
+
+.income-details .grzx-body {
+ border-radius: .35rem .35rem 0 0;
+ background-color: #fff;
+ position: relative;
+ top: -1.2rem;
+ padding-top: 2.8rem;
+}
+
+.income-details .grzx-body-title {
+ color: #383840;
+ font-size: .3rem;
+ font-weight: bold;
+ text-align: center;
+ margin-bottom: .5rem;
+}
+
+.income-details .grzx-body-title::before {
+ content: '';
+ vertical-align: middle;
+ display: inline-block;
+ width: 1.15rem;
+ height: 1px;
+ background-color: #383840;
+ margin-right: .2rem;
+}
+
+.income-details .grzx-body-title::after {
+ content: '';
+ vertical-align: middle;
+ display: inline-block;
+ width: 1.15rem;
+ height: 1px;
+ background-color: #383840;
+ margin-left: .2rem;
+}
+
+.income-details .grzx-list-box {
+ padding: 0 .3rem;
+ overflow-y: auto;
+ max-height: 43vh;
+}
+
+.income-details .grzx-list {
+ padding: .34rem 0;
+ border-bottom: 1px solid #eee;
+ display: flex;
+ justify-content: space-between;
+}
+
+.income-details .grzx-list-info-1 {
+ font-size: .24rem;
+ line-height: .8rem;
+ width: .8rem;
+ height: .8rem;
+ color: #333;
+ font-weight: bold;
+ text-align: center;
+}
+
+.income-details .grzx-list-info-1 img {
+ width: .46rem;
+ vertical-align: middle;
+}
+
+.income-details .grzx-list-info-2 {
+ width: .8rem;
+ height: .8rem;
+ border-radius: 50%;
+ overflow: hidden;
+}
+
+.income-details .grzx-list-info-2 img {
+ width: .8rem;
+}
+
+.income-details .grzx-list-info-3 {
+ font-size: .26rem;
+ line-height: .8rem;
+ color: #333;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+ width: 2.1rem;
+}
+
+.income-details .grzx-list-info-4 {
+ font-size: .2rem;
+ line-height: .8rem;
+ color: #757575;
+}
+
+.income-details .grzx-list-info-5 {
+ font-size: .26rem;
+ line-height: .8rem;
+ color: #fbba23;
+ width: 1.2rem;
+}
+
+.record-buy .grzx-top {
+ background-color: #ededed;
+ height: 3rem;
+}
+
+.record-buy .grzx-card {
+ background: url('https://bdn.135editor.com/files/202003/4f755523272b46de69d9648ee4d9d388.png') no-repeat center top;
+ background-size: contain;
+ position: absolute;
+ top: .2rem;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 6.96rem;
+ height: 2.02rem;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ z-index: 9;
+}
+
+.record-buy .grzx-card-count p,
+.record-buy .grzx-card-money p {
+ font-size: .44rem;
+ line-height: .54rem;
+ color: #fff;
+ margin-bottom: .15rem;
+ text-align: left;
+}
+
+.record-buy .grzx-card-count p:last-child,
+.record-buy .grzx-card-money p:last-child {
+ font-size: .24rem;
+ line-height: .34rem;
+ letter-spacing: 1px;
+ margin-bottom: 0;
+}
+
+.record-buy .grzx-body {
+ border-radius: .35rem .35rem 0 0;
+ background-color: #fff;
+ position: relative;
+ top: -1.2rem;
+ padding-top: 1.1rem;
+}
+
+.record-buy .grzx-body-title {
+ color: #383840;
+ font-size: .3rem;
+ font-weight: bold;
+ text-align: center;
+ margin-bottom: .5rem;
+}
+
+.record-buy .grzx-body-title::before {
+ content: '';
+ vertical-align: middle;
+ display: inline-block;
+ width: 1.15rem;
+ height: 1px;
+ background-color: #383840;
+ margin-right: .2rem;
+}
+
+.record-buy .grzx-body-title::after {
+ content: '';
+ vertical-align: middle;
+ display: inline-block;
+ width: 1.15rem;
+ height: 1px;
+ background-color: #383840;
+ margin-left: .2rem;
+}
+
+.record-buy .grzx-list-box {
+ padding: 0 .3rem;
+ overflow-y: auto;
+ max-height: 56vh;
+}
+
+.record-buy .grzx-list {
+ padding: .34rem 0;
+ border-bottom: 1px solid #eee;
+ display: flex;
+ justify-content: space-between;
+}
+
+.record-buy .grzx-list-info {
+ width: 3.4rem;
+}
+
+.record-buy .grzx-list-info P:first-child {
+ font-size: .18rem;
+ line-height: .28rem;
+ color: #333;
+ margin-bottom: .1rem;
+}
+
+.record-buy .grzx-list-info p:nth-child(2) {
+ font-size: .18rem;
+ line-height: .28rem;
+ color: #757575;
+}
+
+.record-buy .grzx-list-status {
+ font-size: .22rem;
+ line-height: .8rem;
+ color: #333;
+}
+
+.record-buy .grzx-list-check {
+ line-height: .8rem;
+}
+
+.record-buy .grzx-list-check a {
+ padding: 0 .12rem;
+ height: .4rem;
+ font-size: .24rem;
+ line-height: .4rem;
+ color: #fff;
+ border-radius: 2px;
+ display: inline-block;
+ background-color: #ffbf2d;
+}
+
+.grzx-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.grzx-mask-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 3.94rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ overflow: hidden;
+ padding: .3rem 0 .38rem;
+}
+
+.grzx-mask-tit {
+ text-align: center;
+ font-size: .28rem;
+ color: #a8703a;
+ margin-bottom: .35rem;
+}
+
+.grzx-mask-msg {
+ text-align: center;
+ font-size: .24rem;
+ color: #757575;
+ margin-bottom: .5rem;
+}
+
+.grzx-mask-btns {
+ text-align: center;
+}
+
+.grzx-mask-btns>a {
+ display: inline-block;
+ font-size: .24rem;
+ padding: .14rem .4rem;
+ border-radius: .8rem;
+ text-align: center;
+}
+
+.grzx-mask-ok {
+ background-color: #ffc02e;
+ color: #fff;
+ margin-right: .4rem;
+}
+
+.grzx-mask-no {
+ background-color: #383840;
+ color: #ffc02e;
+}
+</style>
+
+<body>
+        <a class="grzx-fix-link" href="/new/yyznpromot/goodsDetail">
+        	<img src="https://bdn.135editor.com/files/202003/b5d6c4910573058dc66c0efe8d6c655d.png" alt="">
+        </a>
+        {% if ispromot < 1 %}
+        <div class="grzx-nav">
+        	{% if type == 'ranking' %}
+	            <span class="grzx-nav-to on" data-target="income-details">收益详情</span>
+	            <span class="grzx-nav-to" data-target="record-buy">购买记录</span>
+            {% else %}
+            	<span class="grzx-nav-to" data-target="income-details">收益详情</span>
+            	<span class="grzx-nav-to on" data-target="record-buy">购买记录</span>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div>
+            <!-- 收益详情 -->
+            {% if type == 'ranking' %}
+	            <div class="income-details on">
+            {% else %}
+            	<div class="income-details">
+            {% endif %}
+                <div class="grzx-top">
+                    <div class="grzx-card">
+                        <div class="grzx-card-1">
+                            <div class="grzx-card-money">
+                                <p>
+                                    {{ commission_data['total_commission'] }}
+                                </p>
+                                <p>
+                                    累积收益（元）<a href="/new/yyznpromot/userIncome">查看详情</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grzx-card-2">
+                            <div class="grzx-card-money">
+                                <p>
+                                    {{ commission_data['commission_ok'] }}
+                                </p>
+                                <p>
+                                    已到账收益（元）<a class="grzx-get-money" href="javascript:void(0);">提现</a>
+                                </p>
+                            </div>
+                            <div class="grzx-card-money">
+                                <p>
+                                    {{ commission_data['commission_none'] }}
+                                </p>
+                                <p>
+                                    待结算收益（元）
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if is_ranking < 1%}
+                <div class="grzx-body">
+                    <div class="grzx-body-title">
+                        收益排行榜
+                    </div>
+                    <ul class="grzx-list-box">
+                    	{% for userkey,uservalue in userlist %}
+		                	<li class="grzx-list">
+	                            <div class="grzx-list-info-1">
+	                                -
+	                            </div>
+	                            <div class="grzx-list-info-2">
+	                                <img src="{{ uservalue['headimg'] }}" alt="">
+	                            </div>
+	                            <div class="grzx-list-info-3">
+	                                {{ uservalue['nickname'] }}
+	                            </div>
+	                            <div class="grzx-list-info-4">
+	                                累计邀请好友
+	                            </div>
+	                            <div class="grzx-list-info-5">
+	                                {{ uservalue['number'] }}
+	                            </div>
+	                        </li>	
+		                {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- 购买记录 -->
+            {% if type == 'ranking' %}
+	            <div class="record-buy">
+            {% else %}
+            	<div class="record-buy on">
+            {% endif %}
+                <div class="grzx-top">
+                    <div class="grzx-card">
+                        <div class="grzx-card-money">
+                            <p>
+                                {{ order_total_price }}
+                            </p>
+                            <p>
+                                消费总金额（元）
+                            </p>
+                        </div>
+                        <div class="grzx-card-count">
+                            <p>
+                                {{ order_pay_number }}
+                            </p>
+                            <p>
+                                购买次数
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grzx-body">
+                    <div class="grzx-body-title">
+                        购买记录
+                    </div>
+                    <ul class="grzx-list-box">
+                    	 {% for orderkey,ordervalue in order_list %}
+                    	 	<li class="grzx-list">
+	                            <div class="grzx-list-info">
+	                                <p>
+	                                    订单号：{{ ordervalue['orderid'] }}
+	                                </p>
+	                                <p>
+	                                    {{ ordervalue['updated'] }}
+	                                </p>
+	                            </div>
+	                            <div class="grzx-list-status">
+	                                {{ ordervalue['status_text'] }}
+	                            </div>
+	                            <div class="grzx-list-check">
+	                                <a href="{{ ordervalue['url'] }}">查看</a>
+	                            </div>
+	                        </li>
+			             {% endfor %}    
+                    </ul>
+                </div>
+            </div>
+        </div><!-- 确认提现 -->
+        <div class="grzx-mask">
+            <div class="grzx-mask-card">
+                <h3 class="grzx-mask-tit">
+                    提示
+                </h3>
+                <p class="grzx-mask-msg">
+                    是否确认提现
+                </p>
+                <div class="grzx-mask-btns">
+                    <a class="grzx-mask-ok" href="javascript:void(0);" onclick="createdraw(this)">确认</a> <a class="grzx-mask-no" href="javascript:void(0);">取消</a>
+                </div>
+            </div>
+        </div>
+    </body>
+<script type="text/javascript">
+$(function() {
+ $(document).on('click', '.grzx-nav-to', function() {
+  $(this).addClass('on').siblings().removeClass('on')
+  var t = '.' + $(this).data('target')
+  $(t).addClass('on').siblings().removeClass('on')
+ })
+
+ $(document).on('click', '.grzx-get-money', function() {
+  $('.grzx-mask').show()
+ })
+ $(document).on('click', '.grzx-mask-card', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+ })
+ $(document).on('click', '.grzx-mask-no', function() {
+  $('.grzx-mask').hide()
+ })
+
+ initList()
+
+ function initList() {
+  $('.income-details .grzx-list').each(function() {
+
+   if ($(this).index() == 0) {
+    $(this).find('.grzx-list-info-1').html('<img src="https://bdn.135editor.com/files/202003/e480735d32f7a89c13fb480ded95d507.png" alt="">')
+   } else if ($(this).index() == 1) {
+    $(this).find('.grzx-list-info-1').html('<img src="https://bdn.135editor.com/files/202003/12fa9f1a85d6eb69bcd5741b7bc998d1.png" alt="">')
+   } else if ($(this).index() == 2) {
+    $(this).find('.grzx-list-info-1').html('<img src="https://bdn.135editor.com/files/202003/6582885629cfee1afa47e3c670e06ab9.png" alt="">')
+   } else {
+    $(this).find('.grzx-list-info-1').text($(this).index() + 1)
+   }
+  })
+ }
+ 
+})
+//创建提现
+function createdraw(obj){
+    $.ajax({
+        url: '/new/yyznpromot/userDraw',
+        type: 'POST',
+        success: function(payres) {
+            if (payres.code == 200) {
+                alert(payres.info)
+                window.location.href = location.href
+            }else{
+                alert(payres.info)
+            }
+        }
+    });
+}
+
+</script>
+
+</html>

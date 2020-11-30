@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ detail['title'] }}</title>
+	{{ assets.outputCss() }}
+	<style type="text/css">
+	.top-msg {
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		height: 40px;
+		line-height: 40px;
+		padding: 0 15px;
+		font-size: 14px;
+		color: #3bc939;
+		background-color: rgba(0, 0, 0, .7);
+	}
+
+	.top-msg i {
+		margin-right: 10px;
+	}
+
+	.top-msg .i-close {
+		color: #fff;
+		float: right;
+		line-height: 40px;
+		margin-right: 0;
+	}
+
+	.groupQrcode {
+		width: 80%;
+		height: auto;
+		margin: 4em auto 0;
+		border-radius: 1em;
+		overflow-x: hidden;
+	}
+
+	.groupQrcode img {
+
+		width: 100%;
+		height: auto;
+	}
+
+	.groupQrcode p {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow-x: hidden;
+		width: 80%;
+		margin: 10px auto;
+		text-align: center;
+		font-size: 1.4rem;
+		color: #333;
+	}
+
+	.service {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow-x: hidden;
+		margin: 0 auto;
+		width: 120px;
+		text-align: center;
+		font-size: 1rem;
+	}
+
+	.service p {
+		text-align: center;
+		font-size: 14px;
+	}
+
+	.footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		text-align: center;
+		font-size: 14px;
+		color: #999;
+	}
+
+	.modal-dialog {
+		margin: 180px 40px;
+	}
+	</style>
+</head>
+
+<body>
+	{% if detail['is_safe_msg'] > 0 %}
+	<div class="top-msg">
+		<i class="glyphicon glyphicon-ok-sign"></i>此二维码安全，您可以放心扫描
+		<i class="i-close glyphicon glyphicon-remove"></i>
+	</div>
+	{% endif %}
+	<div class="groupQrcode">
+		<img id="touchArea" src="{{ detail['qrcode'] }}">
+		<p>{{ detail['description'] }}</p>
+	</div>
+	{% if detail['is_server'] > 0 %}
+	<div class="service">
+		<p> <a role="button" data-toggle="modal" data-target="#service-qrcode"> 联系客服 </a></p>
+	</div>
+	{% endif %}
+	<p class="footer">运营指南提供技术支持</p>
+	{% if detail['is_server'] > 0 %}
+	<div class="modal fade bs-example-modal-sm" id="service-qrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body ">
+					<div class="center-block text-center">
+						<img src="{{ detail['server_qrcode'] }}" class="img-responsive img-thumbnail">
+						<h4>{{ detail['server_msg'] }}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</body>
+{{ assets.outputJs() }}
+<script type="text/javascript">
+	$(function () {
+		$('.top-msg .i-close').click(function (event) {
+			$('.top-msg').hide();
+		});
+	})
+</script>
+<script type="text/javascript">
+function getWeChatSign() {
+	var wxid = "{{ middleware['wx_id'] }}";
+	$.ajax({
+		url: "/new/yyzn/getSignPackage",
+		type: 'post',
+		data: { wx_id: wxid },
+		success: function(res) {
+			console.log(res);
+			if (res.code == 200) {
+				var resData = res.data;
+				wx.config({
+					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+					appId: resData.appId, // 必填，公众号的唯一标识
+					timestamp: resData.timestamp, // 必填，生成签名的时间戳
+					nonceStr: resData.nonceStr, // 必填，生成签名的随机串
+					signature: resData.signature, // 必填，签名
+					jsApiList: ["onMenuShareTimeline", // 分享给好友
+						"onMenuShareAppMessage", // 分享到朋友圈
+						"onMenuShareAppMessage", // 分享到朋友圈
+						"hideMenuItems"
+					] // 必填，需要使用的JS接口列表
+				});
+			}
+		},
+		error: function(data) {
+			console.log(JSON.stringify(data));
+		}
+	});
+
+	wx.ready(function() {
+		wx.hideMenuItems({
+			menuList: ["menuItem:copyUrl", "menuItem:editTag", "menuItem:delete", "menuItem:originPage", "menuItem:readMode", "menuItem:openWithQQBrowser", "menuItem:openWithSafari", "menuItem:share:email", "menuItem:share:brand", "menuItem:share:qq", "menuItem:share:QZone"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+		});
+		wx.onMenuShareTimeline({
+			title: "{{ share['title'] }}",
+			link: "{{ share['link'] }}",
+			imgUrl: "{{ share['image']}}",
+			success: function() {}
+		});
+		wx.onMenuShareAppMessage({
+			title: "{{ share['title'] }}",
+			desc: "{{ share['description']}}", // 这里请特别注意是要去除html
+			link: "{{ share['link'] }}",
+			imgUrl: "{{ share['image']}}",
+			type: '',
+			success: function() {}
+		});
+	});
+}
+$(function() {
+	function longpress(id, func) {
+		var timeOutEvent;
+		document.querySelector('#' + id).addEventListener('touchstart', function(e) {
+			// 开启定时器前先清除定时器，防止重复触发
+			clearTimeout(timeOutEvent);
+			// 开启延时定时器
+			timeOutEvent = setTimeout(function() {
+				// 调用长按之后的逻辑函数func
+				func();
+			}, 300); // 长按时间为300ms，可以自己设置
+		});
+		document.querySelector('#' + id).addEventListener('touchmove', function(e) {
+			// 长按过程中，手指是不能移动的，若移动则清除定时器，中断长按逻辑
+			clearTimeout(timeOutEvent);
+			/* e.preventDefault() --> 若阻止默认事件，则在长按元素上滑动时，页面是不滚动的，按需求设置吧 */
+		});
+		document.querySelector('#' + id).addEventListener('touchend', function(e) {
+			// 若手指离开屏幕时，时间小于我们设置的长按时间，则为点击事件，清除定时器，结束长按逻辑
+			clearTimeout(timeOutEvent);
+		});
+	}
+	longpress('touchArea', function() {
+		var infoid = "{{ detail['infoid'] }}";
+		$.ajax({
+			url: "/new/yyznqrcode/scan",
+			type: 'post',
+			data: { infoid: infoid },
+			success: function(res) {
+				if (res.code == 200) {
+
+				}
+			}
+		});
+	});
+	getWeChatSign();
+});
+</script>
+
+</html>

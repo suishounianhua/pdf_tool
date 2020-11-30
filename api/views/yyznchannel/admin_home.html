@@ -1,0 +1,150 @@
+{% extends "yyznchannel/base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+	<style type="text/css">
+		.card-content { background-color: #f5f6f7; margin-left: -1rem; margin-right: -1rem; border-radius: 1rem; padding: 1.5rem; }
+		.card-boxs { background-color: white; border-radius: 1rem; padding: 1rem; margin-bottom: 1.5rem; }
+		.card-money { display: flex; justify-content: space-between; list-style: none; padding-left: 0; margin: 1rem 0; padding-bottom: 1rem; }
+		.card-money li .number { font-size: 1.95rem; color: #444444; margin-bottom: .5rem; }
+		.card-money li .text { font-size: 1.35rem; color: #888888; }
+		.card-line { border-top: 1px solid #f8f8f8; height: 4rem; line-height: 5rem; display: flex; justify-content: space-between; }
+		.card-line .text { color: #888888; font-size: 1.35rem; }
+		.card-line .text { color: #888888; font-size: 1.35rem; position: relative; }
+		.text.show .help-text { display: block; }
+		.help-text { background-color: #e5f9ef; color: #20b08a; font-size: 1rem; line-height: 2rem; padding: .5rem; position: absolute; left: 100%; top: 4rem; width: 21rem; text-align: center; display: none; }
+		.card-line .text i.fa { color: #82ceb7; font-size: 1.35rem; }
+		.card-line .more .val { color: #fc9a6c; font-size: 1.65rem; }
+		.card-line .more i.fa { color: #999; font-size: 1.6rem; margin-left: .5rem; }
+		a.more { width: 6rem; text-align: right; }
+		.apps { display: flex; justify-content: flex-start; list-style: none; padding-left: 0; }
+		.apps li { margin-right: 4.5rem; }
+		.apps li .icon { width: 4.8rem; height: 4.8rem; }
+		.apps li .icon img { width: 100%; }
+		.apps li .name { color: #444; font-size: 1.35rem; text-align: center; margin-top: .5rem; }
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="background-card user">
+		<div class="user-card">
+			<div class="header">
+				<!-- <i class="fa fa-user fa-fw"></i> -->
+				<img src="{{ user['headimg']|default('https://bdn.135editor.com/files/202005/yyznchannel/header006.jpg') }}">
+			</div>
+			<div class="nickname send">
+				<span>{{ user['nickname']|default("未授权") }}</span>
+				<span class="help" id="wechat-redirec">点我立即授权</span>
+			</div>
+		</div>
+		<div class="card-content">
+			<div class="card-boxs">
+				<ul class="card-money">
+					<li>
+						<a href="/new/yyznchannel/admin_order_list">
+							<div class="number"><span>{{ user['commission_price'] }}</span></div>
+							<div class="text"><span>累计收益 (元) </span></div>
+						</a>
+					</li>
+					<li>
+						<a href="/new/yyznchannel/admin_order_list">
+							<div class="number"><span>{{ user['order_total'] }}</span></div>
+							<div class="text"><span>累计订单</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="/new/yyznchannel/admin_user_list">
+							<div class="number"><span>{{ user['user_total'] }}</span></div>
+							<div class="text"><span>累计客户</span></div>
+						</a>
+					</li>
+				</ul>
+				<div class="card-line">
+					<div class="text text-box">
+						<span>可提现金额 (元) </span>
+						<spna class="help-btn"><i class="fa fa fa-question-circle"></i></spna>
+						<div class="help-text"> 累计收益金额：用户下单金额*渠道返点比例<br> 可提现金额：累计收益金额七天过后可提现 </div>
+					</div>
+					<a href="/new/yyznchannel/admin_draw_list" class="more">
+						<span class="val">{{ draw_price }}</span>
+						<span><i class="fa fa-angle-right"></i></span>
+					</a>
+				</div>
+			</div>
+			<div class="card-boxs">
+				<ul class="card-money">
+					<li>
+						<a href="/new/yyznchannel/admin_order_list?time_type=today">
+							<div class="number"><span>{{ today_total['commission_price'] }}</span></div>
+							<div class="text"><span>今日收益 (元) </span></div>
+						</a>
+					</li>
+					<li>
+						<a href="/new/yyznchannel/admin_order_list?time_type=today">
+							<div class="number"><span>{{ today_total['order_total'] }}</span></div>
+							<div class="text"><span>今日订单</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="/new/yyznchannel/admin_user_list?time_type=today">
+							<div class="number"><span>{{ today_total['user_total'] }}</span></div>
+							<div class="text"><span>今日新增客户</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="card-boxs">
+				<ul class="apps">
+					<li>
+						<a href="/new/yyznchannel/admin_qrcode">
+							<div class="icon"><img src="https://bdn.135editor.com/files/yyznchannel/icon-qrcode.png"></div>
+							<div class="name"><span>渠道码</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="/new/yyznchannel/admin_user_list">
+							<div class="icon"><img src="https://bdn.135editor.com/files/yyznchannel/icon-user.png"></div>
+							<div class="name"><span>我的客户</span></div>
+						</a>
+					</li>
+					<li>
+						<a href="/new/yyznchannel/admin_order_list">
+							<div class="icon"><img src="https://bdn.135editor.com/files/yyznchannel/icon-order.png"></div>
+							<div class="name"><span>收益订单</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('.help-btn').click(function(event) {
+				let _params =$(this).parent();
+				if( _params.hasClass('show') ){
+					_params.removeClass('show');
+				} else {
+					_params.addClass('show');
+				}
+			});
+		})
+	</script>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+$(function(){
+	$('#wechat-redirec').click(function(event) {
+		wechat_redirec();
+	});
+});
+
+function wechat_redirec(){
+	window.location.href = '/new/yyznchannel/wechat_redirec'
+}
+	
+</script>
+{% endblock %}

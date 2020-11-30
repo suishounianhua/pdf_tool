@@ -1,0 +1,69 @@
+html, body { height: 100%; width: 100%; }
+html,
+body,
+#content { margin: 0; padding: 0; font-size: 10px; font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+#content { height: 100%; }
+a { text-decoration: none !important; }
+.Copyright { position: fixed; bottom: 7%; left: 50%; width: 300px; margin-left: -150px; text-align: center; color: #b7b7b7; font-size: 14px; }
+.Copyright.hide { display: none; }
+.background-card { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(https://bdn.135editor.com/files/yyznchannel/background.png); background-repeat: no-repeat; background-position: left top; background-size: 100% auto; background-color: #f5f6f7; padding: 1rem; }
+.background-card.qrcode { background-position: left -7rem; }
+.form-group { width: 100%; display: flex; border-bottom: 1px solid #dcdcdc; height: auto; margin-bottom: 2rem; }
+.form-group i.fa,
+.form-group input { text-align: center; height: 3rem; line-height: 3rem; display: inline-block; margin-top: 1rem; font-size: 1.65rem; margin-bottom: 1rem; }
+.form-group i.fa { width: 2rem; font-size: 2.2rem; color: #ababab; }
+.form-group input { border: none; color: #ababab; text-align: left; font-weight: 500; }
+.form-group input:focus { color: #000000; }
+.form-group input,
+.group-input input { font-size: 1.65rem; }
+.form-group input,
+.group-input input:focus { border: none; font-size: 1.65rem; outline: none; }
+.form-group .code { height: 3rem; line-height: 3rem; color: #00a578; font-size: 1.65rem; width: 20rem; margin-top: 1rem; }
+.btn-login { margin-top: 7.5rem; display: block; width: 100%; border-radius: 2rem; height: 4.6rem; line-height: 4.6rem; background-color: #00a578; color: white; letter-spacing: .35rem; font-size: 1.8rem; text-align: center; box-shadow: 1px 2px 5px #00a971; font-weight: bold; padding: 0; color: white; }
+.btn-login:link,
+.btn-login:hover,
+.btn-login:active,
+.btn-login:visited { box-shadow: 1px 2px 5px #00a971; }
+.btn-login:link,
+.btn-login:hover,
+.btn-login:active { color: #212529; }
+.user-card { height: 11rem; padding-top: 3rem; padding-left: 1rem; display: flex; }
+.user-card .header { width: 6rem; height: 6rem; text-align: center; line-height: 6rem; border-radius: 50%; background-color: #eeeeee; overflow: hidden; }
+.user-card .header img { width: 100%; }
+.user-card .header i.fa { width: 4rem; height: 4rem; line-height: 4rem; font-size: 3rem; color: #dfdfdf; vertical-align: middle; }
+.user-card .nickname { line-height: 6rem; font-size: 1.6rem; color: white; margin-left: 2rem; font-weight: bold; }
+.user-card .nickname.send { line-height: 3rem; }
+.user-card .nickname.send span.help { display: block; color: #ceefe6; font-size: 1.35rem; }
+.background-gary { height: 100%; background-color: #f5f6f7; padding: 5rem 1.5rem; overflow-y: auto; }
+.background-gary .message-card { height: 6rem; text-align: center; padding: 1.2rem; }
+.background-gary .message-card .icon { width: 3.6rem; height: 3.6rem; padding: .4rem; text-align: center; background-color: #c4e6de; border-radius: 50%; display: inline-block; }
+.background-gary .message-card .icon i.fa { background-color: #00a578; color: white; border-radius: 50%; font-size: 1.6rem; width: 2.8rem; height: 2.8rem; line-height: 2.8rem; }
+.background-gary .message-card .text { display: inline-block; line-height: 3.6rem; margin-left: 1.5rem; } 
+.background-gary .message-card .text span { color: #222; font-size: 2.3rem; font-weight: bold; }
+.background-gary .card-box { background-color: white; margin-top: 3rem; border-radius: 1rem; text-align: center; padding: 7rem 0; }
+.background-gary .card-box p { color: #757575; font-size: 1.65rem; line-height: 4rem; font-weight: 500; }
+.background-gary .card-box p .str { color: #00a578; }
+.background-gary .btn-gon {  margin: 8rem 3.5rem; display: block; border-radius: 2rem; height: 4.6rem; line-height: 4.6rem; background-color: #00a578; color: white; font-size: 1.65rem; text-align: center; box-shadow: 1px 2px 5px #00a971; font-weight: 500; padding: 0; }
+.background-gary.nt { padding-top: 3rem; }
+.tabs-card { list-style: none; padding-left: 0; }
+.tabs-card ul { display: flex; justify-content: space-between; padding-left: 0; }
+.tabs-card ul li { color: #444444; font-size: 1.65rem; display: inline-block; width: 33.33%; text-align: center; }
+.tabs-card ul li span { height: 4rem; line-height: 4rem; display: inline-block; }
+.tabs-card ul li.active span { border-bottom: 2px solid #00a578; }
+.message-help { margin-top: 3rem; text-align: center; color: #b7b7b7; font-size: 1.45rem; }
+.message-help span { color: #444444; }
+.card-list { margin-top: 2rem; }
+.card-list ul { list-style: none; padding-left: 0; }
+.card-list li { margin-bottom: 1rem; background-color: white; border-radius: 1rem; box-sizing: border-box; padding: 1.5rem; display: flex; }
+.card-list li .header { width: 5.6rem; height: 5.6rem; overflow: hidden; border-radius: 50%; display: inline-block; }
+.card-list li .header img { width: 100%; }
+.card-list li .info { margin-left: 2rem; display: inline-block; width: calc(100% - 8rem); }
+.card-list li .info .title { height: 3rem; line-height: 3rem; font-size: 1.65rem; color: #333333; font-weight: 500; }
+.card-list li .info .help { height: 2.6rem; line-height: 2.6rem; font-size: 1.35rem; color: #757575; }
+.message-text { padding: 8rem 3rem; text-align: center; }
+.message-text img { width: 20rem; }
+.modal-sm { margin: 2rem 6rem; top: 30%; text-align: center; }
+.modal-sm.error .modal-content { background-color: rgb(220, 53, 69); }
+.modal-sm.success .modal-content { background-color: rgb(25, 190, 107); }
+.modal-sm .modal-content { background-color: rgb(130, 206, 183); color: white; font-size: 1.4rem; line-height: 2rem; padding: 1.25rem 0; border-radius: .75rem; }
+.modal-sm .modal-content p { margin-bottom: 0; }

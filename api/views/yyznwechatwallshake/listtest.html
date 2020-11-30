@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>请选择您对应的标签</title>
+    {{ assets.outputCss() }}
+</head>
+<body>
+<div id="content">
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" style="width:1%"></div>
+    </div>
+
+</div>
+<a href="javascript:;" id="start" class="btn  btn-success">开启活动</a>
+{{ assets.outputJs() }}
+<script type="text/javascript">
+  $(function(){
+    $(document).on('click','#start',function(){
+      var id = "{{ id }}";
+      $.ajax({
+          url: "/new/yyznwechatwallshake/start",
+          type: 'post',
+          data: { fk_id:id },
+          success: function(res) {
+            if(res.code == 200){
+                console.log("开启成功")
+            }
+          }
+      });
+    });
+    setInterval(function(){
+      var id = "{{ id }}";
+      var model = "{{ model }}";
+      $.ajax({
+          url: "/new/yyznwechatwallshake/ajax",
+          type: 'post',
+          data: { id:id,model:model },
+          success: function(res) {
+            if (res.code == 200) {
+                var html = '';
+                $.each(res.data,function(i,n){
+                    html += '<div class="progress"><div class="progress-bar" style="width:'+n.number+'%"></div></div>'
+                });
+                $("#content").html(html);
+            }else{
+              console.log(res.info);
+            }
+          }
+      });
+    },"1000");
+  });
+</script>
+</body>
+</html>

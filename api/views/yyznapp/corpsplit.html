@@ -1,0 +1,269 @@
+<?php echo $this->view->getPartial('yyzncommon/header'); ?>
+<!-- 内容开始 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style type="text/css">
+	.mean-bar.is-sticky,
+	.header-sticky.is-sticky { z-index: 999 !important; }
+	.logo h2 { margin: 0 !important; }
+	html,
+	body { font-size: 12px; }
+	.img-rounded { width: auto; max-width: 100%; height: auto; max-height: 100%; margin: 0 auto; }
+	.section-item { padding: 9rem 0; }
+	.section-body { width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; }
+	.section-item.min { padding: 5rem 0 6rem; }
+	.section-item.bg-gray { background-color: #f4f4f4; }
+	.section-item.bg-black { background-color: #2c3037; }
+	.section-item.bg-box { background-color: #f5f8fa; position: relative; overflow: hidden; }
+	.section-item.bg-box .bg-img { position: absolute; z-index: 0; width: 1920px; height: 418px; left: 50%; top: 50%; margin: -209px -960px; }
+	.section-item.bg-box .guide { color: #333; font-size: 1.67rem; line-height: 3.3rem; text-align: center; margin-top: 5rem; font-weight: 500; margin-bottom: 5rem; }
+	.section-item.bg-black h2.strong-title { color: white; letter-spacing: .5rem; }
+	h2.strong-title { color: #43484c; font-size: 30px; position: relative; margin: 0 auto; text-align: center; font-weight: 500; }
+	h2.strong-title:after { content: ''; width: 2.83rem; height: 4px; display: block; position: absolute; left: 50%; bottom: -16px; margin-left: -1.275rem; background-color: #00a578; border-radius: 1px; }
+	.desc-box li { margin-bottom: 4.5rem; }
+	.desc-box li h2 { color: #333; font-size: 1.67rem; margin-bottom: 2rem; line-height: 1; position: relative; padding-left: 3rem; }
+	.desc-box li h2:before { content: ''; width: .75rem; height: .75rem; display: block; background-color: #00a578; border-radius: 50%; position: absolute; left: 0; top: 50%; margin-top: -.25rem; }
+	.desc-box li p { color: #757575; font-size: 1.5rem; padding-left: 3rem; }
+	.desc-box li.btn { text-align: center; }
+	.action-success-btn { padding: 1rem 3rem; text-decoration: none !important; border-radius: .5rem; background-color: #00a578; color: white; font-size: 1.5rem; margin: 0 auto; display: inline-block; z-index: 1; }
+	.action-success-btn:link,
+	.action-success-btn:visited,
+	.action-success-btn:hover,
+	.action-success-btn:active { color: white !important; text-decoration: none !important; }
+	.prod-box { margin-top: 5rem; }
+	.prod-item { margin-bottom: 1rem; }
+	.prod-cover { width: 19rem; margin: 0 auto; }
+	.prod-title { width: 19rem; display: block; text-align: center; color: #333; font-size: 1.4rem; font-weight: 500; margin: 2rem auto 0; }
+	.funs-box { margin-top: 4rem; }
+	.funs-item { text-align: center; margin: 20px 15px; padding: 2rem; background: white; border-radius: 1rem; box-sizing: content-box; }
+	.funs-item .funs-cover { width: 5rem; height: 5rem; margin: 0 auto; }
+	.funs-item .funs-title { color: #333; font-size: 1.35rem; display: block; margin-top: 1rem; }
+	.icon-box { margin-top: 4rem; width: 100%; display: flex; justify-content: space-between; }
+	.icon-box li { width: auto; max-width: 20%; text-align: center; }
+	.icon-box li .icon-cover { width: 75px; height: 75px; }
+	.icon-box li .icon-title { color: #283249; font-size: 1.5rem; margin-top: 1rem; }
+	@media (max-width:575.98px) {
+		html,
+		body { font-size: 10px; }
+		.section-body { width: 100%; }
+		.section-item.bg-box .guide { font-size: 1.5rem; }
+	}
+	.wechatWork-box { width: 300px; height: 395px; margin: 0 auto; }
+	.wechatWork-box .modal-content { background-color: transparent; box-shadow: none !important; border: none !important; }
+	.wechatWork-box .message-box { width: 300px; height: 395px; background-image: url(https://bdn.135editor.com/files/202007/svg0729/modalbg.png); background-repeat: no-repeat; background-size: cover; }
+	.wechatWork-box .qrcode { width: 200px; height: 200px; margin: 15px auto; }
+	.wechatWork-box .help-text { color: white; font-size: 20px; line-height: 32px; margin: 4rem auto 0; text-align: center; }
+	.wechatWork-box .help-text span.str { color: #ffd05e; }
+</style>
+<div class="container-fluid" style="background: white;">
+	<div class="row">
+		<img src="https://bdn.135editor.com/files/202007/svg0729/zero.jpg">
+	</div>
+	<div class="row section-item">
+		<div class="section-body">
+			<div class="col-md-6 col-12">
+				<img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/banner01.png">
+			</div>
+			<div class="col-md-6 col-12">
+				<ul class="desc-box">
+					<li>
+						<h2>任务海报裂变，低成本快速获客</h2>
+						<p>通过诱饵，迅速裂变传播海报，实现用户增长</p>
+					</li>
+					<li>
+						<h2>企业微信与公众号协同引流</h2>
+						<p>同时为企业微信个人号和公众号导流精准粉丝</p>
+					</li>
+					<li>
+						<h2>多号导流，快速搭建私域流量池</h2>
+						<p>使用企业微信精细化管理，实现用户留存最大化</p>
+					</li>
+					<li class="btn">
+						<a href="javascript:;" class="action-success-btn">点击免费试用</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row section-item min bg-gray">
+		<div class="section-body">
+			<h2 class="strong-title">裂变路径</h2>
+			<div class="col-md-12 col-12">
+				<img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/banner02.png">
+			</div>
+		</div>
+	</div>
+	<div class="row section-item">
+		<div class="section-body">
+			<h2 class="strong-title">活动流程</h2>
+			<div class="col-md-12 col-12">
+				<div class="row prod-box">
+					<div class="col-md-3 col-12">
+						<div class="prod-item">
+							<div class="prod-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/prod01.png"></div>
+							<div class="prod-title"><span>用户看到活动海报,被奖品吸引</span></div>
+						</div>
+					</div>
+					<div class="col-md-3 col-12">
+						<div class="prod-item">
+							<div class="prod-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/prod02.png"></div>
+							<div class="prod-title"><span>用户扫码关注公众号，公众号引导用户添加企业微信个人号</span></div>
+						</div>
+					</div>
+					<div class="col-md-3 col-12">
+						<div class="prod-item">
+							<div class="prod-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/prod03.png"></div>
+							<div class="prod-title"><span>企业微信个人号自动给用户推送活动规则和专属裂变海报</span></div>
+						</div>
+					</div>
+					<div class="col-md-3 col-12">
+						<div class="prod-item">
+							<div class="prod-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/prod04.png"></div>
+							<div class="prod-title"><span>用户分享海报邀请好友,邀请人数达到要求时，即可领取奖励</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row section-item min bg-black">
+		<div class="section-body">
+			<h2 class="strong-title">功能特点</h2>
+			<div class="col-md-12 col-12">
+				<div class="row funs-box">
+					<div class="col-md-4 col-12">
+						<div class="funs-item">
+							<div class="funs-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/icon01.png"></div>
+							<div class="funs-title"><span>后台配置简单，活动搭建只需几分钟</span></div>
+						</div>
+					</div>
+					<div class="col-md-4 col-12">
+						<div class="funs-item">
+							<div class="funs-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/icon02.png"></div>
+							<div class="funs-title"><span>企业微信+公众号双重裂变，迅速锁客</span></div>
+						</div>
+					</div>
+					<div class="col-md-4 col-12">
+						<div class="funs-item">
+							<div class="funs-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/icon03.png"></div>
+							<div class="funs-title"><span>企业微信客服号多号分流，随时增删</span></div>
+						</div>
+					</div>
+					<div class="col-md-4 col-12">
+						<div class="funs-item">
+							<div class="funs-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/icon04.png"></div>
+							<div class="funs-title"><span>裂变活动多阶新玩法，刺激粉丝老带新</span></div>
+						</div>
+					</div>
+					<div class="col-md-4 col-12">
+						<div class="funs-item">
+							<div class="funs-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/icon05.png"></div>
+							<div class="funs-title"><span>奖品形式多样，帮助各行业精准涨粉</span></div>
+						</div>
+					</div>
+					<div class="col-md-4 col-12">
+						<div class="funs-item">
+							<div class="funs-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/icon06.png"></div>
+							<div class="funs-title"><span>实时更新活动数据，追踪粉丝参与详情</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row section-item">
+		<div class="section-body">
+			<h2 class="strong-title">适用行业</h2>
+			<div class="col-md-12 col-12">
+				<ul class="icon-box">
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon01.png"></div>
+						<div class="icon-title"><span>电商</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon02.png"></div>
+						<div class="icon-title"><span>教育 </span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon03.png"></div>
+						<div class="icon-title"><span>美业</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon04.png"></div>
+						<div class="icon-title"><span>零售</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon05.png"></div>
+						<div class="icon-title"><span>家居</span></div>
+					</li>
+				</ul>
+				<ul class="icon-box">
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon06.png"></div>
+						<div class="icon-title"><span>金融</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon07.png"></div>
+						<div class="icon-title"><span>餐饮</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon08.png"></div>
+						<div class="icon-title"><span>医疗</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon09.png"></div>
+						<div class="icon-title"><span>自媒体</span></div>
+					</li>
+					<li>
+						<div class="icon-cover"><img class="img-rounded" src="https://bdn.135editor.com/files/202007/svg0729/ficon10.png"></div>
+						<div class="icon-title"><span>更多</span></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row section-item bg-box">
+		<div class="bg-img">
+			<img src="https://bdn.135editor.com/files/202007/svg0729/zero01.jpg">
+		</div>
+		<div class="section-body">
+			<h2 class="strong-title">企业微信裂变系统</h2>
+			<div class="col-md-12 col-12">
+				<p class="guide">
+					引导用户关注公众号并添加企业微信客服<br>
+					实现认证服务号粉丝与企业微信号好友同步增长
+				</p>
+			</div>
+			<a href="javascript:;" class="action-success-btn">点击免费试用</a>
+		</div>
+	</div>
+</div>
+<?php echo $this->view->getPartial('yyzncommon/zixun'); ?>
+<div class="modal fade" id="wechatWorkMessage" tabindex="-1" role="dialog" aria-labelledby="weChatWorkMessageLabel">
+	<div class="modal-dialog wechatWork-box" role="document">
+		<div class="modal-content">
+			<div class="modal-body message-box">
+				<div class="qrcode">
+					<img src="https://bdn.135editor.com/files/202007/svg0729/qrcode.jpg">
+				</div>
+				<div class="help-text">
+					扫码添加裂变增长官<br>
+					回复“<span class="str">企业微信</span>”<br>
+					免费领取企业微信裂变系统
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 内容结束 -->
+<!-- js开始 -->
+<script type="text/javascript">
+$(function() {
+	/// 点击免费用
+	$('a.action-success-btn').click(function() {
+		$('#wechatWorkMessage').modal({show: true });
+	});
+});
+</script>
+<!-- js结束 -->
+<?php echo $this->view->getPartial('yyzncommon/footer'); ?>

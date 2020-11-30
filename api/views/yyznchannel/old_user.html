@@ -1,0 +1,35 @@
+{% extends "yyznchannel/base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+ <style type="text/css">
+ 	.card-box.sed { padding: 4rem 0; }
+	.qrcode-img { width: 19rem; height: 19rem; border: 1px solid #f6f6f6; padding: 1rem; box-sizing: border-box; margin: 0 auto;}
+	.qrcode-img img { width: 100%; }
+ 	.card-box.sed .btn-gon { margin: 3.5rem 3.5rem; }
+ </style>
+{% endblock %}
+
+{% block content %}    
+	<div class="background-gary">
+		<div class="message-card">
+			<div class="icon"><i class="fa fa-check"></i></div>
+			<div class="text"><span>欢迎回来</span></div>
+		</div>
+		<div class="card-box sed">
+			<p>您已经注册过运营指南 <br>
+				<span class="str">请用电脑打开 <a href="https://www.yunyingzhinan.com">www.yunyingzhinan.com</a> 并绑定公众号激活 
+				暂不支持移动端操作，敬请见谅</span> <br>详细请扫码咨询<br>
+				</p>
+			<div class="qrcode-img"><img src="https://bdn.135editor.com/files/202004/yyznqrcode/yyznqrcode.png"></div>
+			<p><small class="str">运营指南累计为客户涨粉8000w+</small></p>
+			<a href="https://www.yunyingzhinan.com" class="btn btn-gon">继续了解运营指南</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %} 
+{% endblock %}

@@ -1,0 +1,39 @@
+<div class="mod-8 pd-60 bg-f5f6f7">
+    <div class="container" style="padding: 50px 0 0;">
+        <div class="common-title">
+            <h2 class="bg-black">{{ tag_title }}</h2>
+        </div>
+    </div>
+    <div class="container" style="padding: 0 0 50px;">
+      <ul style="width: 100%; display: flex; justify-content: space-between; flex-flow:row wrap;">
+        {% for articlekey,articlevalue in tag_article %}
+          <li class="list-item" style="width: calc(25% - 20px); box-sizing: border-box; margin: 10px; border-radius: 5px; overflow: hidden; background-color: white; box-shadow: 1px 3px 5px rgba(0, 0, 0, .2); }">
+            <div class="list-item-album" style="height: 160px; overflow: hidden; display: flex;">
+              <a href="/articles/{{ articlevalue['id'] }}.html">
+                <img src="{{ articlevalue['coverimg'] }}">
+              </a>
+            </div>
+            <div class="list-item-mask" style="top: 100%; left: 0%;">
+              <div style="line-height: 1.4; padding: 10px 10px 0;">
+                <a href="/articles/{{ articlevalue['id'] }}.html">
+                  <h4 style="font-size: 14px; color: gray; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">
+                    {{ articlevalue['name'] }}
+                  </h4>
+                </a>
+                <p style="font-size: 12px; height: 40px; line-height: 1.5; margin: 15px 0; border-bottom: 1px solid #dddddd; color: darkgray; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ articlevalue['summary'] }}</p>
+                <div class="works_info" style="font-size: 12px; height: 24px; color: darkgray;">
+                  <div class="fl works_time">
+                    <span>{{ articlevalue['created'] }}</span>
+                  </div>
+                  <div class="fr works_comments">
+                    <span>{{ articlevalue['view_nums'] }}</span>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+</div>

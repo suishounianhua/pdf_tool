@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>运营指南</title>
+</head>
+<body>
+<div style="width: 80%; margin: 100px auto; color: #7d7b7b; text-align: center;">
+		<img style="margin: 0 auto; width: 80%;" src="https://bdn.135editor.com/files/201908/timg.png">
+		<div style="margin: 20px auto; color: #3a3737">
+			<span style="color: #999;"> {{ msg }} </span>
+			【<a href="javascript:;" data-url="{{ url }}"
+			id="btn"
+			style="text-decoration: none; color: #3a3737;">{{ btn }}</a>】
+		</div>
+	</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	$(document).on("click",'#btn',function(){
+		var url = $(this).attr("data-url");
+		top.document.location.href = url;
+	});
+</script>
+</html>

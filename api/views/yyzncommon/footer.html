@@ -1,0 +1,153 @@
+<div class="modal-fix modal-wechat">
+    <div class="modal-main">
+        <img src="https://bdn.135editor.com/files/202004/yyznqrcode/yyznqrcode.png" alt="运营执行官">
+        <div class="modal-main-msg">
+            扫码添加微信
+            <br>咨询裂变涨粉，获取更多帮助
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on('click', '.Contact', function() {
+        $('.modal-wechat').show()
+    })
+    $(document).on('click', '.modal-wechat', function() {
+        $(this).hide()
+    })
+    $(document).on('click', '.modal-wechat .modal-main', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    })
+</script>
+<!-- 底部 -->
+ <footer>
+  <div class="container">
+   <div class="footer-content-1">
+    <div class="row">
+     <div class="col-md-5 footer-box">
+      <div class="footer-icon">
+       <img src="https://bdn.135editor.com/files/202001/yyzn/index/footer1.png" alt="028-61988135">
+      </div>
+      <div class="footer-contact">
+       <div class="footer-tel">028-61988135</div>
+       <div class="footer-description">服务热线 工作时间：周一至周五AM9:00—PM6:00</div>
+      </div>
+     </div>
+     <div class="col-md-3 footer-box">
+      <div class="footer-icon"><img src="https://bdn.135editor.com/files/202001/yyzn/index/footer2.png" alt="在线咨询"></div>
+      <div class="footer-contact">
+       <div class="footer-kefu Contact" >在线咨询</div>
+       <div class="footer-description">一对一服务</div>
+      </div>
+     </div>
+     <div class="col-md-2 col-6 footer-weixin-code">
+      <img src="https://bdn.135editor.com/files/202001/yyzn/index/qr1.jpg" alt="运营指南">
+      运营指南
+     </div>
+      <div class="col-md-2 col-6 footer-weixin-code">
+      <img src="https://bdn.135editor.com/files/202004/yyznqrcode/yyznqrcode.png" alt="运营执行官">
+      添加增长顾问
+      <p>免费获得裂变资料</p>
+     </div>
+    </div>
+   </div>
+   <div class="footer-copyright">
+    © 2018 yunyingzhinan All Right Reserved  成都刻尚科技有限公司 版权所有 <a href="http://www.beian.miit.gov.cn" target="_blank" >蜀ICP备17031697号</a>
+   </div>
+  </div>
+ </footer>
+<style type="text/css">
+.right-float {
+  background: #fff;
+  position: fixed;
+  right: 0;
+  top: 20%;
+  width: 252px;
+  height: 380px;
+  border-radius: 14px 0 0 14px;
+  text-align: center;
+  z-index: 999;
+  transition: all .3s linear;
+  box-shadow:  0px 0px 9px 2px rgba(77,78,88,0.4);
+}
+.right-float img{
+  vertical-align: text-bottom;
+}
+.yyzn_qrcode{
+  background: #fff;
+}
+.yyzn_qrcode>img{
+  width: 162px;
+}
+.right-float-text{
+  background: #fff;
+  color: #00a578;
+  line-height: 54px;
+  height: 54px;
+  border-bottom-left-radius: 9px;
+}
+@media only screen and (max-width:768px) {
+    .right-float {
+      display: none;
+    }
+}
+</style>
+<div class="right-float">
+        <img src="https://bdn.135editor.com/files/202006/yyzn/footer/yyzn_qrcode_desc/WechatIMG6723.png" alt="活码对应活动介绍">
+    <div class="yyzn_qrcode">
+        <img src="https://bdn.135editor.com/files/202004/yyznqrcode/yyznqrcode.png" alt="扫码添加微信">
+    </div>
+    <div class="right-float-text">
+        <span>扫码添加微信</span>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+        $(document).scroll(function() {
+            $('.right-float').css({ right: "-125px" })
+            clearTimeout(window.SCROLL_side)
+            window.SCROLL_side = setTimeout(function() {
+            $('.right-float').css({ right: "0px" })
+            }, 1000)
+        });
+    });
+$(document).scroll(function() {
+ var scroH = $(document).scrollTop(); //滚动高度
+ if ($('.mean-bar').length != 0) {
+  if (scroH > 10) {
+   $('.mean-bar').addClass('is-sticky').next().addClass('pt-50');
+  } else {
+   $('.mean-bar').removeClass('is-sticky').next().removeClass('pt-50');
+  }
+ } else {
+  if (scroH > 400) {
+   $('.header-sticky').addClass('is-sticky').next().addClass('pt-65');
+  } else {
+   $('.header-sticky').removeClass('is-sticky').next().removeClass('pt-65');
+  }
+ }
+
+});
+
+
+$('.slimmenu').slimmenu({
+ resizeWidth: '500',
+ collapserTitle: '',
+ animSpeed: 'medium',
+ indentChildren: true,
+ childrenIndenter: '&raquo;'
+});
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f80f7a54d9fc35eff876a004cf124fb5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

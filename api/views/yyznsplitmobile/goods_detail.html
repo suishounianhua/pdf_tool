@@ -1,0 +1,425 @@
+<?php echo $this->view->getPartial('yyznsplitmobile/header'); ?>
+<style>
+.header {
+ position: relative;
+}
+
+.header .goods_cover img {
+ width: 100%;
+ max-width: 100% !important;
+}
+.introduce img {
+ width: 100%;
+ max-width: 100% !important;
+}
+
+.to-all-goods {
+  z-index: 99;
+ position: fixed;
+ top: 4rem;
+ right: 0;
+ background: #fff;
+ box-shadow: 0 0 10px #e3e3e3;
+ height: .58rem;
+ line-height: .58rem;
+ padding-left: .3rem;
+ padding-right: .2rem;
+ border-radius: .6rem 0 0 .6rem;
+}
+
+.to-all-goods a {
+ color: #fe5923;
+ font-size: .2rem;
+ text-decoration: underline;
+}
+
+.fix-tips {
+  z-index: 99;
+ position: fixed;
+ top: 2.4rem;
+ right: 0;
+ background-image: linear-gradient(to right, #ffa629, #fec042);
+ border-radius: .65rem 0 0 .65rem;
+ color: #fff;
+ padding: .13rem .13rem .15rem .2rem;
+ box-shadow: 0 0 10px #e3e3e3;
+}
+
+.fix-tips .to-list {
+ color: #fff;
+ font-size: .2rem;
+ text-decoration: underline;
+ text-align: right;
+ display: block;
+}
+
+.fix-tips .counts {
+ display: flex;
+ margin-bottom: .15rem;
+}
+
+.fix-tips .counts .txt {
+ text-align: right;
+ margin-right: .1rem;
+ color: #fef4c6;
+ font-size: .18rem;
+}
+
+.fix-tips .counts .number {
+ width: .65rem;
+ height: .48rem;
+ text-align: center;
+ background: #ff8503;
+ color: #fff;
+ font-size: .36rem;
+}
+
+.header .goods-name {
+ font-size: .36rem;
+ line-height: .46rem;
+ padding: .35rem .2rem .2rem;
+ font-weight: bold;
+}
+
+.header .goods-info {
+ padding: 0 .2rem .3rem;
+}
+
+.header .goods-info p {
+ margin-right: .5rem;
+ display: inline-block;
+}
+
+.header .goods-info p:last-child {
+ margin-right: 0;
+}
+
+.header .goods-t1 {
+ font-size: .24rem;
+ color: #999999;
+}
+
+.header .goods-price {
+ font-size: .46rem;
+ color: #fe5923;
+ text-decoration: line-through;
+}
+
+.header .goods-count {
+ font-size: .3rem;
+ color: #333;
+}
+
+.line {
+ height: .1rem;
+ background: #f2f2f2;
+}
+
+.content img {
+ width: 100%;
+ /*padding-bottom: 2.15rem;*/
+}
+
+.content>.title {
+ font-size: .28rem;
+ line-height: .38rem;
+ font-weight: normal;
+ text-align: center;
+ padding: .35rem 0 .4rem;
+ color: #333;
+}
+
+.footer-btns {
+ height: 1.15rem;
+ background: #fff;
+ box-shadow: 0 -5px 10px #e3e3e3;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: .1rem .05rem;
+}
+
+.footer-btns .more {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ font-size: .24rem;
+ color: #fe5a23;
+ padding: 0 .2rem;
+ cursor: pointer;
+}
+
+.footer-btns .more img {
+ margin-bottom: .1rem;
+ width: .36rem;
+}
+
+.footer-btns .btns {}
+
+.footer-btns .btns a {
+ height: .9rem;
+ width: 5.8rem;
+ background-image: linear-gradient(to right, #fea30d, #fe5924);
+ font-size: .3rem;
+ line-height: .9rem;
+ border-radius: 40px;
+ text-align: center;
+ color: #fff;
+ display: block;
+}
+
+.footer-btns .btns.none a {
+ background: #ccc;
+}
+
+.receive-mask {
+  z-index: 99;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .5);
+ display: none;
+}
+
+.receive-main {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 5.9rem;
+ background: #fff;
+ border-radius: 10px;
+ transform: translate(-50%, -50%);
+ padding: .4rem 0 0;
+}
+
+.receive-main .title {
+ margin-bottom: .45rem;
+ font-weight: normal;
+ font-size: .36rem;
+ color: #333;
+ text-align: center;
+}
+
+.receive-main .name {
+ margin-bottom: .2rem;
+ font-size: .3rem;
+ line-height: .4rem;
+ color: #666666;
+ /*text-align: center;*/
+ padding: 0 .3rem;
+}
+
+.receive-main .tips {
+ margin-bottom: .4rem;
+ font-size: .26rem;
+ line-height: .36rem;
+ color: #f62626;
+ text-align: center;
+ padding: 0 .3rem;
+}
+
+.receive-main .bottom {
+ display: flex;
+ border-top: 1px solid #f4f4f4;
+}
+
+.receive-main .bottom a {
+ display: inline-block;
+ width: 50%;
+ border-right: 1px solid #f4f4f4;
+ height: .92rem;
+ line-height: .92rem;
+ text-align: center;
+ color: #aaaaaa;
+ font-size: .32rem;
+}
+
+.receive-main .bottom a:last-child {
+ border-right: none;
+}
+
+.receive-main .bottom a.ok {
+ color: #fe5a24;
+}
+</style>
+<div class="header">
+ <div class="goods_cover">
+  <!-- Swiper -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+   {% for articlevalue in postage['images'] %}
+        <div class="swiper-slide"><img src="{{ articlevalue }}" alt=""></div>
+    {% endfor %}
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+ </div>
+ <div class="fix-tips">
+  <div class="counts">
+   <span class="txt">有效<br>人气值</span>
+   {% if user_in_status > 0 %}
+   <span class="number">{{ split_user['number'] }}</span>
+   {% else %}
+   <span class="number">0</span>
+   {% endif %}
+  </div>
+  <a href="/new/yyznsplitmobile/ranking?splitid={{ split['id'] }}&code={{ h5code }}" class="to-list">查看排行榜</a>
+ </div>
+ <div class="to-all-goods">
+  <a href="/new/yyznsplitmobile/goods_list?splitid={{ split['id'] }}&code={{ h5code }}">查看全部奖品</a>
+ </div>
+ <div class="goods-name">
+  {{ postage['title'] }}
+ </div>
+ <div class="goods-info">
+ {% if postage['.......'] > 0 %}
+  <p><span class="goods-t1">原价：</span><span class="goods-price">￥{{ postage['market_money'] }}</span></p>
+ {% endif %}
+  <p><span class="goods-t1">库存:</span><span class="goods-count">{{ postage['inventory'] }}</span></p>
+ </div>
+</div>
+<div class="line"></div>
+<div class="content">
+ <h2 class="title">
+  商品详情
+</h2>
+ <div class="introduce">
+ <style type="text/css">
+
+ </style>
+  {% if postage['type'] > 1 %}
+  <div style="padding:0.2rem;margin-bottom: 1.4rem;">
+    {% switch postage['type'] %}
+      {% case 2 %}
+      <p>按照要求完成助力活动，点击链接即可领取礼品；</p>
+      {% break %}
+
+      {% case 3 %}
+      <p>按照要求完成助力活动，即可领取兑换码礼品，根据提示即可使用兑换码</p>
+      {% break %}
+      {% case 4 %}
+      <p>按照要求完成助力活动，即可领取微信卡券礼品，卡券可在微信中查看；</p>
+      {% break %}
+      {% case 5 %}
+      <p>根据完成任务后的提醒操作，即可领取礼品；</p>
+      {% break %}
+    {% endswitch %}
+     <br>
+     <h4>活动注意事项：</h4>
+     <p>1、活动中不提示人气值，可以点击【排行榜】自行查看人气值；</p>
+     <p>2、好友扫码助力后不能取消关注，好友取关是会扣除人气值；</p>
+     <p>3、姓名、电话、地址有一项重复的，只发一份奖品；</p>
+     <p>4、严禁刷票等舞弊行为，一经核定，直接取消活动资格，不再发送礼品；</p>
+     <p>5、活动最终解释权归举办方所有；</p>
+  </div>
+  {% else %} 
+    {{ postage['content'] }}
+  {% endif %}
+ </div>
+</div>
+<div class="footer-btns">
+{% if user_in_status > 0 %}
+  <a href="/new/yyznsplitmobile/user_info?splitid={{ split['id'] }}&code={{ h5code }}" class="more">
+{% else %}
+  <a href="javascript:void(0)" class="more split_qrcode_btn">
+ {% endif %}
+  <img src="https://bdn.135editor.com/files/202010/fd7d12a9ee126388b343e5537b815d9b.png" alt="">
+  个人中心
+ </a>
+ {% if user_in_status > 0 %}
+    {% if postage_status > 0 %}
+      <div class="btns on">
+        <a href="/new/yyznsplitmobile/user_info?splitid={{ split['id'] }}&code={{ h5code }}">查看领取详情</a>
+      </div>
+    {% else %}
+        {% if split['postage_type'] > 0 %}
+            {% if postage['number'] > split_user['number'] %}
+              <div class="btns none">
+                <a href="javascript:void(0)" >{{ postage['number'] }} 人气值免费领取</a>
+              </div>
+            {% else %}
+              <div class="btns on">
+                <a href="javascript:void(0)" id="set_postage" >{{ postage['number'] }} 人气值免费领取</a>
+              </div>
+            {% endif %}
+        {% else %}
+          <div class="btns none">
+            <a href="javascript:void(0)" >{{ postage['number'] }} 人气值免费领取</a>
+          </div>
+        {% endif %}
+    {% endif %}
+  
+ {% else %}
+   <div class="btns on">
+    <a href="javascript:void(0)" class="split_qrcode_btn">了解活动</a>
+   </div>
+ {% endif %}
+ 
+</div>
+<!-- 领取窗 -->
+<div class="receive-mask">
+ <div class="receive-main">
+  <h3 class="title">提醒</h3>
+  <div class="name">
+   正在领取【{{ postage['title'] }}】,当前总人气值：{{ split_user['total_number'] }}，有效：{{ split_user['number'] }}，
+   本次消耗{{ postage['number'] }}点人气值
+  </div>
+  <div class="tips">奖品领完截止 请抓紧时间</div>
+  <div class="bottom">
+   <a href="javascript:void(0)" class="no">取消</a>
+   <a href="javascript:void(0)" class="ok" id="receive_postage">立即领取</a>
+  </div>
+ </div>
+</div>
+
+<script>
+$(document).on('click','#set_postage',function(){
+  $('.receive-mask').show();
+});
+$(document).on('click','#receive_postage',function(){
+  var splitid = "{{ split['id'] }}"
+  var postageid = "{{ postage['id'] }}"
+  var uri = '/new/yyznsplitmobile/receive_postage'
+  $.ajax({
+        url: uri,
+        type: "POST",
+        dataType: "json",
+        data: {
+          splitid:splitid,
+          postageid:postageid
+        },
+        success: function (result) {
+          if(result.code == 200){
+            $('.receive-mask').hide()
+              window.location.href = "/new/yyznsplitmobile/user_info?splitid={{ split['id'] }}&code={{ h5code }}"
+          }else{
+            alert_msg(result.info,function(){
+              
+            });
+          }
+        },
+        error: function (xhr, status, p3, p4) {
+          alert("网络异常");
+        }
+  });
+});
+//关闭领取窗
+$(document).on('click', '.receive-mask .no', function() {
+ $('.receive-mask').hide()
+})
+    var swiper = new Swiper('.swiper-container', {
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+</script>
+<?php echo $this->view->getPartial('yyznsplitmobile/footer'); ?>

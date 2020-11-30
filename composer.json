@@ -1,0 +1,42 @@
+{
+    "name": "135/new",
+    "description": "135editor is the best typesetting tools all over the world.",
+    "keywords": [
+        "135editor",
+        "typesetting",
+        "wechat operations"
+    ],
+    "require": {
+        "phpmailer/phpmailer": "~5.2",
+        "phalcon/incubator": "^3.2",
+        "firebase/php-jwt": "^5.0",
+        "intervention/image": "^2.4",
+        "aliyuncs/oss-sdk-php": "~2.0",
+        "ipip/db": "^1.0"
+    },
+    "license": "self use",
+    "authors": [
+        {
+            "name": "135 Team",
+            "email": "team@135plat.com",
+            "homepage": "http://www.135plat.com"
+        }
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "Phalcon\\Test\\Unit\\": "tests/unit/",
+            "Phalcon\\Test\\Integration\\": "tests/integration/",
+            "Phalcon\\Test\\Module\\": "tests/_support/Module/",
+            "Phalcon\\Test\\Listener\\": "tests/_data/listener/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/phalcon/cphalcon/issues",
+        "source": "https://github.com/phalcon/cphalcon",
+        "forum": "https://forum.phalconphp.com/",
+        "docs": "http://docs.phalconphp.com/",
+        "wiki": "https://github.com/phalcon/cphalcon/wiki",
+        "irc": "irc://irc.freenode.org/phalconphp",
+        "rss" : "https://blog.phalconphp.com/rss"
+    }
+}

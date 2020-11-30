@@ -1,0 +1,19 @@
+# Created by .ignore support plugin
+### Phalcon template
+/cache/
+/config/development/
+.idea/*
+api/logs/*.log
+public/fjLog
+Uploads/
+.DS_Store
+*.pid
+.vscode
+*.lock
+api/storage/*
+api/cache/*
+public/images/*
+data/*
+api/config/*
+api/views/*/*.php
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+ <meta name="referrer" content="never">
+ <title>购买成功</title>
+ <link rel="stylesheet" type="text/css" href="../../voltassets/assets/css/promot/css/base.css">
+ <script type="text/javascript" src="https://bdn.135editor.com/files/202003/rem.js"></script>
+</head>
+<style type="text/css" media="screen">
+.gmcg-top {
+ background-color: #ededed;
+ height: 3rem;
+}
+
+.gmcg-card {
+ background: url('https://bdn.135editor.com/files/202003/7512c3e923037a882abac273056257e7.png') no-repeat center top;
+ background-size: contain;
+ position: absolute;
+ top: .2rem;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 6.96rem;
+ height: 4.19rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ z-index: 9;
+}
+
+.gmcg-card p:first-child {
+ margin-bottom: .43rem;
+ text-align: center;
+}
+
+.gmcg-card p:first-child span {
+ display: inline-block;
+ width: 2.27rem;
+ height: 2.27rem;
+ border-radius: .1rem;
+ padding: .1rem;
+ background-color: #fff;
+}
+
+.gmcg-card p:first-child span img {
+ width: 100%;
+}
+
+.gmcg-card p:last-child {
+ font-size: .3rem;
+ line-height: .4rem;
+ margin-bottom: 0;
+ text-align: center;
+ color: #fff;
+}
+
+.gmcg-body {
+ border-radius: .35rem .35rem 0 0;
+ background-color: #fff;
+ position: relative;
+ top: -1.2rem;
+ padding-top: 2.8rem;
+}
+
+.gmcg-tips {
+ font-size: .24rem;
+ line-height: .48rem;
+ color: #757575;
+ text-align: center;
+ margin-bottom: .35rem;
+}
+
+.gmcg-codeimg {
+ margin-bottom: 1.25rem;
+}
+
+.gmcg-codeimg img {
+ width: 1.85rem;
+ height: 1.85rem;
+ display: block;
+ margin: 0 auto;
+}
+
+.gmcg-link-box {
+ text-align: center;
+}
+
+.gmcg-link-box a {
+ font-size: .24rem;
+ color: #f6b829;
+ letter-spacing: 1px;
+}
+
+.gmcg-line {
+ display: inline-block;
+ width: 1px;
+ background-color: #333;
+ margin: 0 .15rem;
+ vertical-align: middle;
+}
+
+.gmcg-body img{
+  width: 100%;
+}
+</style>
+
+<body>
+ <div class="gmcg-top">
+  <div class="gmcg-card">
+   <p><span><img src="{{ code }}" alt=""></span></p>
+   <p>你的核销码已生成，请长按保存二维码</p>
+  </div>
+ </div>
+ <div class="gmcg-body">
+  <div class="gmcg-tips">
+   {{ centent }}
+  </div>
+  <div class="gmcg-link-box">
+   <a href="/new/yyznpromot/userCenter">个人中心</a>
+   <span class="gmcg-line">&nbsp;</span>
+   <a href="/new/yyznpromot/goodsDetail">继续购买</a>
+  </div>
+ </div>
+</body>
+</html>

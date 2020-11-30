@@ -1,0 +1,75 @@
+{% extends "yyznchannel/base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+	<style type="text/css">
+		body { overflow: hidden; position: relative; }
+		.qrcode-card { width: 100%; text-align: center; background-color: white; padding: 4rem; border-radius: 1.2rem; }
+		.qrcode-url { width: 22rem; height: 22rem; margin: 0 auto; box-sizing: border-box; border: 1px solid #f6f6f6; border-radius: 1rem; padding: 1.5rem; margin-bottom: 2.5rem; }
+		.qrcode-url img { width: 100%; }
+		.qrcode-txt { color: #888888; font-size: 1.35rem; line-height: 2.4rem; }		
+		.ditr-card { width: 100%; height: 5.5rem; margin-top: 1rem; background-color: white; border-radius: 1rem; padding: 1rem; display: flex; justify-content: space-between; line-height: 3.2rem; }
+		.ditr-card span { color: #444; font-size: 1.35rem; }
+		.ditr-card input[disabled="disabled"] { background-color: white; border: 1px solid #ddd; width: calc(100% - 12rem); box-sizing: border-box; margin: 0; padding: 0 0 0 .5rem; }
+		.ditr-card .btn-copy { height: 3.2rem; line-height: 3.2rem; text-align: center; background-color: #00a578; color: white; box-shadow: 1px 2px 5px #00a971; padding-top: 0; }
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="background-card qrcode">
+		<div class="user-card">
+			<div class="header">
+				<!-- <i class="fa fa-user fa-fw"></i> -->
+				<img src="{{ user['headimg']|default('https://bdn.135editor.com/files/202005/yyznchannel/header006.jpg') }}">
+			</div>
+			<div class="nickname send">
+				<span>{{ user['nickname']|default("未授权") }}</span>
+				<span class="help" id="wechat-redirec">点我立即授权</span>
+			</div>
+		</div>
+		<div class="qrcode-card">
+			<div class="qrcode-url">
+				<img src="{{ channel['qrcode'] }}">
+			</div>
+			<div class="qrcode-txt">
+				长按保存专属渠道二维码<br>
+				通过此码识别的注册用户都将成为您的客户
+			</div>
+		</div>
+		<div class="ditr-card">
+			<span>渠道链接:</span>
+			<input type="text" disabled="disabled" value="{{ channel['url'] }}">
+			<button type="bottom" class="btn btn-default btn-copy" data-clipboard-text="{{ channel['url'] }}" id="copy">复制</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+		});
+	</script>
+{% endblock %}
+{% block footer %}
+<script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#wechat-redirec').click(function(event) {
+		wechat_redirec();
+	});
+
+	// 复制
+	var copyBtn=document.getElementById('copy');
+	var clipboard = new Clipboard(copyBtn);
+	clipboard.on('success', function(e){
+		alert("复制成功")
+	});
+});
+
+//授权
+function wechat_redirec(){
+	window.location.href = '/new/yyznchannel/wechat_redirec'
+}
+	
+</script>
+{% endblock %}

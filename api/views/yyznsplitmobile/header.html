@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>{{ title }}</title>
+ <meta name="renderer" content="webkit" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+ <meta name="format-detection" content="telephone=no">
+ <meta name="keywords" content="" />
+ <meta name="description" content="" />
+ <link rel=stylesheet href="https://bdn.135editor.com/files/202010/dropload.css">
+ <link rel="stylesheet" href="https://bdn.135editor.com/files/202010/swiper-bundle.min.css">
+ <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://bdn.135editor.com/files/202010/dropload.min.js"></script>
+ <script src="https://bdn.135editor.com/files/202010/swiper-bundle.min.js"></script>
+</head>
+<style>
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+ margin: 0;
+ padding: 0;
+}
+html{
+	-webkit-tap-highlight-color:none;
+	-webkit-tap-highlight-color:transparent;
+} 
+
+* {
+ box-sizing: border-box;
+}
+
+img {
+ border: 0;
+ vertical-align: top;
+}
+
+ul {
+ list-style: none;
+}
+
+button {
+ outline: none;
+}
+
+input {
+ padding-top: 0;
+ padding-bottom: 0;
+ border: 0;
+}
+
+a {
+ text-decoration: none;
+}
+
+body {
+ font: normal normal 12px "Microsoft YaHei";
+ color: #4d525d;
+ background: #fff;
+ width: 100%;
+ margin: 0 auto;
+}
+
+.fl {
+ float: left;
+}
+
+.fr {
+ float: right;
+}
+
+.clearfix:after {
+ content: "";
+ height: 0;
+ display: block;
+ visibility: hidden;
+ clear: both;
+}
+
+.clearfix {
+ *zoom: 1;
+}
+
+.color-999 {
+ color: #999999;
+}
+
+</style>
+<script>
+var htmlEl = document.getElementsByTagName('html')[0];
+var fitPage = function() {
+ /* The calculate of with from zepto  */
+ var w = htmlEl.getBoundingClientRect().width;
+ w = Math.round(w);
+ w = w > 750 ? 750 : w;
+ var newW = w / 750 * 100;
+ htmlEl.style.fontSize = newW + 'px';
+};
+fitPage();
+var t;
+var func = function() {
+ clearTimeout(t);
+ t = setTimeout(fitPage, 25);
+};
+window.addEventListener('resize', func);
+</script>
+<body>

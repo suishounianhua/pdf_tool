@@ -1,0 +1,246 @@
+<style type="text/css">
+/*.paytext-centent{
+    min-width: 460px;
+}*/
+    .paytext-centent{
+        background-color:transparent;
+    }
+    .pay-centent{
+        /*width: 460px;
+        height: 420px;*/
+        border:0px;
+        background-image: url(https://bdn.135editor.com/files/202002/11/modal.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-color:transparent;
+
+    }
+    .pay-centent>div{
+        text-align: center;
+    }
+    .pay-centent .select-type {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-top: 1.46rem;
+        padding-bottom: 0.32rem;
+    }
+    .pay-body{
+        padding-top: 0.6rem;
+    }
+    .pay-centent .select-type .modebtn {
+        background: transparent;
+        display: inline-block;
+        border-radius: 0;
+        padding: 0.12rem;
+        cursor: pointer;
+        color: #333;
+        font-size: 0.8rem;
+        margin: 0 10px;
+    }
+@media only screen and (max-width:768px) {
+    .modal-content {
+        width: 95%;
+    }
+}
+    .pay-centent .select-type .modebtn.on:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        height: 0.1rem;
+        background-image: -webkit-gradient(linear,left top,right top,from(#ffc949),to(#ffc949));
+        background-image: linear-gradient(90deg,#ffc949,#ffc949);
+        border-radius: 0.4rem;
+        bottom: 0.05rem;
+    }
+    .pay-centent .qrcode {
+        width: 8rem;
+        height: 8rem;
+        margin: 0rem auto 0.32rem;
+        display: block;
+        border: 0.06rem solid #ffc949;
+        position: relative;
+    }
+    .pay-centent .select-type .modebtn.on {
+        font-weight: 700;
+        position: relative;
+    }
+    .max-img{
+        width:100%;
+    }
+    .pay-centent .code-info {
+        color: #000;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    .pay-centent .code-info span {
+    color: #fc5d5d;
+}
+.pay-centent .desc {
+    color: #999;
+    font-size: 0.4rem;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.pay-centent .desc-info {
+    display: block;
+    text-align: center;
+    color: #666;
+    font-size: 0.4rem;
+    line-height: 0.6rem;
+}
+.pay-centent .desc-info .a {
+    color: #ffc949;
+}
+</style>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered paytext-centent" role="document">
+        <div class="modal-content pay-centent">
+            <!-- <div class="modal-header pay-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+            </div> -->
+            <div class="modal-body pay-body">
+                <div class="select-type">
+                    <a href="javascript:;" class="modebtn on" tag-number="6" id="defnumber">购买半年</a>
+                    <a href="javascript:;" class="modebtn " tag-number="12">购买一年</a>
+                </div>
+                <div class="qrcode" >
+                    <img class="max-img" id="pay-qrcode"/>
+                </div>
+                <div class="code-info"  id="pay-price">
+                限时优惠：
+                    <span>￥2998.00</span>/半年
+                </div>
+                <div class="desc" style="margin-bottom: 0px;">
+                (支持微信/支付宝扫码支付)
+                </div>
+                <div class="desc-info">
+                虚拟产品一经出售不予退款，请根据需求选购产品
+                    <br/> 购买成功后在电脑端登录 
+                    <a href="/vue/home" target="_blank" class="a">运营指南后台</a> 授权公众号即可使用
+                </div>
+            </div>
+        <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+        </div>
+    </div>
+</div>
+<input  type="hidden" id="orderId" value="0"/>   
+<input  type="hidden" id="number" value="6"/>   
+<script type="text/javascript">
+    $(document).on('click','#pay-btn',function(){
+        var userid = "<?= $user_id ?>" 
+        var authid = "<?= $auth_id ?>" 
+        var number = 6 ;
+        $("#number").val(number);
+        createOrder(userid,authid,number);
+    });
+    $(document).on('click','.modebtn',function(){
+        var number = $(this).attr('tag-number');
+        var def_number = $("#number").val();
+        if(number == def_number){
+            return false;
+        }
+        $("#number").val(number);
+        $(".modebtn").removeClass('on');
+        $(this).addClass('on');
+        var userid = "<?= $user_id ?>" 
+        var authid = "<?= $auth_id ?>" 
+        createOrder(userid,authid,number);
+    });
+
+    function createOrder(userid,authid,number){
+        var strNumber = '';
+        if(number == 6){
+            strNumber = '半年';
+        }else if(number == 12){
+            strNumber = '一年';
+        }else if(number == 3){
+            strNumber = '季度';
+        }else{
+            strNumber = number+'个月';
+        }
+        var postData = {
+            wx_id:0,
+            num:number,
+            userid:userid,
+            authid:authid
+        }
+        $.ajax({
+            url: '/new/Wxauth/getOrderNumber',
+            type: 'POST',
+            data:postData,
+            success: function(res) {
+                if (res.code == 200) {
+                        if(res.data.status > 0){
+                             alert("支付成功")
+                             return false;
+                        }else{
+                           $("#pay-qrcode").attr('src',res.data.qrcode); 
+                           $("#orderId").val(res.data.order_id);
+                           var str = '限时优惠：<span>￥'+res.data.price+'</span>/'+strNumber
+                           $("#pay-price").html(str); 
+                            $('#exampleModalCenter').modal('show')
+
+                           //开始轮询查询是否支付
+                           var def_orderid = res.data.order_id;
+                           var interval = setInterval(function(){
+                                console.log("正在轮询")
+                                var order_id = $("#orderId").val();
+                                if(order_id < 1){
+                                    console.log("轮询终止");
+                                    clearInterval(interval);
+                                }
+                                if(order_id != def_orderid){
+                                    console.log("轮询终止");
+                                    clearInterval(interval);
+                                }
+                                $.ajax({
+                                    url: '/new/Pay/checkStatus',
+                                    type: 'POST',
+                                    data:{order_id:order_id},
+                                    success: function(orderres) {
+                                        if(orderres.code == 200){
+                                            if(orderres.data.status == 'success'){
+                                                $("#orderId").val(0);
+                                                $("#number").val(6);
+                                                $('#exampleModalCenter').modal('hide')
+                                                alert("支付成功");
+                                            }
+                                        }else{
+                                            $("#orderId").val(0);
+                                                $("#number").val(6);
+                                        }
+                                    }
+                                });
+                           },2000);
+
+                           
+                            return true;
+                        }
+                        
+                }else{
+                    alert(res.info)
+                    return false;
+                }
+            }
+        });
+    }
+
+    $('#exampleModalCenter').on('hide.bs.modal', function () {
+        $("#orderId").val(0);
+        $("#number").val(6);
+        $(".modebtn").removeClass('on');
+        $("#defnumber").addClass('on');
+    });
+</script>

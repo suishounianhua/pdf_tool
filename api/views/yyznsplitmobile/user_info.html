@@ -1,0 +1,933 @@
+<?php echo $this->view->getPartial('yyznsplitmobile/header'); ?>
+<!-- 填写收货信息 start -->
+<style type="text/css">
+  .iphone { width: 384px; height: 799px; padding: 182px 32px 157px; margin: 10px auto; }
+.browser { position: relative; width: 320px; height: 460px; overflow: hidden; }
+@media (min-width: 721px) and (max-width: 1300px) {
+  .iphone { width: 270px; height: 562px; padding: 128px 23px 111px; margin: 20px auto; background-size: 270px 562px; }
+  .browser { width: 224px; height: 323px; }
+}
+@media (max-width: 720px) {
+  .iphone { width: 100%; height: 100%; padding: 0; background: none; }
+  .browser { width: 100%; height: 100%; }
+}
+/*选择地区*/
+.express-area { border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-top: .06125rem; margin-bottom: .06125rem; background-color: #fff; }
+.express-area a { display: block; padding: .125rem; background: url(../../img/page/link-arrow.png) no-repeat 98% 50%; background-size: .1375rem .1375rem; }
+.express-area dl { position: relative; line-height: 0.3rem; color: #4d525d; }
+.express-area dl dt { position: absolute; top: 0; left: 0; font-size: .175rem; line-height: 0.3rem; }
+.express-area dl dd { padding-top: .025rem; padding-right: .2rem; margin-left: 0.875rem; text-align: justify; font-size: .1625rem; line-height: 0.25rem; }
+@media (min-width: 721px) and (max-width: 1300px) {
+  .express-area a { padding: .3rem; }
+  .express-area dl dt { font-size: .5rem; line-height: 1rem; }
+  .express-area dl dd { padding-right: .6rem; margin-left: 3rem; font-size: .4rem; line-height: .8rem; }
+}
+/*错误弹出层*/
+.alert_msg{ position: absolute; top: 2.5rem; left: 50%; z-index: 15; width: 320px; margin-left: -160px; background-color: #fff; color: #4d525d;display: none; }
+.alert_msg header { position: relative; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; }
+.alert_msg header h3 { margin: 0 0.25rem; font-size: .2rem; line-height: .5625rem; }
+.alert_msg header .close { position: absolute; top: 0; width: 0.41875rem; height: 0.5625rem; }
+.alert_msg header .close { right: 0; background: url(../../img/page/close-area.png) no-repeat center; background-size: .16875rem .16875rem; }
+.alert_msg .alert_content{
+  padding: 0.15rem .25rem;
+}
+.alert_btn{
+  height: .575rem;
+}
+.btn-warnings {
+      padding: 0.075rem .25rem;
+    font-size: 0.2rem;
+  position: absolute;
+    right: .25rem;
+    color: #ffffff;
+    background-color: #FF5722;
+    border-color: #FF5722;
+}
+.btn-warnings:hover {
+    color: #ffffff;
+    background-color: #FF5722;
+    border-color: #FF5722;
+}
+/*选择地区弹层*/
+.express-area-box { position: absolute; bottom: -100%; left: 50%; z-index: 15; width: 320px; margin-left: -160px; background-color: #fff; color: #4d525d; }
+.express-area-box header { position: relative; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; }
+.express-area-box header h3 { margin: 0 0.419rem; text-align: center; font-size: .2rem; line-height: 0.56rem; }
+.express-area-box header .back,
+.express-area-box header .close { position: absolute; top: 0; width: .419rem; height: .56rem; }
+.express-area-box header .back { display: none; left: 0; background: url(../../img/page/back.png) no-repeat center;   background-size: .11rem .19rem; }
+.express-area-box header .close { right: 0; background: url(../../img/page/close-area.png) no-repeat center; background-size: .16875rem .16875rem; }
+.express-area-box article { height: 250px; overflow-y: scroll; }
+.area-list li { padding: .125rem; border-bottom: 1px solid #e2e2e2; text-align: center; font-size: .195rem; line-height: .3125rem; }
+@media (min-width: 721px) and (max-width: 1300px) {
+  .express-area-box { width: 224px; margin-left: -112px; }
+  .express-area-box header h3 { font-size: .7rem; line-height: 1.7rem; }
+  .express-area-box header .back,
+  .express-area-box header .close { height: 1.7rem; }
+  .express-area-box article { height: 120px; }
+  .area-list li { padding: .3rem; font-size: .6rem; line-height: 1rem; }
+}
+@media (max-width: 720px) {
+  .express-area-box { position: fixed; left: 0; width: 100%; margin-left: 0; }
+}
+/*遮罩层*/
+.mask { display: none; position: absolute; top: 0; left: 0; z-index: 12; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); }
+@media (max-width: 720px) {
+  .mask { position: fixed; }
+}
+</style>
+<!-- 填写收货信息 end -->
+
+<style>
+.main {
+ background: #f4f4f4;
+ padding: .2rem .15rem;
+ min-height: 100vh;
+}
+
+.person-head {
+ background: #fff;
+ border-radius: 4px;
+ padding: .26rem .48rem;
+ display: flex;
+ justify-content: start;
+ align-items: start;
+}
+
+.person-head .portrait {
+ width: 1.3rem;
+ height: 1.3rem;
+ overflow: hidden;
+ border-radius: 50%;
+ margin-right: .3rem;
+}
+
+.person-head .portrait img,
+.lists .item .cover img {
+ width: 100%;
+}
+
+.lists .item .cover a {
+ display: block;
+}
+
+.person-head .information {
+ font-size: .28rem;
+ line-height: .38rem;
+}
+
+.person-head .information p {
+ margin-bottom: .1rem;
+}
+
+.main .content>.title {
+ font-size: .28rem;
+ color: #666;
+ padding: .4rem 0 .3rem;
+ text-align: center;
+ font-weight: normal;
+}
+
+.lists {
+ padding-bottom: 1.15rem;
+}
+
+.lists .item a{
+ position: relative;
+ border-radius: 4px;
+ box-shadow: 0 0 10px #e3e3e3;
+ padding: .28rem .18rem .23rem;
+ background: #fff!important;
+ display: flex;
+ justify-content: start;
+ align-items: start;
+ overflow: hidden;
+ margin-bottom: .2rem;
+}
+.lists .item .tag {
+ position: absolute;
+ top: 0.09rem;
+ right: -0.9rem;
+ font-size: .24rem;
+ line-height: .24rem;
+ padding: .2rem 1rem;
+ background: #fe5b35;
+ color: #fff;
+ transform: rotate(45deg);
+}
+
+.lists .item .cover {
+ width: 1.65rem;
+ height: 1.65rem;
+ background: #f8fafc;
+ margin-right: .17rem;
+}
+
+.lists .item .information {
+ width: 3rem;
+ margin-right: .2rem;
+}
+
+.lists .item .information .title {
+ font-size: .28rem;
+ line-height: .38rem;
+ margin-bottom: .2rem;
+ padding-top: .1rem;
+ color: #333;
+ display: block;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+.lists .item .information .price {
+ font-size: .24rem;
+ line-height: .34rem;
+ color: #999999;
+ margin-bottom: .1rem;
+}
+
+.lists .item .information .type {
+ font-size: .24rem;
+ color: #fe5b35;
+ background: #fceeea;
+ height: .38rem;
+ width: .95rem;
+ border-radius: 2px;
+ text-align: center;
+}
+
+.lists .item .btns {
+ padding-top: .76rem;
+}
+
+.lists .item .btns .check {
+ font-size: .24rem;
+ color: #666;
+ height: .56rem;
+ width: 1.5rem;
+ text-align: center;
+ border: 1px solid #666;
+ border-radius: 4px;
+ background: #fff;
+ cursor: pointer;
+}
+
+.footer-btns {
+ height: 1.15rem;
+ background: #fff;
+ box-shadow: 0 -5px 10px #e3e3e3;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: .1rem .05rem;
+}
+
+.footer-btns .more {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ font-size: .24rem;
+ color: #fe5a23;
+ padding: 0 .2rem;
+ cursor: pointer;
+}
+
+.footer-btns .more img {
+ margin-bottom: .1rem;
+ width: .36rem;
+}
+
+.footer-btns .btns {}
+
+.footer-btns .btns a {
+ height: .9rem;
+ width: 5.8rem;
+ background-image: linear-gradient(to right, #fea30d, #fe5924);
+ font-size: .3rem;
+ line-height: .9rem;
+ border-radius: 40px;
+ text-align: center;
+ color: #fff;
+ display: block;
+}
+
+.logistics-mask {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .5);
+ display: none;
+}
+
+.logistics-main {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 5.9rem;
+ background: #fff;
+ border-radius: 10px;
+ transform: translate(-50%, -50%);
+ padding: .5rem .45rem .6rem;
+}
+
+.logistics-main .title {
+ font-size: .36rem;
+ line-height: .36rem;
+ font-weight: normal;
+ text-align: center;
+ margin-bottom: .65rem;
+ color: #333;
+}
+
+.logistics-main .info {
+ font-size: .32rem;
+ line-height: .42rem;
+ margin-bottom: .2rem;
+}
+
+.logistics-main .info:last-child {
+ margin-bottom: .5rem;
+}
+
+.logistics-main .copy {
+ display: block;
+ width: 3.85rem;
+ height: .8rem;
+ line-height: .8rem;
+ font-size: .3rem;
+ color: #fe5b24;
+ border: 1px solid #fe5b24;
+ border-radius: 40px;
+ text-align: center;
+ background: #fff;
+ margin: 0 auto .4rem;
+}
+
+.logistics-main .close {
+ display: block;
+ width: 3.85rem;
+ height: .8rem;
+ line-height: .8rem;
+ font-size: .3rem;
+ color: #aaa;
+ border: 1px solid #aaa;
+ border-radius: 40px;
+ text-align: center;
+ background: #fff;
+ margin: 0 auto;
+}
+
+
+
+.prize-mask {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .5);
+ display: none;
+}
+
+.prize-main {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ background: #fff;
+ border-radius: 10px;
+ transform: translate(-50%, -50%);
+}
+
+.prize-main .poster {
+ max-height: 10rem;
+ height: 100%;
+ margin: 0 auto;
+ display: block;
+}
+
+.prize-main .tips {
+ font-size: .3rem;
+ line-height: .4rem;
+ color: #666;
+ padding: .35rem .3rem .3rem;
+ text-align: center;
+}
+
+.prize-main .close {
+ display: block;
+ width: 3.85rem;
+ height: .8rem;
+ line-height: .8rem;
+ font-size: .3rem;
+ color: #aaa;
+ border: 1px solid #aaa;
+ border-radius: 40px;
+ text-align: center;
+ background: #fff;
+ margin: 0 auto .38rem;
+}
+
+.exchange-mask {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .5);
+ display: none;
+}
+
+.exchange-main {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 5.9rem;
+ background: #fff;
+ border-radius: 10px;
+ transform: translate(-50%, -50%);
+ padding: .5rem .45rem .6rem;
+}
+
+.exchange-main .title {
+ font-size: .36rem;
+ line-height: .36rem;
+ font-weight: normal;
+ text-align: center;
+ margin-bottom: .65rem;
+ color: #333;
+}
+
+.exchange-main .copy-txt {
+ font-size: .32rem;
+ background: #f2f2f2;
+ width: 4.6rem;
+ margin: 0 auto .77rem;
+ border-radius: 4px;
+ text-align: center;
+ padding: .2rem .1rem;
+}
+
+.exchange-main .copy {
+ display: block;
+ width: 3.85rem;
+ height: .8rem;
+ line-height: .8rem;
+ font-size: .3rem;
+ color: #fe5b24;
+ border: 1px solid #fe5b24;
+ border-radius: 40px;
+ text-align: center;
+ background: #fff;
+ margin: 0 auto .4rem;
+}
+
+.exchange-main .close {
+ display: block;
+ width: 3.85rem;
+ height: .8rem;
+ line-height: .8rem;
+ font-size: .3rem;
+ color: #aaa;
+ border: 1px solid #aaa;
+ border-radius: 40px;
+ text-align: center;
+ background: #fff;
+ margin: 0 auto;
+}
+.address-mask {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .5);
+ display: none;
+}
+
+.address-main {
+ width: 5.9rem;
+ margin: 1rem auto 0;
+ background: #fff;
+ border-radius: 10px;
+ padding: .7rem .45rem;
+ max-height: 10rem;
+ overflow-y: auto;
+}
+.address-main form label {
+display: block;
+margin-bottom: .4rem;
+font-size: .2rem;
+}
+.address-main form label span{
+display: block;
+margin-bottom: .15rem;
+color: #666;
+}
+.address-main form label input{
+display: block;
+width: 100%;
+border: 1px solid #eee;
+border-radius: 4px;
+height: .5rem;
+line-height: .5rem;
+color: #666;
+}
+.address-main form label textarea {
+display: block;
+width: 100%;
+border: 1px solid #eee;
+border-radius: 4px;
+min-height: 1rem;
+}
+.address-main form .submit {
+  text-align: center;
+  background-color: #fe5b24;
+  padding: 0.2rem;
+  color: #fff;
+  margin: 0 auto;
+  border: none;
+  display: block;
+  margin-bottom: .3rem;
+  font-size: .26rem;
+  border-radius: 6px;
+  background-image: linear-gradient(to right, #fea30d, #fe5924);
+  width: 45%;
+    float: left;
+}
+.address-main form .close {
+    text-align: center;
+    background-color: #fff;
+    padding: 0.2rem;
+    color: #666;
+    margin: 0 auto;
+    border: none;
+    display: block;
+    margin-bottom: .3rem;
+    font-size: .26rem;
+    background-image: none;
+    border-radius: 6px;
+    border: 1px #eee solid;
+    margin-left: 10%;
+}
+.address-main .tips a {
+color: #666;
+font-size: .24rem;
+text-decoration: underline;
+}
+</style>
+<div class="main">
+ <div class="person-head">
+  <div class="portrait">
+   <img src="{{ userinfo['headimgurl'] }}" alt="">
+  </div>
+  <div class="information">
+   <p><span class="color-999">UID：</span>
+    <span>
+      {% if user_in_status > 0 %}
+        {{ split_user['uid'] }}
+     {% else %}
+        ******
+     {% endif %}
+    </span>
+  </p>
+   <p><span class="color-999">昵称：</span><span>{{ userinfo['nickname'] }}</span></p>
+   <p><span>有效人气值：</span><span>
+   {% if user_in_status > 0 %}
+        {{ split_user['number'] }}
+     {% else %}
+        0
+     {% endif %}</span></p>
+  </div>
+ </div>
+ <div class="content">
+  <h3 class="title">已获得的奖品</h3>
+  <ul class="lists">
+  {% for postage in postagelist %}
+   <li class="item">
+    <a href="javascript:void(0)">
+    <p class="tag">免费</p>
+    <div class="cover">
+     <img src="{{ postage['images'][0] }}" alt="">
+    </div>
+    <div class="information">
+     <div class="title">{{ postage['title'] }}</div>
+     <p class="price">原价￥{{ postage['market_money'] }}</p>
+     {% switch postage['type'] %}
+        {% case 1 %}
+           <p class="type">实物</p>
+          </div>
+          <div class="btns">
+            {% if postage['status'] > 0 %}
+                <input type="hidden" tag-mailno="{{ postage['mail_no'] }}" tag-maildesc="{{ postage['mail_desc'] }}" tag-nick="{{ postage['nick'] }}" tag-status="{{ postage['status'] }}" tag-address="{{ postage['address'] }}" tag-mobile="{{ postage['mobile'] }}" id="find_address_{{ postage['infoid'] }}">
+                <button class="check find_address" tag-infoid="{{ postage['infoid'] }}">物流信息</button>
+            {% else %}
+                <button class="check setaddress" tag-id="{{ postage['infoid'] }}" >填写地址</button>
+            {% endif %}
+          </div>
+        {% break %}
+        {% case 2 %}
+           <p class="type">链接</p>
+          </div>
+          <div class="btns">
+           <button class="check redir_url" data-url="{{ postage['content'] }}">查看详情</button>
+          </div>
+        {% break %}
+        {% case 3 %}
+           <p class="type">兑换码</p>
+          </div>
+          <div class="btns">
+           <button class="check code_btn" data-url="{{ postage['content'] }}">查看详情</button>
+          </div>
+        {% break %}
+        {% case 4 %}
+           <p class="type">卡券</p>
+          </div>
+          <div class="btns">
+           <button class="check crar_btn" >查看详情</button>
+          </div>
+        {% break %}
+        {% case 5 %}
+           <p class="type">图片</p>
+          </div>
+          <div class="btns">
+           <button class="check image_btn" data-url="{{ postage['content'] }}">查看详情</button>
+          </div>
+        {% break %}
+    {% endswitch %}
+    </a>
+   </li>
+   {% endfor %}
+    
+  
+  </ul>
+ </div>
+</div>
+<div class="footer-btns">
+ <a href="/new/yyznsplitmobile/goods_list?splitid={{ split['id'] }}&code={{ h5code }}" class="more">
+  <img src="https://bdn.135editor.com/files/202010/c00ca8e08e8366ab9e615ad13a41602e.png" alt="">
+  奖品列表
+ </a>
+<div class="btns on">
+    <a href="javascript:void(0)" class="split_qrcode_btn">了解活动</a>
+   </div>
+</div>
+
+<!-- 物流信息 -->
+<div class="logistics-mask">
+ <div class="logistics-main">
+  <h3 class="title">发货信息</h3>
+  <div>
+   <div class="info">
+      <span class="color-999">收货信息：</span>
+      <span id="mask_address">湖南省 长沙市 岳麓区 绿地湖湘中心5栋13017 罗雕（18301232637）</span>
+    </div>
+   <div class="info ">
+    <span class="color-999">状态：</span><span id="mask_status">已发货</span></div>
+   <div class="info mask_mail_no"><span class="color-999">快递编号：</span><span class="copy-number" id="mask_mail_no">13213414465454</span></div>
+   <div class="info mask_mail_desc"><span class="color-999">描述：</span><span id="mask_mail_desc">快递公司：圆通快递；预计2020-10-25上午送达</span></div>
+  </div>
+  <button class="copy copy_mail_no">复制单号</button>
+  <button class="close">关闭</button>
+ </div>
+</div>
+
+<!-- 得奖 -->
+<div class="prize-mask">
+ <div class="prize-main">
+  <img class="poster" id="poster_imgae" src="https://bdn.135editor.com/files/1/eb/7d4/eb7d41298d29bb603cbd614313f53370.force-download" alt="">
+  <div class="tips">恭喜你已经得奖，请保存好图片</div>
+  <button class="close">关闭</button>
+ </div>
+</div>
+
+<!-- 兑换码 -->
+<div class="exchange-mask">
+ <div class="exchange-main">
+  <h3 class="title">你的兑换码为</h3>
+  <div class="copy-txt" id="poster_code">
+   whslan5631sdoawh
+  </div>
+  <button class="copy">点击复制</button>
+  <button class="close">关闭</button>
+ </div>
+</div>
+
+<!-- 地址弹窗 -->
+<div class="address-mask">
+ <div class="address-main">
+  <form action="" method="get" accept-charset="utf-8">
+  <div style="max-height: 8rem;
+    overflow: auto;
+    overflow-x: hidden;">
+    <label>
+      <span>姓名：</span>
+      <input type="text" name="" value="" id="name">
+    </label>
+    <label>
+      <span>手机号：</span>
+      <input type="text" name="" value="" id="phone">
+    </label>
+    {% for address in split['address_remark'] %}
+        <label>
+          <span>{{ address['name'] }}：</span>
+          <input type="text" name="" value="" id="address_remark_{{ address['key'] }}">
+        </label>
+    {% endfor %}
+    <label>
+      <span>省份城市：</span>
+      <input type="text" name="" value="" id="expressArea">
+    </label>
+    <label>
+      <span>详细地址：</span>
+      <textarea name="" id="detailarea"></textarea>
+    </label>
+  </div>
+  <div style="width: 100%;
+    height: 1rem;
+    padding-top: 0.2rem;
+">
+    <a href="javascript:void(0)" class="submit" id="submit_address">确认提交</a>
+    <a href="javascript:void(0)" class="submit close" id="close_address">取消</a>
+  </div>
+    
+  </form>
+<!--   <div class="tips"><a href="javascript:void(0)" id="wechat_address">点击此处获取微信收货地址</a></div> -->
+ </div>
+</div>
+<div id="alert_msg" class="alert_msg">
+    <header>
+          <h3>信息</h3>
+          <a  id="closeAlert" class="close" href="javascript:void(0)" title="关闭"></a>
+      </header>
+      <div class="alert_content" id="alert_content">
+        <p>这是一条测试信息</p>
+      </div>
+    
+    <div class="alert_btn">
+      <div class="btn-warnings" id="btnAlert">确定</div>
+    </div>
+  </div>
+<section id="areaLayer" class="express-area-box">
+      <header>
+          <h3>选择地区</h3>
+          <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+          <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+      </header>
+      <article id="areaBox">
+          <ul id="areaList" class="area-list"></ul>
+      </article>
+  </section>
+<div id="areaMask" class="mask"></div>
+<script src="/js/page/want.min.js"></script>
+<script>
+
+$(document).on('click',"#wechat_address",function(){
+  wechatOpenAddress(function(res){
+      $("#name").val(res.userName)
+      $("#phone").val(res.telNumber)
+      $("#code").val(res.postalCode)
+      $("#expressArea").val(res.provinceName + ' ' + res.cityName + ' ' + res.countryName)
+      $("#detailarea").val(res.detailInfo)
+  });
+});
+$("#expressArea").focus(function(){
+    document.activeElement.blur()
+});
+$(document).on('click', '.lists .item .btns .setaddress', function() {
+  var infoid = $(this).attr("tag-id");
+  $('#submit_address').attr("tag-id",infoid);
+  $('.address-mask').show();
+})
+
+//链接奖品直接跳转
+$(document).on('click','.redir_url',function(){
+  var url = $(this).attr('data-url');
+  window.location.href = url
+});
+
+//卡券
+$(document).on('click','.crar_btn',function(){
+  alert_msg("卡券可在微信个人中心卡包里进行查看，如系统有延迟未发送卡券，请及时联系举办方",function(){
+        });
+});
+
+//图片奖品
+$(document).on('click','.image_btn',function(){
+    var url = $(this).attr('data-url');
+    $('#poster_imgae').attr('src',url);
+    $('.prize-mask').show();
+});
+//关闭
+$(document).on('click', '.prize-mask .close', function() {
+ $('.prize-mask').hide()
+})
+
+//兑换码
+$(document).on('click','.code_btn',function(){
+  var code = $(this).attr('data-url');
+  $('#poster_code').html(code);
+  $('.exchange-mask').show();
+});
+$(document).on('click', '.exchange-mask .close', function() {
+ $('.logistics-mask').hide()
+})
+$(document).on('click', '#close_address', function() {
+  $('.address-mask').hide()
+});
+$(document).on('click', '#submit_address', function() {
+    var name = $("#name").val()
+    var phone = $("#phone").val()
+    var expressArea = $("#expressArea").val()
+    var detailarea = $("#detailarea").val()
+    if (name === '') {
+          alert_msg('姓名不能为空',function(){
+                  
+                });
+          return false;
+      }
+    if (/^1[3456789]\d{9}$/.test(phone) === false) {
+          alert_msg('手机号码有误',function(){
+                  
+                });
+          $("#phone").val('');
+          return false;
+      }
+
+      
+
+      var address_remark = <?php echo json_encode($split['address_remark']); ?>;
+      var data = {
+        infoid :$(this).attr("tag-id"),
+        splitid : "{{ split['id'] }}",
+        nick : name,
+        mobile : phone,
+        address : expressArea + detailarea,
+      }
+      for (var i = 0; i < address_remark.length; i++) {
+        // console.log(address_remark[i])
+        // return false;
+        var value_address = $('#address_remark_'+address_remark[i]['key']).val();
+        if(value_address === ''){
+            alert_msg(address_remark[i]['name']+' 不能为空',function(){
+                  
+                });
+            return false;
+        }
+        data[address_remark[i]['key']] = value_address;
+      };
+
+      if (expressArea === '') {
+          alert_msg('省市区不能为空',function(){});
+          return false;
+      }
+      if (detailarea === '') {
+          alert_msg('详细地址不能为空',function(){ 
+                });
+          return false;
+      }
+      var uri = '/new/yyznsplitmobile/set_address'
+      $.ajax({
+              url: uri,
+              type: "POST",
+              dataType: "json",
+              data: data,
+              success: function (result) {
+                if(result.code == 200){
+                  $('.address-mask').hide()
+                  alert_msg("你已经成功提交了收货地址，活动方会尽快为您发货",function(){
+                      window.location.href = window.location.href
+                  });
+                }else{
+                  alert_msg(result.info,function(){
+                  
+                });
+                }
+              },
+              error: function (xhr, status, p3, p4) {
+                alert_msg("网络异常",function(){
+              
+            });
+              }
+        });
+})
+
+//关闭物流
+$(document).on('click', '.logistics-mask .close', function() {
+ $('.logistics-mask').hide()
+})
+//复制物流号码
+$(document).on('click', '.logistics-mask .copy', function() {
+ copyTxt('.copy-number')
+  $('.logistics-mask').hide()
+  alert_msg("复制成功",function(){
+      },"包裹物流","确定");
+})
+
+
+//查看物流
+$(document).on('click', '.find_address', function() {
+   // <input type="hidden" tag-mailno="{{ postage['mail_no'] }}" tag-maildesc="{{ postage['mail_desc'] }}" tag-nick="{{ postage['nick'] }}" tag-status="{{ postage['status'] }}" tag-address="{{ postage['address'] }}" tag-mobile="{{ postage['mobile'] }}" id="find_address_{{ postage['infoid'] }}">
+   //              <button class="check find_address" tag-infoid="{{ postage['infoid'] }}">物流信息</button>
+   var infoid = $(this).attr("tag-infoid");
+   var mail_no = $("#find_address_"+infoid).attr("tag-mailno");
+   var mail_desc = $("#find_address_"+infoid).attr("tag-maildesc");
+   var nick = $("#find_address_"+infoid).attr("tag-nick");
+   var status = $("#find_address_"+infoid).attr("tag-status");
+   var address = $("#find_address_"+infoid).attr("tag-address");
+   var mobile = $("#find_address_"+infoid).attr("tag-mobile");
+   // 
+   $('#mask_address').html(address + ' '+nick+"("+mobile+")");
+   if(status > 1){
+      //发货
+    $('#mask_status').html("已发货");
+    $('#mask_mail_no').html(mail_no);
+    $('#mask_mail_desc').html(mail_desc);
+    $('.mask_mail_no').show();
+    $('.mask_mail_desc').show();
+    $('.copy_mail_no').show();
+    $('.copy_mail_no').attr('data-clipboard-text',mail_no);
+
+   }else{
+      //待发货
+    $('#mask_status').html("待发货");
+    $('#mask_mail_no').html('');
+    $('#mask_mail_desc').html('');
+    $('.mask_mail_no').hide();
+    $('.mask_mail_desc').hide();
+    $('.copy_mail_no').attr('data-clipboard-text','');
+    $('.copy_mail_no').hide();
+   }
+
+ $('.logistics-mask').show()
+})
+
+//复制兑换码
+$(document).on('click', '.exchange-main .copy', function() {
+ copyTxt('.copy-txt')
+ $('.exchange-mask').hide()
+  alert_msg("复制成功",function(){
+      });
+})
+//关闭兑换码
+$(document).on('click', '.exchange-mask .close', function() {
+ $('.exchange-mask').hide()
+})
+
+function copyTxt(target) {
+ const range = document.createRange();
+ range.selectNode(document.querySelector(target));
+ const selection = window.getSelection();
+ if (selection.rangeCount > 0) selection.removeAllRanges();
+ selection.addRange(range);
+ document.execCommand('Copy');
+}
+</script>
+<?php echo $this->view->getPartial('yyznsplitmobile/footer'); ?>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>测试</title>
+
+<!-- import Vue.js -->
+<script src="//vuejs.org/js/vue.min.js"></script>
+<!-- import stylesheet -->
+<link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+<!-- import iView -->
+<script src="//unpkg.com/iview/dist/iview.min.js"></script>
+
+</head>
+<body>
+  <h1>测试</h1>
+<div id="app">
+    <i-button @click="show">Click me!</i-button>
+    <Modal v-model="visible" title="Welcome">Welcome to iView</Modal>
+
+    <Upload action="./uploadfile/iviewUpload">
+        <Button icon="ios-cloud-upload-outline">上传</Button>
+    </Upload>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false
+        },
+        methods: {
+            show: function () {
+                this.visible = true;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

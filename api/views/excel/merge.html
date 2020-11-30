@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>合并excel</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+	a {
+		text-decoration: none
+	}
+
+	a:hover {
+		text-decoration: none
+	}
+
+	a,
+	a:link {
+		text-decoration: none
+	}
+	body{
+		background: #eae9e5;
+	}
+	.header{
+		height: 100px;
+		line-height: 130px;
+		text-align: center;
+		background: #6ed0a1;
+	}
+	.header h2{
+		margin-top: 52px;
+		color: #fff;
+	}
+	.cententss{
+		margin-top: 100px;
+		height: 400px;
+	}
+	#off_btn{
+		margin-top: 100px;
+	}
+	</style>
+</head>
+
+<body>
+<form method="post" action="/new/excel/merge" enctype="multipart/form-data">
+	<div class="rows">
+		<div class="col-md-12 col-xs-12 col-sm-12 header">
+			<h2>合并多列Excel</h2>
+		</div>
+		<div class="col-md-offset-4 col-md-4 col-xs-4 col-sm-4 cententss">
+			    <input type="file" class="btn btn-default" name="file" value="上传文件">
+		</div>	  		
+		
+	    <input type="submit" id="off_btn" class="btn btn-danger col-md-1 col-xs-1 col-sm-1" value="确认合并"> 
+	</div>
+</form>
+</body>
+
+</html>

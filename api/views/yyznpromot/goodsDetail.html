@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+ <!-- <meta name="referrer" content="never"> -->
+ <title>{{ list['goods_title']}}</title>
+ {{ assets.outputCss() }}
+ <script type="text/javascript" src="https://bdn.135editor.com/files/202003/rem.js"></script>
+</head>
+<style type="text/css" media="screen">
+.i-fix-link-top {
+ display: none;
+ position: fixed;
+ top: 70%;
+ right: 0;
+ z-index: 99;
+}
+
+.i-fix-link-kf {
+ position: fixed;
+ top: 80%;
+ right: 0;
+ z-index: 99;
+}
+
+.i-fix-link-top img,
+.i-fix-link-kf img {
+ width: 1.16rem;
+}
+
+.i-top {
+ position: relative;
+}
+
+.i-top-fix {
+ position: fixed;
+ top: .6rem;
+ right: 0;
+ width: 2.14rem;
+ height: .78rem;
+ cursor: pointer;
+}
+
+.i-top-fix img {
+ position: absolute;
+ top: 0;
+ right: 0;
+ width: 2rem;
+}
+
+.i-top-fix span {
+ position: absolute;
+ top: 50%;
+ right: 0;
+ transform: translateY(-50%);
+ width: 1.2rem;
+ font-size: .18rem;
+ color: #2e2e34;
+}
+
+.i-top-banner img {
+ width: 7.5rem;
+}
+
+.i-box {
+ padding: .3rem;
+ background-color: #fff;
+}
+
+.i-box-title {
+ color: #333333;
+ font-size: .33rem;
+ font-weight: bold;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+ margin-bottom: .11rem;
+}
+
+.i-box-info {
+ color: #757575;
+ font-size: .24rem;
+ line-height: .4rem;
+ margin-bottom: .11rem;
+}
+
+.i-box-price {
+ margin-bottom: .1rem;
+}
+
+.i-box-price span i {
+ font-size: .24rem;
+ font-style: normal;
+}
+
+.i-box-price span:first-child {
+ font-size: .38rem;
+ color: #fc6262;
+ margin-right: .2rem;
+}
+
+.i-box-price span:nth-child(2) {
+ font-size: .23rem;
+ color: #757575;
+ text-decoration: line-through;
+}
+
+.i-box-type {
+ margin-bottom: .25rem;
+}
+
+.i-box-type-tit {
+ font-size: .24rem;
+ color: #333;
+ margin-bottom: .1rem;
+}
+
+.i-box-type-btnbox {}
+
+.i-box-type-btnbox span {
+ display: inline-block;
+ font-size: .23rem;
+ line-height: .23rem;
+ margin-right: .2rem;
+ background-color: #fff;
+ border: 1px solid #eee;
+ color: #999;
+ padding: .1rem;
+ cursor: pointer;
+}
+
+.i-box-type-btnbox span.on {
+ background-color: #ffce59;
+ color: #fff;
+}
+
+.i-box-subbanner {
+ display: flex;
+ justify-content: center;
+ height: .45rem;
+ line-height: .45rem;
+ font-size: .22rem;
+ border-radius: .1rem;
+ overflow: hidden;
+}
+
+.i-box-subbanner p:first-child {
+ background-color: #f7cf6b;
+ width: 1.1rem;
+ text-align: center;
+ color: #302f36;
+}
+
+.i-box-subbanner p:last-child {
+ background-color: #302f36;
+ width: 5.8rem;
+ padding-left: .3rem;
+ color: #fff;
+}
+
+.i-box-subbanner p:last-child span {
+ margin-left: .2rem;
+}
+
+.i-line {
+ height: .13rem;
+ background-color: #f5f6f7;
+}
+
+.i-main {
+ padding: .2rem .3rem 1.5rem;
+ background-color: #fff;
+}
+
+.i-join {
+ padding-bottom: .16rem;
+ border-bottom: 1px solid #eee;
+ display: flex;
+ justify-content: space-between;
+ padding-top: .08rem;
+}
+
+.i-join-people {}
+
+.i-join-people img {
+ width: .36rem;
+ height: .36rem;
+ border-radius: 50%;
+ overflow: hidden;
+ display: inline-block;
+}
+
+.i-join-people img:last-child {
+ margin-right: .28rem;
+}
+
+.i-join-people span {
+ font-size: .22rem;
+ color: #999999;
+ vertical-align: super;
+}
+
+.i-join-more {
+ font-size: .22rem;
+ color: #999999;
+}
+
+.i-join-more a {
+ font-size: .22rem;
+ color: #999999;
+}
+
+.i-join-more a img {
+ margin-left: .16rem;
+ width: .11rem;
+ vertical-align: middle;
+}
+
+.i-step {
+ font-size: .22rem;
+ color: #333;
+ padding: .2rem 0 .43rem;
+}
+
+.i-step span {
+ font-weight: bold;
+ margin-right: .3rem;
+}
+
+.i-step img {
+width: 0.6rem;
+ display: inline-block;
+ margin: 0 .06rem;
+ vertical-align: middle;
+}
+
+.i-card {
+ margin-bottom: .3rem;
+ box-shadow: 0 0 10px #eee;
+ background-color: #fff;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: .15rem .15rem .15rem .25rem;
+}
+
+.i-card-headimg {
+ width: .6rem;
+ height: .6rem;
+ border-radius: 50%;
+ overflow: hidden;
+}
+
+.i-card-headimg img {
+ width: .6rem;
+}
+
+.i-card-msg {
+ width: 4rem;
+}
+
+.i-card-msg p:first-child {
+ font-size: .24rem;
+ font-weight: bold;
+ color: #333;
+ margin-bottom: .1rem;
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+}
+
+.i-card-msg p:last-child {
+ font-size: .22rem;
+ color: #999;
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+
+.i-card-subscribe a {
+ font-size: .23rem;
+ display: inline-block;
+ border: 1px solid #fcc440;
+ color: #fcc440;
+ line-height: .35rem;
+ padding: 0 .2rem;
+ border-radius: 1rem;
+ overflow: hidden;
+}
+
+.i-footer {
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 1.08rem;
+ border-top: 1px solid #eee;
+ background-color: #fff;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}
+
+.i-footer-personal a {
+ height: .72rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: center;
+ text-align: center;
+ color: #2f3036;
+ font-size: .18rem;
+}
+
+.i-footer-personal img {
+ width: .36rem;
+}
+
+.i-footer-buy a {
+ display: inline-block;
+ height: .7rem;
+ line-height: .7rem;
+ width: 5.26rem;
+ border-radius: .9rem;
+ background-color: #ffce59;
+ color: #2f3036;
+ font-size: .3rem;
+ font-weight: bold;
+ letter-spacing: .15rem;
+ text-align: center;
+}
+.i-footer-buy .disable_pay{
+ background-color: #eceae4;
+ color: #9e9fa9;
+}
+.i-kefu-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.i-kefu-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 3.9rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ overflow: hidden;
+}
+
+.i-kefu-codeimg {
+ padding: .55rem;
+ background-color: #fcc035;
+}
+
+.i-kefu-codeimg p {
+ background-color: #fff;
+ border-radius: .2rem;
+ padding: .2rem;
+}
+
+.i-kefu-codeimg img {
+ width: 2.5rem;
+}
+
+.i-kefu-msg {
+ font-size: .24rem;
+ padding: .2rem 0 .3rem;
+ text-align: center;
+ color: #333;
+}
+
+.i-follow-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.i-follow-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 4.52rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ padding: .54rem .28rem;
+}
+
+.i-follow-topimg {
+ position: absolute;
+ top: -.4rem;
+ left: 50%;
+ transform: translateX(-50%);
+ padding: .12rem;
+ border-radius: 50%;
+ background-color: #fff;
+}
+
+.i-follow-topimg img {
+ width: .65rem;
+ height: .65rem;
+ border-radius: 50%;
+ overflow: hidden;
+}
+
+.i-follow-tit {
+ font-size: .22rem;
+ font-weight: bold;
+ color: #333;
+ margin-bottom: .2rem;
+ text-align: center;
+}
+
+.i-follow-msg {
+ font-size: .18rem;
+ color: #999999;
+ text-align: center;
+ margin-bottom: .36rem;
+}
+
+.i-follow-codeimg {
+ text-align: center;
+ margin-bottom: .3rem;
+}
+
+.i-follow-codeimg p {
+ width: 2.02rem;
+ height: 2.02rem;
+ margin: 0 auto;
+ border-radius: .2rem;
+ border: .1rem solid #fbeed1;
+ background-color: #fff;
+ padding: .06rem;
+}
+
+.i-follow-codeimg img {
+ width: 100%;
+}
+
+.i-follow-tips {
+ font-size: .18rem;
+ color: #ffc02e;
+ text-align: center;
+}
+
+.i-message-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.i-message-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 5.22rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ padding: .42rem .37rem .66rem;
+}
+
+.i-message-tit {
+ font-size: .28rem;
+ color: #a8703a;
+ letter-spacing: 2px;
+ text-align: center;
+ margin-bottom: .55rem;
+}
+
+.i-message-input {
+ font-size: .24rem;
+ color: #757575;
+ text-align: left;
+ margin-bottom: .3rem;
+}
+
+.i-message-input p {
+ margin-bottom: .2rem;
+}
+
+.i-message-input input {
+ height: .6rem;
+ border: 1px solid #eee;
+ border-radius: .08rem;
+ display: block;
+ width: 100%;
+}
+
+.i-message-btns {
+ padding-top: .25rem;
+ text-align: center;
+}
+
+.i-message-btns button {
+ display: inline-block;
+ font-size: .24rem;
+ padding: .14rem .4rem;
+ border-radius: .8rem;
+ text-align: center;
+ border: none;
+}
+
+.i-message-ok {
+ background-color: #ffc02e;
+ color: #fff;
+ margin-right: .4rem;
+}
+
+.i-message-no {
+ background-color: #383840;
+ color: #ffc02e;
+}
+
+.i-complaint-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.i-complaint-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 3.81rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ padding: .43rem .2rem;
+}
+
+.i-complaint-codeimg {
+ text-align: center;
+ margin-bottom: .45rem;
+}
+
+.i-complaint-codeimg p {
+ width: 2.02rem;
+ height: 2.02rem;
+ margin: 0 auto;
+ border-radius: .2rem;
+ border: .1rem solid #fbeed1;
+ background-color: #fff;
+ padding: .06rem;
+}
+
+.i-complaint-codeimg img {
+ width: 100%;
+}
+
+.i-complaint-tips {
+ font-size: .18rem;
+ color: #ffc02e;
+ text-align: center;
+}
+
+.i-poster-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.i-poster-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 5.6rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ padding: .38rem .34rem .48rem;
+}
+
+.i-poster-img {
+ margin-bottom: .4rem;
+}
+
+.i-poster-img img {
+ width: 100%;
+}
+
+.i-poster-tips p {
+ text-align: center;
+ font-size: .22rem;
+ line-height: .42rem;
+ color: #a8703a;
+}
+
+.i-poster-tips span {
+ color: red;
+ font-weight: bold;
+}
+.i-notice-mask {
+ display: none;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, .65);
+ z-index: 999;
+}
+
+.i-notice-card {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 5.22rem;
+ background-color: #fff;
+ border-radius: .2rem;
+ padding: .42rem .37rem .66rem;
+}
+
+.i-notice-tit {
+ font-size: .28rem;
+ color: #a8703a;
+ letter-spacing: 2px;
+ text-align: center;
+ margin-bottom: .55rem;
+}
+
+.i-notice-input {
+ font-size: .24rem;
+ color: #757575;
+ text-align: left;
+ margin-bottom: .3rem;
+}
+
+.i-notice-input p {
+ margin-bottom: .2rem;
+}
+
+.i-notice-input input {
+ height: .6rem;
+ border: 1px solid #eee;
+ border-radius: .08rem;
+ display: block;
+ width: 100%;
+}
+
+.i-notice-btns {
+ padding-top: .25rem;
+ text-align: center;
+}
+
+.i-notice-btns button {
+ display: inline-block;
+ font-size: .24rem;
+ padding: .14rem .4rem;
+ border-radius: .8rem;
+ text-align: center;
+ border: none;
+}
+
+.i-notice-ok {
+ background-color: #ffc02e;
+ color: #fff;
+ margin-right: .4rem;
+}
+
+.i-notice-no {
+ background-color: #383840;
+ color: #ffc02e;
+}
+
+.i-detail img{
+	width: 100%;
+}
+</style>
+<body>
+        <!-- 悬浮按钮 -->
+        <a class="i-fix-link-top" href="javascript:void(0);"><img src="https://bdn.135editor.com/files/202003/awrfasegfaw.png" alt=""></a> <a class="i-fix-link-kf" href="javascript:void(0);"><img src="https://bdn.135editor.com/files/202003/5ab40f80451ffd68a64cb9b094a05ef9.png" alt=""></a> <!-- 图 -->
+        <div class="i-top">
+        	{% if ispromot < 1%}
+            <div class="i-top-fix" onclick="getQrcode()">
+            	<input type="hidden" id="qrcodestatus" value="off">
+                <img src="https://bdn.135editor.com/files/202003/eeed9d9d5bf6ad6bf5f50e71e4983cbf.png" alt=""> <span>生成邀请海报<br>
+                得现金奖励</span>
+            </div>
+            {% endif %}
+            <div class="i-top-banner">
+                <img src="{{ list['goods_image'] }}" alt="">
+            </div>
+        </div><!-- 商品信息 -->
+        <div class="i-box">
+            <h3 class="i-box-title">
+                {{ list['goods_title'] }}
+            </h3>
+            <p class="i-box-info">
+                {{ list['goods_description'] }}
+            </p>
+            <div class="i-box-price">
+                <span id="price"><i>￥</i>{{ list['price'] }}</span> <span id="market_price">￥{{ list['market_price'] }}</span>
+            </div>
+            {% if list['is_category'] > 0 %}
+            <div class="i-box-type">
+                <p class="i-box-type-tit">
+                    {{ list['category_text'] }}：
+                </p>
+                <p class="i-box-type-btnbox">
+                	{% for key,value in list['category_list'] %}
+                		{% if value['is_default'] > 0 %}
+                			<input type="hidden" id="category" value="{{ value['id'] }}">
+                			<span class="category on" tag-price="{{ value['price'] }}"  tag-id="{{ value['id'] }}" tag-market-price="{{ value['market_price'] }}">{{ value['name'] }}</span>
+                		{% else %}
+                    		<span class="category" tag-price="{{ value['price'] }}" tag-id="{{ value['id'] }}"  tag-market-price="{{ value['market_price'] }}">{{ value['name'] }}</span>
+                		{% endif %}
+                    {% endfor %}
+                </p>
+            </div>
+            {% endif %}
+            <div class="i-box-subbanner">
+                <p>
+                    限时优惠
+                </p>
+            	<input type="hidden" id="end" value="{{ list['end'] }}">
+                <p>
+	                离特惠活动结束： <span id="datetime-d">00 天</span> <span id="datetime-h">00 时</span> <span id="datetime-i">00分</span> <span id="datetime-s">00 秒</span>
+	            </p>
+            </div>
+        </div><!-- 主要内容 -->
+        <div class="i-line">
+            &nbsp;
+        </div>
+        <div class="i-main">
+            <!-- 1 -->
+            <div class="i-join">
+            	{% if list['is_usernum'] < 1 %}
+                <p class="i-join-people">
+                    {% for uservalue in list['userlist'] %}
+                    	<img src="{{ uservalue['headimg'] }}" alt="">
+                    {% endfor %}
+                    <span>{{ list['uv'] }}人已参加</span>
+                </p>
+                {% endif %}
+                {% if ispromot < 1%}
+                	{% if list['is_ranking'] < 1 %}
+	                <p class="i-join-more">
+	                    <a href="/new/yyznpromot/userCenter?type=ranking">排行榜<img src="https://bdn.135editor.com/files/202003/6fc584aa9f35dc12126ff91883ce3ca2.png" alt=""></a>
+	                </p>
+	                {% endif %}
+                {% endif %}
+            </div>
+            {% if ispromot < 1%}
+            <!-- 2  -->
+            <div class="i-step">
+                <span>分销步骤:</span> 生成专属海报 <img src="https://bdn.135editor.com/files/202003/f6ba615b0adb741af02e8e4ddc278d8c.png" alt=""> 邀请好友购买 <img src="https://bdn.135editor.com/files/202003/f6ba615b0adb741af02e8e4ddc278d8c.png" alt=""> 奖金到账
+            </div>
+            {% endif %}
+            <!-- 3 -->
+            {% if list['is_wechat'] > 0 %}
+	        <div class="i-card">
+	            <div class="i-card-headimg">
+	                <img src="{{ list['wechat']['logo'] }}" alt="">
+	            </div>
+	            <div class="i-card-msg">
+	                <p>
+	                    {{ list['wechat']['name'] }}
+	                </p>
+	                <p>
+	                    {{ list['wechat']['text'] }}
+	                </p>
+	            </div>
+	            <div class="i-card-subscribe">
+	                <a href="javascript:void(0);">关注</a>
+	            </div>
+	        </div>
+	        {% endif %}
+	        <!-- 商品详情 -->
+	        <div class='i-detail'>
+	            {{ list['goods_detail'] }}
+	        </div>
+        </div><!-- 底部栏 -->
+        <div class="i-footer">
+            <p class="i-footer-personal">
+                <a href="/new/yyznpromot/userCenter"><img src="https://bdn.135editor.com/files/202003/2c2f4a2e2685cb2884157a78cf67e05b.png" alt=""> <span>个人中心</span></a>
+            </p>
+            <p class="i-footer-buy">
+            	<input type="hidden" value="" id="order_id">
+                <input type="hidden" value="{{ list['form_status'] }}" id="form_status">
+                <input type="hidden" value="{{ list['form_data_str'] }}" id="form_data_str">
+                {% if list['promot_status']['code'] < 1 %}
+                	{% if list['form_status'] > 0 %}
+                		<a href="javascript:void(0);" class="on_from" id="ljipay_txt">{{ list['btn_text'] }}</a>
+                	{% else %}
+                		<a href="javascript:void(0);" id="ljipay_txt"  onclick="createOrder()">{{ list['btn_text'] }}</a>
+                	{% endif %}
+                	<input type="hidden" value="0" id="pay_status">
+                {% else %}
+                	<a href="javascript:void(0);"class="disable_pay" id="ljipay_txt">{{ list['promot_status']['msg'] }}</a>
+                	<input type="hidden" value="1" id="pay_status">
+                {% endif %}
+            </p>
+        </div><!-- 添加客服微信 -->
+        <div class="i-kefu-mask">
+            <div class="i-kefu-card">
+                <div class="i-kefu-codeimg">
+                    <p>
+                        <img src="{{ list['support_qrcode'] }}" alt="">
+                    </p>
+                </div>
+                <div class="i-kefu-msg">
+                    长按识别二维码，添加客服微信
+                </div>
+            </div>
+        </div><!-- 关注 -->
+        {% if list['is_wechat'] > 0 %}
+    <!-- 关注公众号弹框开始 -->
+    <div class="i-follow-mask">
+        <div class="i-follow-card">
+            <div class="i-follow-topimg">
+                <img src="{{ list['wechat']['logo'] }}" alt="">
+            </div>
+            <h3 class="i-follow-tit">
+                {{ list['wechat']['name'] }}
+            </h3>
+            <p class="i-follow-msg">
+                {{ list['wechat']['text'] }}
+            </p>
+            <div class="i-follow-codeimg">
+                <p>
+                    <img src="{{ list['wechat']['qrcode'] }}" alt="">
+                </p>
+            </div>
+            <div class="i-follow-tips">
+                长按识别二维码，关注公众号
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- 立即购买 -->
+        <div class="i-message-mask">
+            <div class="i-message-card">
+                <h3 class="i-message-tit">
+                    {{ list['form_text'] }}
+                </h3>
+                <form action="" method="">
+                {% if list['form_status'] > 0 %}
+                	{% for robot in list['form_data'] %}
+                        {% if robot === "name" %}
+                        	<div class="i-message-input">
+		                        <p>
+		                            收件姓名
+		                        </p><input type="text" name="" value="" id="recipient-name" placeholder="">
+		                        <input type="hidden" name="" value="请输入收件人姓名" id="key-name">
+		                    </div>
+                        {% elseif robot === "mobile" %}
+                            <div class="i-message-input">
+		                        <p>
+		                            手机号码
+		                        </p><input type="text"  id="recipient-mobile"> <input type="hidden" name="" value="请检查手机号码是否正常" id="key-mobile">
+		                    </div>
+                        {% elseif robot === "address" %}
+                            <div class="i-message-input">
+		                        <p>
+		                            详细地址
+		                        </p><input type="text" name="" value="" placeholder="" id="recipient-address">
+		                          <input type="hidden" value="请检查地址是否正常" id="key-address">
+		                    </div>
+                        {% elseif robot === "remark" %}
+                            <div class="i-message-input">
+		                        <p>
+		                            备注信息
+		                        </p><input type="text" name="" value="" placeholder=""  id="recipient-remark">
+		                        <input type="hidden" value="请检查备注信息是否正常" id="key-remark">
+		                    </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                    <div class="i-message-btns">
+                        <button type="submit" class="i-message-ok" onclick="createOrder()">确认</button> <button type="button" class="i-message-no">取消</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+		<div class="i-notice-mask">
+			<div class="i-notice-card">
+				<h3 class="i-notice-tit">系统提示</h3>
+				<form action="" method="">
+					<div class="i-notice-input">
+					<p>恭喜您成功购买, 正在等待系统确认！</p>
+					<p> 系统即将为您进行跳转！ <span id="paytime">6</span>秒</p>
+					</div>
+				</form>
+			</div>
+		</div>
+
+        <!-- 投诉 -->
+        <div class="i-complaint-mask">
+            <div class="i-complaint-card">
+                <div class="i-complaint-codeimg">
+                    <p>
+                        <img src="https://bdn.135editor.com/files/202003/dca14b19b302f83460d2e9e4e4988886.png" alt="">
+                    </p>
+                </div>
+                <div class="i-complaint-tips">
+                    长按识别二维码，添加平台客服投诉商家
+                </div>
+            </div>
+        </div>
+        <!-- 海报 -->
+        {% if ispromot < 1%}
+        <div class="i-poster-mask">
+            <div class="i-poster-card">
+                <div class="i-poster-img" id="qrcodebox">
+                    
+                </div>
+                <div class="i-poster-tips">
+                    <p>
+                        长按保存图片，发给好友或者朋友圈
+                    </p>
+                    <p>
+                        每成功邀请1位好友购买
+                    </p>
+                    <p>
+                        即可获得<span>{{ list['commission_price'] }}</span>奖励，即刻到账
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </body>
+{{ assets.outputJs() }}
+
+<script type="text/javascript">
+function jsApiCall(jsApiParameters)
+{
+    var Parameters = JSON.parse(jsApiParameters)
+    WeixinJSBridge.invoke(
+        'getBrandWCPayRequest',
+        Parameters,
+        function(res){
+        	$('.i-message-mask').hide()
+            if(res.err_msg == "get_brand_wcpay_request:ok" ){
+                var id = $("#order_id").val()
+				$('.i-notice-mask').show();
+                var paytime = 6;
+                setInterval(function(){
+                        paytime--;
+                        if(paytime == 0){
+                        	$('.i-notice-mask').hide();
+                            window.location.href = '/new/yyznpromot/paysuccess?orderid=' + id
+                        }
+                        $("#paytime").html(paytime);
+                    }, 1000);
+                
+            }else if( res.err_msg == "get_brand_wcpay_request:fail"){
+                alert("支付失败")
+            }
+        }
+    );
+}
+ 
+function callpay()
+{
+    if (typeof WeixinJSBridge == "undefined"){
+        if( document.addEventListener ){
+            document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+        }else if (document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+            document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+        }
+    }else{
+        jsApiCall();
+    }
+}
+$(function() {
+ $(document).on('click', '.i-fix-link-kf', function() {
+  $('.i-kefu-mask').show()
+ })
+ $(document).on('click', '.i-kefu-card', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+ })
+ $(document).on('click', '.i-kefu-mask', function() {
+  $('.i-kefu-mask').hide()
+ })
+ $(document).on('click', '.i-fix-link-top', function() {
+  $('html ,body').animate({ scrollTop: 0 }, 300);
+  return false;
+ })
+
+ $(document).on('click', '.i-card-subscribe a', function() {
+  $('.i-follow-mask').show()
+ })
+ $(document).on('click', '.i-follow-card', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+ })
+ $(document).on('click', '.i-follow-mask', function() {
+  $('.i-follow-mask').hide()
+ })
+
+ $(document).on('click', '.i-footer-buy .on_from', function() {
+ 	var pay_status = $("#pay_status").val();
+		if( pay_status > 0 ){
+			return false;
+		}
+  $('.i-message-mask').show()
+ })
+ $(document).on('click', '.i-message-card', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+ })
+ $(document).on('click', '.i-message-no', function() {
+  $('.i-message-mask').hide()
+ })
+
+ $(document).on('click', '.i-top-fix', function() {
+  $('.i-poster-mask').show()
+ })
+ $(document).on('click', '.i-poster-card', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+ })
+ $(document).on('click', '.i-poster-mask', function() {
+  $('.i-poster-mask').hide()
+ })
+
+ $(document).on('click', '#lala', function() {
+  alert(1)
+  $('.i-notice-mask').show()
+ })
+ $(document).on('click', '.i-notice-card', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+ })
+ $(document).on('click', '.i-notice-no', function() {
+  $('.i-notice-mask').hide()
+ })
+ function getWeChatSign() {
+    var wxid = "{{ list['wx_id'] }}";
+    $.ajax({
+        url: "/new/yyzn/getSignPackage",
+        type: 'post',
+        data:{wx_id:wxid},
+        success: function(res) {
+            console.log(res);
+            if (res.code == 200) {
+                var resData = res.data;
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: resData.appId, // 必填，公众号的唯一标识
+                    timestamp: resData.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: resData.nonceStr, // 必填，生成签名的随机串
+                    signature: resData.signature, // 必填，签名
+                    jsApiList: ["onMenuShareTimeline", // 分享给好友
+                        "onMenuShareAppMessage", // 分享到朋友圈
+                        "onMenuShareAppMessage", // 分享到朋友圈
+                        "hideMenuItems",
+                    ] // 必填，需要使用的JS接口列表
+                });
+            }
+        },
+        error: function(data) {
+            console.log(JSON.stringify(data));
+        }
+    });
+
+    wx.ready(function() {
+        wx.hideMenuItems({
+                menuList: ["menuItem:copyUrl","menuItem:editTag","menuItem:delete","menuItem:originPage","menuItem:readMode", "menuItem:openWithQQBrowser", "menuItem:openWithSafari","menuItem:share:email","menuItem:share:brand","menuItem:share:qq","menuItem:share:QZone"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+        });
+        wx.onMenuShareTimeline({
+            title:"{{ list['goods_title'] }}",
+            link:"{{ list['share_url'] }}",
+            imgUrl:"{{ list['goods_image']}}",
+            success:function(){
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title:"{{ list['goods_title'] }}",
+            desc: "{{ list['goods_description']}}", // 这里请特别注意是要去除html
+            link:"{{ list['share_url'] }}",
+            imgUrl:"{{ list['goods_image']}}",
+            type:'',
+            success:function(){
+            }
+        });
+    });
+}
+ getWeChatSign();
+ showGoTop()
+
+ function showGoTop() {
+  $(document).scroll(function() {
+   if ($(this).scrollTop() >= 250) {
+    $('.i-fix-link-top').show()
+   } else {
+    $('.i-fix-link-top').hide()
+   }
+  });
+ }
+ 	$(document).on('click','.category',function(){
+ 		$('.category').removeClass('on');
+ 		$(this).addClass('on');
+ 		var market_price = $(this).attr('tag-market-price');
+ 		$('#market_price').html('￥'+market_price);
+ 		var price = $(this).attr('tag-price');
+ 		$('#price').html("<i>￥</i>"+price+"");
+ 		var id = $(this).attr('tag-id');
+ 		$("#category").val(id);
+ 	});
+ 	//时间读秒
+	var secdate = $("#end").val();
+	var interval = setInterval(function(){
+	    var sec = secdate;
+	    if (sec > 0) {
+	        // 天
+	        var day = '';
+	        if (sec >= 86400) {
+	            $days = Math.floor(sec / 86400);
+	            sec = sec % 86400;
+	            day = $days + '天 ';
+	        }
+	        $("#datetime-d").html(day);
+
+	        // 小时
+	        var hour = "00";
+	        if (sec >= 3600) {
+	            $hours = Math.floor(sec / 3600);
+	            sec = sec % 3600;
+	            hour = $hours;
+	            if ($hours < 10) {
+	                hour = '0' + $hours;
+	            }
+	        }
+	        $("#datetime-h").html(hour+' 时');
+
+	        // 分钟
+	        var minute = "00";
+	        if (sec >= 60) {
+	            var minutes = Math.floor(sec / 60);
+	            sec = sec % 60;
+	            minute = minutes;
+	            if (minutes < 10) {
+	                minute = '0' + minutes;
+	            }
+	        }
+	        $("#datetime-i").html(minute+' 分');
+
+	        if (sec < 10) {
+	            $("#datetime-s").html("0" + sec+' 秒');
+	        } else {
+	            $("#datetime-s").html(sec+' 秒');
+	        }
+	        secdate--;
+	    } else {
+	    	$("#datetime-s").html('00 秒')
+	        $("#ljipay_txt").addClass('disable_pay');
+	        $("#ljipay_txt").html("活动已经结束");
+	        $("#pay_status").val(1);
+	        $('.i-message-mask').hide()
+	        // 终止循环
+	        clearInterval(interval);
+	    }
+	}, 1000);
+
+	
+})
+
+function createOrder(){
+	
+		var pay_status = $("#pay_status").val();
+		if( pay_status > 0 ){
+			return false;
+		}
+        var form_data_str = $("#form_data_str").val();
+        var form_status = $("#form_status").val();
+        var datas = {};
+        if(form_status > 0){
+            arr = form_data_str.split(',');
+            for(var i=0;i<arr.length;i++)
+            {
+                var val = $("#recipient-"+arr[i]).val();
+                if(val.length < 1){
+                    var error = $("#key-"+arr[i]).val();
+                    alert(error)
+                    return false;
+                }
+                if(arr[i] == 'mobile'){
+                    var myreg = /^1[345678]\d{9}$/;
+                    if (!myreg.exec(val)){
+                        alert('请输入正确的手机号')
+                        return false;
+                    }
+                }
+                
+                datas[arr[i]] = val;
+            }
+        }
+        var is_category = "{{ list['is_category'] }}";
+        if(is_category > 0){
+        	//获取规格
+        	var category = $('#category').val();
+        	datas['category_id'] = category;
+        }
+        // datas = JSON.stringify(datas);
+        $.ajax({
+            url: '/new/yyznpromot/createOrder',
+            type: 'POST',
+            data: datas,
+            success: function(res) {
+                if (res.code == 200) {
+                    $("#order_id").val(res.data.id)
+                    $.ajax({
+                        url: '/new/pay/yyznpromotpay',
+                        type: 'POST',
+                        data: {id:res.data.id},
+                        success: function(payres) {
+                            if (payres.code == 200) {
+
+                                jsApiCall(payres.data.jsApiParameters)
+                            }else{
+                                alert(payres.info)
+                            }
+                        }
+                    });
+                }else{
+                    alert(res.info)
+                }
+            }
+        });
+    }
+function getQrcode() {
+        var status = $("#qrcodestatus").val();
+        if(status == 'on'){
+            return false;
+        }
+        $.ajax({
+            url: '/new/yyznpromot/createImage',
+            type: 'GET',
+            success: function(res) {
+                if (res.code == 200) {
+                        $("#qrcodestatus").val('on');
+                        var qrcodestr = '<img src="'+res.data.image_url+'" class="img-responsive img-thumbnail">';
+                        $('#qrcodebox').html(qrcodestr);
+                }else{
+                    var qrcodestr = '<div style="text-align: center;margin: 0.7rem;width:96%">'+res.info+'...</div>';
+                    $('#qrcodebox').html(qrcodestr);
+                }
+            }
+        });
+    }
+</script>
+
+</html>

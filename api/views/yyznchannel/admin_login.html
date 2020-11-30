@@ -1,0 +1,113 @@
+{% extends "yyznchannel/base.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block head %}
+<style type="text/css">
+.login-card {
+	width: 72%;
+	margin: 5rem auto 0;
+}
+
+.login-card .logo {
+	width: 11rem;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.invalid-feedback {
+	text-align: left;
+	margin-top: -1rem;
+	text-indent: 3rem;
+	display: none;
+}
+
+.invalid-feedback.invalid {
+	display: block;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="login-card">
+	<div class="logo">
+		<img src="https://bdn.135editor.com/files/yyznchannel/logo.png" style="width: 100%;">
+	</div>
+	<div class="form-boxs" style="margin-top: 5rem;">
+		<form>
+			<div class="form-group">
+				<i class="fa fa-mobile fa-fw" aria-hidden="true"></i>
+				<input type="text" class="form-control" id="mobileTxt" placeholder="请输入手机号码">
+			</div>
+			<div class="invalid-feedback" id="validMobile"></div>
+			<div class="form-group">
+				<i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+				<input type="password" class="form-control" id="passwordTxt" placeholder="请输入密码">
+			</div>
+			<div class="invalid-feedback" id="validPassword"></div>
+			<button type="bottom" id="login-btn" class="btn btn-default btn-login" onClick='return false'>登录</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
+{% block footer %}
+<div class="Copyright">
+	<span>——— 成都新点击科技有限公司 ———</span>
+</div>
+<script type="text/javascript">
+$(function() {
+	$('#login-btn').click(function(event) {
+		login();
+	});
+	const _nav = $(".Copyright");
+	const clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+	const clientWidth = document.documentElement.clientWidth || document.body.clientWidth
+	window.onresize = function() {
+		const nowClientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+		if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {
+			if (clientHeight > nowClientHeight) {
+				// 键盘弹出的事件处理
+				_nav.addClass('hide')
+			}
+		} else {
+			_nav.removeClass('hide')
+		}
+	}
+});
+
+function login() {
+	if ($('#mobileTxt').val() == '') {
+		return $('#validMobile').addClass('invalid').text('请输入手机号码.');
+	}
+	if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test($('#mobileTxt').val()))) {
+		return $('#validMobile').addClass('invalid').text('请正确手机号码.');
+	}
+	if ($('#passwordTxt').val() == '') {
+		return $('#validPassword').addClass('invalid').text('请输入密码.');
+	}
+	if ($('#passwordTxt').val() < 6) {
+		return $('#validPassword').addClass('invalid').text('请输入密码长度不能小于6.');
+	}
+	$.ajax({
+		url: '/new/yyznchannel/admin_login', // 提交表单 接口路径
+		type: 'POST',
+		dataType: 'JSON',
+		data: {
+			username: $('#mobileTxt').val(), // 手机号
+			password: $('#passwordTxt').val() // 验证码
+		},
+		success: function(res) {
+			if (res.code == 200) {
+				window.location.href = '/new/yyznchannel/admin_home'
+			} else {
+				$('#validPassword').removeClass('invalid');
+				$('#validMobile').addClass('invalid').text(res.info);
+			}
+		},
+		fail: function(res) {
+			$('#validPassword').removeClass('invalid');
+			$('#validMobile').addClass('invalid').text(res.info);
+		}
+	});
+}
+</script>
+{% endblock %}

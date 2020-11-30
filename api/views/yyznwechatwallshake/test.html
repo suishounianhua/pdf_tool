@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>测试握手</title>
+    {{ assets.outputCss() }}
+    <style type="text/css">
+    .msg{
+      margin-left: 20px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .user{
+      margin-top:10px;
+    }
+    #msg{
+      overflow-y: auto
+    }
+    </style>
+</head>
+<body style="background:#eee">
+<div id="msg">
+  <!-- <div class="rows">
+      <div class="col-xs-12 col-sm-12 user">luoio:</div>
+      <div class="col-xs-10 col-sm-12 msg">
+          <p>我来了啊</p>
+      </div>
+  </div>
+  <div class="rows">
+      <div class="col-xs-12 col-sm-12 user">luoio:</div>
+      <div class="col-xs-10 col-sm-12 msg">
+          <p>我来了啊</p>
+      </div>
+  </div> -->
+</div>
+  <div style="height:100px">
+    
+  </div>
+  <footer class="navbar-fixed-bottom" style="background:#aaa">
+
+    <div class="form-group" style="    margin-top: 10px;
+    height: 55px;">
+          <div class="col-xs-9 col-sm-6">
+              <textarea id="c-desc" class="form-control " rows="5" name="row[remark]" cols="50" style="height:60px;"></textarea>
+          </div>
+          <div class="col-xs-3 col-sm-2" style="margin-top: 10px;">
+             <a href="javascript:;" class="btn btn-success" id="btn" data-status="on">发送</a>
+          </div>
+    </div>
+  </footer>
+</body>
+</html>
+{{ assets.outputJs() }}
+<script type="text/javascript">
+    //握手
+    var url = "{{ url }}";
+    // 打开一个 web socket
+    var ws = new WebSocket(url);
+    ws.onopen = function(){
+      //发送初始包
+      // Web Socket 已连接上，使用 send() 方法发送数据
+      // var msgData = {
+      //   model:"postage",
+      //   type:"msg",
+      //   data:'holle word!'
+      // }
+      //  ws.send(JSON.stringify(msgData));
+    };
+    $("#btn").click(function(){
+      var status = $(this).attr('data-status')
+      if(status == 'off') return;
+      var msg = $("#c-desc").val();
+      if(msg == '') return;
+       var msgData = {
+        model:"postage",
+        type:"msg",
+        data:msg
+      }
+      ws.send(JSON.stringify(msgData));
+      $("#c-desc").val("");
+
+    });
+    ws.onmessage = function (evt){ 
+      var received_msg = JSON.parse(evt.data)
+      if(received_msg.type=='message'){
+        var html = '<div class="rows"><div class="col-xs-12 col-sm-12 user">'+received_msg.send_user_name+':</div><div class="col-xs-10 col-sm-12 msg"><p>'+received_msg.message+'</p></div></div>';
+          $("#msg").append(html);
+          var h = $(document).height()-$(window).height();
+          $(document).scrollTop(h);
+      }
+      if(received_msg.type=='error'){
+          alert(received_msg.error);
+          $("#btn").attr('data-status','off')
+          
+          $("#btn").hide();
+          
+      }
+      console.log(received_msg)
+    }
+
+     var time = setInterval(function() {
+          wx.send('ping')
+      }, 100000);
+</script>  

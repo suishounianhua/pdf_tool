@@ -1,0 +1,58 @@
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+ margin: 0;
+ padding: 0;
+}
+
+* {
+ box-sizing: border-box;
+ /* C3盒模型，宽高固定 */
+}
+
+img {
+ border: 0;
+ vertical-align: top;
+}
+
+ul {
+ list-style: none;
+}
+
+input {
+ padding-top: 0;
+ padding-bottom: 0;
+ border: 0;
+}
+
+a {
+ text-decoration: none;
+}
+
+body {
+ font: normal normal 16px "Microsoft YaHei";
+ color: #9a9a9a;
+ background: #fff;
+ width: 100%;
+ min-height: 100vh;
+ margin: 0 auto;
+ max-width: 700px;
+}
+
+.fl {
+ float: left;
+}
+
+.fr {
+ float: right;
+}
+
+.clearfix::after {
+ content: "";
+ height: 0;
+ display: block;
+ visibility: hidden;
+ clear: both;
+}
+
+.clearfix {
+ *zoom: 1;
+}

@@ -1,0 +1,237 @@
+<style type="text/css">
+/*海报弹框样式*/
+    .share-mask {
+     z-index: 99;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, .5);
+     display: none;
+    }
+
+    .share-main {
+     z-index: 99;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     background: #fff;
+     border-radius: 10px;
+     transform: translate(-50%, -50%);
+    }
+
+    .share-main .poster {
+     max-height: 10rem;
+     height: 100%;
+     margin: 0 auto;
+     display: block;
+    }
+
+    .share-main .tips {
+     font-size: .3rem;
+     line-height: .4rem;
+     color: #666;
+     padding: .35rem .3rem .3rem;
+     text-align: center;
+    }
+
+    .share-main .close {
+     display: block;
+     width: 3.85rem;
+     height: .8rem;
+     line-height: .8rem;
+     font-size: .3rem;
+     color: #aaa;
+     border: 1px solid #aaa;
+     border-radius: 40px;
+     text-align: center;
+     background: #fff;
+     margin: 0 auto .38rem;
+    }
+
+    .code-mask .submit {
+        background-image: linear-gradient(to right, #fea30d, #fe5924);
+        display: block;
+        width: 3.85rem;
+        height: .8rem;
+        line-height: .8rem;
+        font-size: .3rem;
+        color: #fff;
+        border: 0px solid #aaa;
+        border-radius: 40px;
+        text-align: center;
+        margin: 0 auto .38rem;
+    }
+
+/*参与活动*/
+    .code-mask {
+     z-index: 99;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, .5);
+     display: none;
+    }
+
+    .code-main {
+     z-index: 99;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 5.9rem;
+     background: #fff;
+     border-radius: 10px;
+     transform: translate(-50%, -50%);
+     padding: .9rem .45rem .7rem;
+    }
+
+    .code-main .img {
+     width: 2.5rem;
+     margin: 0 auto;
+     overflow: hidden;
+    }
+
+    .code-main .img img {
+     width: 100%;
+    }
+
+    .code-main .tips {
+     font-size: .26rem;
+     line-height: .36rem;
+     color: #666;
+     padding: .3rem 0 .9rem;
+     text-align: center;
+    }
+
+    .code-main .close {
+     display: block;
+     width: 3.85rem;
+     height: .8rem;
+     line-height: .8rem;
+     font-size: .3rem;
+     color: #aaa;
+     border: 1px solid #aaa;
+     border-radius: 40px;
+     text-align: center;
+     background: #fff;
+     margin: 0 auto .38rem;
+    }
+
+    .copyright {
+      margin: 10px 0 70px;
+      width: auto;
+    }
+
+    .copyright p {
+      text-align: center;
+      color: darkgray;
+      font-size: 0.25rem;
+      line-height: 0.5rem;
+      font-weight: 500;
+    }
+
+    .copyright .desc {
+      line-height: 0.5rem;
+    }
+
+
+
+    .copyright .fae img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+    }
+</style>
+<div class="copyright">
+  <p>
+    <span class="fae">
+      <img src="/vue/dist/vue/dist/img/logo-min.0944fbf1.png" alt="">
+      <span>运营指南</span>
+    </span>
+    <span class="desc">| 仅提供技术支持</span>
+  </p>
+</div>
+<!-- 分享海报 -->
+<div class="share-mask">
+ <div class="share-main">
+    <div style="
+    width: 6rem;
+    padding: 0.5rem;
+    text-align: center;
+" id="media_url_desc">正在准备您的个人海报...</div>
+  <img class="poster" id="media_url" src="" alt="">
+  <div class="tips">长按保存海报，分享至好友就能获得助力</div>
+  <button class="close">关闭</button>
+ </div>
+</div>
+<!-- 分享海报结束 -->
+
+<!-- 参与活动二维码 -->
+<div class="code-mask">
+ <div class="code-main">
+ <div style="    text-align: center;"> 活动举办方</div>
+  <div class="img">
+   <img src="{{ wechat['coverimg'] }}" alt="">
+  </div>
+  <div class="tips">由于参与人数较多，请注意查看库存（发完即止）</div>
+  <a href="/new/yyznsplitmobile/goods_list?splitid={{ split['id'] }}&code={{ h5code }}" class="submit">查看库存</a>
+  <button class="close">我已经知道了</button>
+ </div>
+</div>
+<!-- 参与活动二维码结束 -->
+<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script type="text/javascript">
+$(function(){
+    wx.config({
+      debug: false,
+      appId: "{{ signPackage['appId'] }}",
+      timestamp: "{{ signPackage['timestamp'] }}",
+      nonceStr: "{{ signPackage['nonceStr'] }}",
+      signature: "{{ signPackage['signature'] }}",
+      jsApiList: [
+        "openAddress",
+        "hideMenuItems",
+        "hideAllNonBaseMenuItem"
+      ]
+    });
+
+});
+
+//调取微信收货地址
+function wechatOpenAddress(func){
+    wx.ready(function () { 
+        wx.openAddress({success:(res =>{
+                func(res)
+            })
+        })
+    });
+}
+
+function wechatShareUrl(param){
+    wx.ready(function() {
+       wx.hideMenuItems({
+                menuList: ["menuItem:copyUrl","menuItem:editTag","menuItem:delete","menuItem:originPage","menuItem:readMode", "menuItem:openWithQQBrowser", "menuItem:openWithSafari","menuItem:share:email","menuItem:share:brand","menuItem:share:timeline","menuItem:share:appMessage","menuItem:share:qq","menuItem:share:QZone","menuItem:share:workWeixin","menuItem:favorite"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+        });
+       wx.hideAllNonBaseMenuItem();
+    });
+}
+
+
+
+
+//关闭二维码
+$(document).on('click', '.code-mask .close', function() {
+ $('.code-mask').hide()
+})
+//立即参与
+$(document).on('click', '.split_qrcode_btn', function() {
+ $('.code-mask').show()
+})
+wechatShareUrl('none');
+</script>
+</body>
+</html>

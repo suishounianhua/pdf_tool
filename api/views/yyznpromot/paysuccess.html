@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="referrer" content="never">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>购买成功</title>
+	<!-- Bootstrap -->
+	{{ assets.outputCss() }}
+	<style type="text/css">
+	.centent{
+		margin: 0.7rem;
+	}
+	</style>
+</head>
+<body>
+	<div class="centent">
+		
+	</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="referrer" content="never">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>购买成功</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	{{ assets.outputCss() }}
+	<style type="text/css">
+	.header{
+		margin-top: 1rem;
+		border-bottom:1px solid rgba(0, 0, 0, .1);
+		height: 2.5rem;
+		line-height: 2.5rem;
+	}
+	.centent{
+		text-align: center;
+	}
+	.qrcode{
+		padding: 1rem;
+		background:rgba(0, 0, 0, .1);
+		color:#61605b;
+	}
+	.qrcode-desc{
+		margin-top: 1.8rem;
+		margin-bottom: 0.3rem;
+	}
+	.centent-redirect{
+		padding: 1rem;
+	}
+	a{text-decoration:none;color: #61605b}
+	a:hover{ text-decoration:none}
+	a,a:link{text-decoration:none}
+	</style>
+</head>
+<body>
+	<div class="container-fluid centent">
+		<div class="row header">
+			{% if ispromot < 1 %}
+				<div class="col-md-6 col-xs-6 col-sm-6" style="text-align: left;padding-left: 2rem;">
+		      		<a href="/new/yyznpromot/userCenter" style="font-size:1.3rem;color: #61605b">个人中心 <i class="fa fa-fw fa-angle-right;"></i> </a>
+		      	</div>
+	      	{% endif %}
+	      	<div class="col-md-6 col-xs-6 col-sm-6 " style="text-align: right;padding-right: 2rem;">
+	      		<a href="/new/yyznpromot/userOrder">购买记录<i class="fa fa-fw fa-angle-right"></i></a>
+	      	</div>
+	  	</div>
+	  	{% if redirect_type === 2 %}
+		  	<div class="row qrcode">
+		      	<div class="col-md-12 col-xs-12 col-sm-12">
+		      		<div class="row">
+				      	<div class="col-md-12 col-xs-12 col-sm-12">
+				      		<!-- <img class="img-responsive" alt="Responsive image" src="https://bdn.135editor.com/users/0/1/201909/1a7f34e100dea1859593e5f3c1e69331.jpg"> -->
+				      		<h4>{{ code }}</h4>
+				      	</div>
+				  	</div>
+				  	<div class="row qrcode-desc">
+				      	<div class="col-md-12 col-xs-12 col-sm-12 ">
+				      		您的兑换码已经发出 【<a href="javascript:;" data-clipboard-text="{{ codes }}" id="copy">点击复制</a>】
+				      	</div>
+				  	</div>
+		      	</div>
+		  	</div>
+	  	{% elseif redirect_type === 3 %}
+		  	<div class="row qrcode">
+		      	<div class="col-md-12 col-xs-12 col-sm-12">
+		      		<div class="row">
+				      	<div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center;">
+				      		<img class="img-responsive center-block" alt="Responsive image" src="{{ code }}">
+				      	</div>
+				  	</div>
+				  	<div class="row qrcode-desc">
+				      	<div class="col-md-12 col-xs-12 col-sm-12 ">
+				      		您的核销码已经生成，请长按保存二维码
+				      	</div>
+				  	</div>
+		      	</div>
+		  	</div>	
+	  	{% endif %}
+
+	  	<div class="row centent-redirect">
+	  		<div class="col-md-12 col-xs-12 col-sm-12">
+	  			{{ centent }}
+	  		</div>
+	  	</div>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+<script type="text/javascript">
+	var btn=document.getElementById('copy');
+	var clipboard = new Clipboard(btn);
+	clipboard.on('success', function(e){
+		alert("复制成功")
+	});
+</script>
+</html>

@@ -1,0 +1,153 @@
+{% extends "yyznchannel/base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+<style type="text/css">
+	.background-gary.nt { overflow: hidden; }
+	#listCard { height: calc(100% - 9.5rem); overflow: auto; }
+	#listCard.hide { display: none; }
+	.pull-up, .pull-down { position: relative; overflow: hidden; height: 0; max-height: 30px; }
+	.pull-up, .pull-down-content { position: absolute; bottom: 0; text-align: center; line-height: 30px; color: #999; width: calc(100% - 3rem); }
+	#not { display: none; height: calc(100% - 9.5rem); overflow: auto; }
+	#not.show { display: block; }
+</style>
+{% endblock %}
+{% block content %}
+	<div class="background-gary nt">
+		<div class="tabs-card">
+			<ul id="tab-btns">
+				<li data-class="all" {% if time_type == 'all' %} class="active" {% endif %}><span>全部</span></li>
+				<li data-class="today" {% if time_type == 'today' %} class="active" {% endif %} ><span>今日</span></li>
+				<li data-class="month" {% if time_type == 'month' %} class="active" {% endif %} ><span>近30日</span></li>
+				<input type="hidden" id="time_type" value="{{ time_type }}"/>
+			</ul>
+		</div>
+		<div class="message-help"> ——— 共<span>{{ total }}</span>位客户 ——— </div>
+		<div class="card-list" id="listCard">
+			<div class="pull-down"> <span class="pull-down-content">松手刷新数据</span> </div>
+			<ul id="newlist"> </ul>
+			<div class="pull-up"> <span class="pull-up-content">松手加载更多</span> </div>
+		</div>
+		<div class="card-list" id="not">
+			<div class="pull-down"> <span class="pull-down-content">松手刷新数据</span> </div>
+			<div class="message-text" id="messageText">
+				<img src="https://bdn.135editor.com/files/yyznchannel/notdata.png">
+			</div>
+			<div class="pull-up"> <span class="pull-up-content">松手加载更多</span> </div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		// 分别设置滑动距离，开始位置，结束位置，和模拟数据的定时器
+		let disY, startY, endY, timer, t;
+		let nextID =0;
+		$(function() {
+			initData();
+			$('#tab-btns li').click(function(event){
+				$(this).addClass('active').siblings().removeClass('active');
+				$('#time_type').val($(this).data('class'));
+				nextID = 0;
+				$('#newlist').html('');
+				initData();
+			});
+			// 触摸开始 => 数据列表
+			$('#newlist, #messageText').on('touchstart', function(e) {
+				startY = e.originalEvent.changedTouches[0].pageY; // 开始时的坐标
+			});
+			// 移动中 => 数据列表
+			$('#newlist, #messageText').on('touchmove', function(e) {
+				endY = e.originalEvent.changedTouches[0].pageY;
+				disY = endY - startY; // 移动后的坐标减去开始坐标，滑动距离。
+				if (disY < 60) {
+					$('.pull-down').css({ height: disY + 'px' }); // 父盒子的高度随着滑动距离变化，有最大值。
+				} else {
+					$('.pull-down').css({ height: 60 + 'px' }); // 父盒子的最大高度 
+				}
+			});
+			// 结束时 => 数据列表
+			$('#newlist, #messageText').on('touchend', function(e) {
+				clearInterval(timer);
+				endY = e.originalEvent.changedTouches[0].pageY;
+				disY = endY - startY;
+				if (disY >= 30) {
+					if (disY > 60) { disY = 60 }
+					timer = setInterval(function() {
+						disY -= 5;
+						if (disY == 30) {
+							$('.pull-down').css({ height: 30 + 'px' }); //松手后的返回。
+							nextID = 0;
+							$('#newlist').html('');
+							initData();
+							if (disY == 0) {
+								clearInterval(timer);
+							}
+						}
+						$('.pull-down').css({ height: disY + 'px' });
+					}, 30)
+				}
+				if (disY <= -30) {
+					if (disY < -60) { disY = -60 }
+					timer = setInterval(function() {
+						disY += 5;
+						if (disY == -30) {
+							$('.pull-up').css({ height: 30 + 'px' }); //松手后的返回。
+							initData()
+							if (disY == 0) {
+								clearInterval(timer);
+							}
+						}
+						$('.pull-up').css({ height: 30 - disY + 'px' });
+					}, 30)
+				}
+			});
+		});
+		function initData(){
+			$.ajax({
+				url: '/new/yyznchannel/admin_user_list',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					time_type: $('#time_type').val(),
+					next_id: nextID
+				},
+				success: function(res){
+					if(res.code == 200){
+						let resData = res.data;
+						let datalist = resData.datalist;
+						let total = resData.total;
+						nextID = resData.next_id;
+						$('.message-help').html(' ——— 共<span>' + total +'</span>位客户 ——— ');
+						if(total == 0){
+							$('#listCard').addClass('hide');
+							$('#not').addClass('show');
+						} else {
+							$('#listCard').removeClass('hide');
+							$('#not').removeClass('show');
+						}
+						if(datalist.length > 0){
+							let _target = $('#newlist');
+							for (var i = 0; i < datalist.length; i++) {
+								_target.append(`<li class="item">
+								<div class="header">
+									<img src="` +(datalist[i].image==''?'https://bdn.135editor.com/files/202005/yyznchannel/header006.jpg':datalist[i].image)+ `">
+								</div>
+								<div class="info">
+									<div class="title">` + datalist[i].username + `</div>
+									<div class="help">注册时间: ` + datalist[i].created + `</div>
+								</div>
+							</li>`);
+							}
+						}
+					}
+				}
+			});
+		}
+	</script>
+{% endblock %}
+
+{% block footer %}
+  <!-- 这是一个尾部 -->
+
+{% endblock %}

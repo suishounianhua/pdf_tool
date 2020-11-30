@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ title }}</title>
+<?php echo $this->view->getPartial('common/common'); ?>
+</head>
+<body>
+<div style="text-align: center;
+    margin-top: 20%;">
+  <h1>{{ msg }}</h1>
+  <span>欢迎使用运营指南平台</span>
+</div>
+</body>
+<!-- 判断是否登录 检查是否购买 start-->
+<?php echo $this->plugin_footer; ?>
+<!-- 判断是否登录  end-->
+</html>

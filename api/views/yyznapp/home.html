@@ -1,0 +1,910 @@
+<?php echo $this->view->getPartial('yyzncommon/header'); ?>
+
+<!-- 可以修改代码 开始位置 -->
+    <!-- banner-area begin -->
+    <div class="section-banner">
+        <div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href="https://www.yunyingzhinan.com/vue/appDetail/fission?authid=1" target="_blank"><img src="https://bdn.135editor.com/files/202003/banner3.jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="https://www.yunyingzhinan.com/vue/appDetail/mass" target="_blank"><img src="https://bdn.135editor.com/files/202002/11/banner2.jpg  " alt=""></a></div>
+        <div class="swiper-slide"><a href="https://www.yunyingzhinan.com/vue/appDetail/person" target="_blank"><img src="https://bdn.135editor.com/files/202003/personBanner.png " alt=""></a></div>
+        <div class="swiper-slide"><a href="https://www.yunyingzhinan.com/new/yyznpromot/home" target="_blank"><img src="https://bdn.135editor.com/files/202002/fx/fx-banner.jpg" alt=""></a></div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>   
+</div>
+        </div>
+        <div class="banner-info">
+            <div class="container" id="scrollDiv">
+                <ul>
+                    <li>运营指南全新改版，功能优化、服务升级！添加客服微信，还可获得新年专属优惠哦~</li>
+                    <li>运营指南社群继续开放！每天早上放送早资讯；互帮互助，讨论问题；群管不定时发福利，发免费课程或135会员或运营指南工具会员！添加客服邀请入群。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+    #scrollDiv { line-height: 20px; height: 20px; overflow: hidden; padding: 0; }
+    #scrollDiv li { overflow: hidden; }
+    @media only screen and (max-width:479px) {
+        #scrollDiv { height: 40px; }
+        #scrollDiv li { text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    }
+    </style>
+<link rel=stylesheet href="https://bdn.135editor.com/files/202003/swiper.min.css">
+<script type="text/javascript" src="https://bdn.135editor.com/files/202003/swiper.min.js"></script>
+<style type="text/css">
+.right-float {
+ position: fixed;
+ right: 0;
+ top: 20%;
+ width: 252px;
+ height: 431px;
+ background: url('https://bdn.135editor.com/files/202003/d5938e139491ac8a204341af8af17c5e.png') no-repeat center top;
+ background-size: contain;
+ border-radius: 14px 0 0 14px;
+ padding-top: 164px;
+ text-align: center;
+ z-index: 999;
+ transition: all .3s linear;
+}
+
+.right-float>img {
+ width: 135px;
+ margin-left: 16px;
+}
+
+.right-float-gift-msg {
+ padding-top: 47px;
+}
+
+.right-float-gift-msg p {
+ font-size: 18px;
+ line-height: 40px;
+ margin-bottom: 0;
+ color: #333;
+}
+
+.right-float-call-us {
+ position: absolute;
+ bottom: -50px;
+ left: 50%;
+ transform: translateX(-50%);
+ cursor: pointer;
+ background-color: #ffbd28;
+ text-align: center;
+ font-size: 18px;
+ width: 120px;
+}
+
+.right-float-call-us a {
+ color: #fff !important;
+}
+
+.right-float-animate-img {
+ width: 30px;
+ padding: 7px;
+ animation-name: scaleDraw;
+ animation-timing-function: ease-in-out;
+ animation-iteration-count: infinite;
+ animation-duration: 2s;
+ animation-direction: alternate;
+}
+
+@keyframes scaleDraw {
+ 0% {
+  -webkit-transform: scale(1);
+ }
+
+ 25% {
+  -webkit-transform: scale(1.5);
+ }
+
+ 50% {
+  -webkit-transform: scale(1);
+ }
+
+ 75% {
+  -webkit-transform: scale(1.5);
+ }
+}
+
+.section1-box {
+ position: relative;
+}
+
+.section1-msg {
+ position: absolute;
+ top: 180px;
+ left: 485px;
+ width: 575px;
+}
+
+.section1-msg h3 {
+ font-size: 24px;
+ color: #333;
+ font-weight: bold;
+ margin: 0;
+ margin-bottom: 32px;
+}
+
+.section1-msg h3 span {
+ color: #fdbb24
+}
+
+.section1-msg p {
+ font-size: 16px;
+ color: #757575;
+ margin-bottom: 0;
+ line-height: 28px;
+}
+
+.character {
+ overflow: hidden;
+}
+
+.character-title {
+ text-align: center;
+ padding-top: 45px;
+ margin-bottom: 73px;
+}
+
+.character .title1 .span:before {
+    display: none;
+}
+
+.character-box {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 106px;
+}
+
+.character-card {
+ background-color: #fff;
+ width: 280px;
+ height: 320px;
+ border-radius: 12px;
+ padding-top: 55px;
+ text-align: center;
+}
+
+.character-card>img {
+ margin-bottom: 20px;
+}
+
+.character-card-tit {
+ font-size: 24px;
+ font-weight: bold;
+ margin-bottom: 26px;
+}
+
+.character-card-msg {
+ font-size: 16px;
+ line-height: 16px;
+ color: #666666;
+ margin-bottom: 13px;
+}
+
+.statics-title {
+ text-align: center;
+ margin-bottom: 100px;
+}
+
+.statics-title .title1 .span:before {
+    display: none;
+}
+
+.statics-box {
+ display: flex;
+ justify-content: space-between;
+ align-items: start;
+}
+
+.statics-card {
+ text-align: center;
+}
+
+.statics-card-head {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 24px;
+ font-weight: bold;
+ margin-bottom: 44px;
+}
+
+.statics-card-msg {
+ margin-bottom: 13px;
+ font-size: 16px;
+ line-height: 16px;
+}
+
+#link-urls {
+ padding-top: 20px;
+ margin-bottom: 30px;
+}
+
+.ui-portlet {
+ margin: 0;
+ background: #FFF;
+}
+
+.ui-portlet-header {
+ padding: 0.5rem 0px;
+ margin: 20px 0 15px;
+ background: #FFF;
+ border-bottom: 1px solid #dee2e6;
+}
+
+.ui-portlet-header .title {
+ font-weight: normal !important;
+ border-bottom: 0 !important;
+ border-left: 5px solid #ff793f;
+ font-size: 18px;
+ letter-spacing: 2px;
+ line-height: 1;
+ padding: 0 0 0 10px !important;
+}
+
+ul.ui-portlet-list {
+ margin-top: 13px;
+}
+
+#link-urls a {
+ height: 50px;
+ width: 135px;
+ text-align: center;
+ display: inline-block;
+ background: #f0f0f0;
+ margin-bottom: 8px;
+ margin-right: 8px;
+ line-height: 50px;
+ color: #333333;
+ font-size: 14px;
+}
+.title1 {
+    text-align: center;
+}
+.title1 .strong {
+    text-transform: uppercase;
+    font-size: 60px;
+    color: #eee;
+    font-weight: 700;
+    margin-bottom: -20px;
+}
+.title1 .span {
+    display: inline-block;
+    width: auto;
+    position: relative;
+}
+.title1 .span:before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffc949;
+    position: absolute;
+    z-index: 0;
+    top: -12px;
+    left: -15px;
+}
+.title1 .span span {
+    font-size: 36px;
+    color: #333;
+    font-weight: 700;
+    z-index: 1;
+    position: relative;
+    display: block;
+    white-space: nowrap;
+}
+@media only screen and (max-width:768px) {
+ .right-float {
+  display: none;
+ }
+
+ .character-title {
+  padding-top: 20px;
+  margin-bottom: 30px;
+ }
+
+ .character-box {
+  display: block;
+  margin-bottom: 30px;
+ }
+
+ .character-card {
+  margin: 0 auto 10px;
+ }
+
+ .statics-title {
+  margin-bottom: 30px;
+ }
+
+ .statics-box {
+  display: block;
+ }
+
+ .statics-card {
+  margin: 0 auto 20px;
+  text-align: left;
+ }
+
+ .statics-card-head {
+  margin-bottom: 15px;
+ }
+
+ .statics-card-head {
+  display: block;
+  text-align: left;
+ }
+
+ .statics-card-msg {
+  display: inline;
+ }
+
+ .section1-msg {
+  position: relative;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+ }
+
+ #link-urls {
+  display: none;
+ }
+
+.title1 .strong {
+    font-size: 30px;
+    margin-bottom: -20px;
+}
+
+.title1 .span span {
+    font-size: 20px;
+}
+
+.title1 .span:before {
+    width: 25px;
+    height: 25px;
+    top: -2px;
+}
+
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+$(document).scroll(function() {
+ $('.right-float').css({ right: "-125px" })
+ clearTimeout(window.SCROLL_side)
+ window.SCROLL_side = setTimeout(function() {
+  $('.right-float').css({ right: "0px" })
+ }, 1000)
+});
+
+  var mySwiper = new Swiper ('.swiper-container', {
+    direction: 'horizontal', // 垂直切换选项
+    autoplay: true,
+    loop: true, // 循环模式选项
+    
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    
+  })   
+
+})
+
+</script>
+
+    <script type="text/javascript">
+    function Scroll(obj, opt, callback) {
+        console.log(obj);
+        // 参数初始化
+        if (!opt) var opt = {};
+        var _this = $(obj).eq(0).find("ul:first");
+        var lineH = _this.find("li:first").height(), // 获取行高
+            line = opt.line ? parseInt(opt.line, 10) : parseInt(this.height() / lineH, 10), // 每次滚动的行数，默认为一屏，即父容器高度
+            speed = opt.speed ? parseInt(opt.speed, 10) : 500, // 卷动速度，数值越大，速度越慢（毫秒）
+            timer = opt.timer ? parseInt(opt.timer, 10) : 2000; // 滚动的时间间隔（毫秒）
+        if (line == 0) line = 1;
+        var upHeight = 0 - line * lineH;
+        var downHeight = line * lineH - 0;
+        // 滚动函数
+        scrollUp = function() {
+            _this.animate({ marginTop: upHeight },
+                speed,
+                function() {
+                    for (i = 1; i <= line; i++) {
+                        _this.find("li:first").appendTo(_this);
+                    }
+                    _this.css({ marginTop: 0 });
+                }
+            );
+        };
+        // 向下滚动函数
+        scrollDown = function() {
+            _this.animate({ marginTop: downHeight }, // 动画展示css样式
+                speed,
+                function() {
+                    _this.find("li:last").prependTo(_this);
+                    _this.css({ marginTop: 0 });
+                }
+            )
+        };
+        var timerID
+        // 鼠标事件绑定
+        _this.hover(function() {
+            clearInterval(timerID);
+        }, function() {
+            timerID = setInterval("scrollUp()", timer); // 这里调用向下或者向上滚动函数
+        }).mouseout();
+    }
+    $(document).ready(function() {
+        Scroll($("#scrollDiv"), { line: 1, speed: 500, timer: 2000 });
+    })
+    </script>
+    <!-- banner-area end -->
+    <!-- section1 begin -->
+<div class="section1">
+ <div class="container">
+  <div class="section1-box">
+   <img src="https://bdn.135editor.com/files/202003/0cb226992c88ecfc649a4bd0612b91e7.jpg" alt="">
+   <div class="section1-msg">
+    <h3>公众号+个人号+社群 构建企业<span>私域流量池</span></h3>
+    <p>裂变宝+活码系统+分销系统 助力企业完成用户拉新增长到转化变现的完整闭环，构建企业发展的良性生态圈</p>
+   </div>
+  </div>
+ </div>
+</div>
+    <!-- section1 end -->
+    <!-- 公众号裂变 begin -->
+    <div class="section">
+        <div class="title">
+           <div class="title1">
+            <div class="strong">Fission</div>
+            <div class="span">
+                <span>公众号裂变系统</span></div>
+        </div>
+        </div>
+        <div class="section-ptb">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-12 section-small">
+                        <div class="section-wrap">
+                            <!-- section-title Start -->
+                            <div class="section-title">
+                                <h3>公众号拉新系统 —— 裂变宝</h3>
+                                <p>任务奖励+海报分享+裂变传播，低成本甚至零成本 获取用户关注</p>
+                            </div>
+                            <!--// section-title End -->
+                            <!-- section-content Start -->
+                            <div class="section-content">
+                                <p>
+                                    奖励+关注
+                                    <br>
+                                    商家配置发起活动任务用户关公众号获取海报用户
+                                    <br>
+                                    分享海报邀请助力用户完成任务领取奖励
+                                </p>
+                            </div>
+                            <!--// section-content End -->
+                            <div class="section-button">
+                                <div class="section-btn btn-info"><a href="/vue/appDetail/fission?authid=1" target="_blank">查看详情</a></div>
+                                <div class="section-btn btn-question">立即咨询</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <!-- image Start -->
+                        <div class="">
+                            <img src="https://bdn.135editor.com/files/202001/yyzn/index/gzhlb-s1.png" alt="">
+                        </div>
+                        <!--// image End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-ptb">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-12 section-small">
+                        <!-- image Start -->
+                        <div class="">
+                            <img src="https://bdn.135editor.com/files/202001/yyzn/index/gzhlb-s2.png" alt="">
+                        </div>
+                        <!--// image End -->
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="section-wrap wrap-right">
+                            <!-- section-title Start -->
+                            <div class="section-title">
+                                <h3>公众号促活工具 —— 群发宝</h3>
+                                <p>突破服务号每月4次消息推送限制，不限次数群发， 根据粉丝标签进行精准推送。（订阅号也适用）</p>
+                            </div>
+                            <!--// section-title End -->
+                            <!-- section-content Start -->
+                            <div class="section-content">
+                                <p>
+                                    模板消息+客服消息定时、定向推送
+                                    <br>
+                                    标签化管理， 精准推送
+                                    <br>
+                                    及时触达， 速度高达500条/秒
+                                    <br>
+                                    文字、图片、图文消息、模板消息
+                                </p>
+                            </div>
+                            <!--// section-content End -->
+                            <div class="section-button">
+                                <div class="section-btn btn-info"><a href="/vue/appDetail/mass?authid=2" target="_blank">查看详情</a></div>
+                                <div class="section-btn btn-question">立即咨询</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 公众号裂变 end -->
+    <!-- 个人号裂变 begin -->
+    <div class="section">
+        <div class="title">
+           <div class="title1">
+            <div class="strong">Fission</div>
+            <div class="span">
+                <span>个人号裂变系统</span></div>
+        </div>
+        </div>
+        <div class="section-ptb">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-12 section-small">
+                        <div class="section-wrap">
+                            <!-- section-title Start -->
+                            <div class="section-title">
+                                <h3>裂变系统+活码工具→个人号精准拓客</h3>
+                                <!-- <p>任务奖励+海报分享+裂变传播，低成本甚至零成本 获取用户关注</p> -->
+                            </div>
+                            <!--// section-title End -->
+                            <!-- section-content Start -->
+                            <div class="section-content">
+                                <p>
+                                    多号导流，智能分配客户流量
+                                    <br>
+                                    个人号引流，搭建品牌私域流量池
+                                    <br>
+                                    自动分流，防封机制，自动更换二维码
+                                    <br>
+                                    避免个人号好友添加过多被封号
+                                </p>
+                            </div>
+                            <!--// section-content End -->
+                            <div class="section-button">
+                                <div class="section-btn btn-info"><a href="/vue/appDetail/person?authid=5" target="_blank">查看详情</a></div>
+                                <div class="section-btn btn-question">立即咨询</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <!-- image Start -->
+                        <div class="">
+                            <img src="https://bdn.135editor.com/files/202001/yyzn/index/grhlb-s1.png" alt="">
+                        </div>
+                        <!--// image End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 个人号裂变 end -->
+    <!-- 社群裂变 begin -->
+    <div class="section">
+        <div class="title">
+            <div class="title1">
+            <div class="strong">Fission</div>
+            <div class="span">
+                <span>社群裂变系统</span></div>
+        </div>
+        </div>
+        <div class="section-ptb">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-12 section-small">
+                        <!-- image Start -->
+                        <div class="">
+                            <img src="https://bdn.135editor.com/files/202001/yyzn/index/sqlb-s1.png" alt="">
+                        </div>
+                        <!--// image End -->
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="section-wrap wrap-right">
+                            <!-- section-title Start -->
+                            <div class="section-title">
+                                <h3>社群智能管理，提升付费社群用户增长</h3>
+                                <!-- <p>任务奖励+海报分享+裂变传播，低成本甚至零成本 获取用户关注</p> -->
+                            </div>
+                            <!--// section-title End -->
+                            <!-- section-content Start -->
+                            <div class="section-content">
+                                <p>
+                                    固定二维码，无需手动更换入群二维码多群自动切换
+                                    <br>
+                                    突破群成员200人限制
+                                    <br>
+                                    精细化管理，提升群裂变增长效率
+                                </p>
+                            </div>
+                            <!--// section-content End -->
+                            <div class="section-button">
+                                <div class="section-btn btn-info"><a href="./books/chapter/7/134" target="_blank">查看详情</a></div>
+                                <div class="section-btn btn-question">立即咨询</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 社群裂变 end -->
+    <!-- 分销裂变 begin -->
+    <div class="section">
+        <div class="title">
+            <div class="title1">
+            <div class="strong">Fission</div>
+            <div class="span">
+                <span>分销裂变系统</span></div>
+        </div>
+            </div>
+        <div class="section-ptb">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-sm-12 section-small">
+                        <div class="section-wrap">
+                            <!-- section-title Start -->
+                            <div class="section-title">
+                                <h3>集拉新、拓客、变现于一身的线上销售系统</h3>
+                                <!-- <p>任务奖励+海报分享+裂变传播，低成本甚至零成本 获取用户关注</p> -->
+                            </div>
+                            <!--// section-title End -->
+                            <!-- section-content Start -->
+                            <div class="section-content">
+                                <p>
+                                    朋友圈带货神器
+                                    <br>
+                                    分佣实时到账
+                                    <br>
+                                    多场景、全行业适用
+                                    <br>
+                                    企业、个人品牌均可使用
+                                </p>
+                            </div>
+                            <!--// section-content End -->
+                            <div class="section-button">
+                                <div class="section-btn btn-info"><a href="/new/yyznpromot/home" target="_blank">查看详情</a></div>
+                                <div class="section-btn btn-question">立即咨询</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <!-- image Start -->
+                        <div class="">
+                            <img src="https://bdn.135editor.com/files/202001/yyzn/index/fxlb-s1.png" alt="">
+                        </div>
+                        <!--// image End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 分销裂变 end -->
+    <!-- 特点 begin -->
+<div class="character">
+ <div class="container">
+  <h3 class="character-title">
+       <div class="title1">
+            <div class="strong">Service provider</div>
+            <div class="span">
+                <span>运营指南—微信生态第三方服务商</span></div>
+        </div>
+  </h3>
+  <div class="character-box">
+   <div class="character-card">
+    <img src="https://bdn.135editor.com/files/202003/6148dfcfdbe1926f05733f4bea78d466.png" alt="">
+    <div class="character-card-tit">专业</div>
+    <p class="character-card-msg">专业的团队支持，</p>
+    <p class="character-card-msg">过硬的技术支撑，</p>
+    <p class="character-card-msg">为客户提供专业的增长保障</p>
+   </div>
+   <div class="character-card">
+    <img src="https://bdn.135editor.com/files/202003/3f9e43f9a6ad1aa791a2308b78c479d3.png" alt="">
+    <div class="character-card-tit">高效</div>
+    <p class="character-card-msg">分工明确、协作融合</p>
+    <p class="character-card-msg">专业，快速，有效地</p>
+    <p class="character-card-msg">解决用户增长问题！</p>
+   </div>
+   <div class="character-card">
+    <img src="https://bdn.135editor.com/files/202003/bcb356dab8831036ce60cd303621b6ad.png" alt="">
+    <div class="character-card-tit">垂直</div>
+    <p class="character-card-msg">始于微信公众号</p>
+    <p class="character-card-msg">拓展于新媒体行业</p>
+    <p class="character-card-msg">服务全行业、平台用户</p>
+   </div>
+   <div class="character-card">
+    <img src="https://bdn.135editor.com/files/202003/170dc2a93e0d467cb7511d7caafe55c5.png" alt="">
+    <div class="character-card-tit">可靠</div>
+    <p class="character-card-msg">135编辑器品牌保障</p>
+    <p class="character-card-msg">5年企业用户增长经验</p>
+    <p class="character-card-msg">新媒体行业领军品牌</p>
+   </div>
+  </div>
+ </div>
+</div>
+    <!-- 特点 end -->
+    <!-- 数据 begin -->
+<div class="statics">
+ <div class="container">
+  <h3 class="statics-title">
+       <div class="title1">
+            <div class="strong">Research specialist</div>
+            <div class="span">
+                <span>专注增长，企业用户增长研究专家</span></div>
+        </div>
+  </h3>
+  <div class="statics-box">
+   <div class="statics-card">
+    <div class="statics-card-head"><img src="https://bdn.135editor.com/files/202003/98_03.png" alt="">851天</div>
+    <p class="statics-card-msg">运营指南裂变增长系统已经稳定运行851天，</p>
+    <p class="statics-card-msg">期间无任何重大系统崩溃问题出现。</p>
+   </div>
+   <div class="statics-card">
+    <div class="statics-card-head"><img src="https://bdn.135editor.com/files/202003/00000_05.png" alt="">8569客户</div>
+    <p class="statics-card-msg">截止到2020年1月1日，运营指南为48个行业，</p>
+    <p class="statics-card-msg">共计8569位企业和个人客户提供用户增长系统和增长服务</p>
+   </div>
+   <div class="statics-card">
+    <div class="statics-card-head"><img src="https://bdn.135editor.com/files/202003/111_15.png" alt="">76403912粉丝</div>
+    <p class="statics-card-msg">运营指南为客户累计涨粉76403912，</p>
+    <p class="statics-card-msg">平均每位客户涨粉8916</p>
+   </div>
+  </div>
+ </div>
+</div>
+    <!-- 数据 end -->
+    <!-- 合作 begin -->
+    <div class="cooperation">
+        <div class="container">
+            <div class="title">
+                 <div class="title1">
+            <div class="strong">Cooperation</div>
+            <div class="span">
+                <span>合作品牌  </span></div>
+        </div>
+                </div>
+            <div class="company">
+                <img src="https://bdn.135editor.com/files/202001/yyzn/index/companys.png" alt=""></div>
+        </div>
+    </div>
+    <!-- 合作 end -->
+
+    <!-- 资讯 Start -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- section-title Start -->
+                    <div class="title">
+                         <div class="title1">
+            <div class="strong">NEWS</div>
+            <div class="span">
+                <span>运营资讯</span></div>
+        </div>
+                        </div>
+                    <!--// section-title End -->
+                </div>
+            </div>
+            <div class="news-section row">
+                
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <!-- Single Team Start -->
+            <div class="single-team">
+                <div class="news-image">
+                    <img src="https://bdn.135editor.com/files/users/596/5968775/202003/BIO2gtCY_nfsI.jpg" alt="">
+                </div>
+                <div class="team-info">
+                    <div class="news-show">
+                        <div class="time">发布时间：2020-03-21 16:19:13</div>
+                        <div class="read-num">3257</div>
+                    </div>
+                    <div class="news-title"><a href="/Articles/view/513.html" target="_blank"><h3>想要客源不断，用户增长裂变，餐饮行业你需要这么做！</h3></a></div>
+                    <div class="new-introduce">
+                        <p>三月中下旬，餐饮业门店陆续开始营业，但顾客只寥寥几人，连疫情之前的消费淡季都不及，到底如何才能实现顾客增长，餐饮企业运营为什么那么难？</p>
+                    </div>
+                </div>
+            </div>
+        <!--// Single Team End -->
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <!-- Single Team Start -->
+            <div class="single-team">
+                <div class="news-image">
+                    <img src="https://bdn.135editor.com/files/users/596/5968775/202003/BIO2gtCY_nfsI.jpg" alt="">
+                </div>
+                <div class="team-info">
+                    <div class="news-show">
+                        <div class="time">发布时间：2020-03-21 16:19:13</div>
+                        <div class="read-num">3257</div>
+                    </div>
+                    <div class="news-title"><a href="/Articles/view/513.html" target="_blank"><h3>想要客源不断，用户增长裂变，餐饮行业你需要这么做！</h3></a></div>
+                    <div class="new-introduce">
+                        <p>三月中下旬，餐饮业门店陆续开始营业，但顾客只寥寥几人，连疫情之前的消费淡季都不及，到底如何才能实现顾客增长，餐饮企业运营为什么那么难？</p>
+                    </div>
+                </div>
+            </div>
+        <!--// Single Team End -->
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <!-- Single Team Start -->
+            <div class="single-team">
+                <div class="news-image">
+                    <img src="https://bdn.135editor.com/files/users/596/5968775/202003/BIO2gtCY_nfsI.jpg" alt="">
+                </div>
+                <div class="team-info">
+                    <div class="news-show">
+                        <div class="time">发布时间：2020-03-21 16:19:13</div>
+                        <div class="read-num">3257</div>
+                    </div>
+                    <div class="news-title"><a href="/Articles/view/513.html" target="_blank"><h3>想要客源不断，用户增长裂变，餐饮行业你需要这么做！</h3></a></div>
+                    <div class="new-introduce">
+                        <p>三月中下旬，餐饮业门店陆续开始营业，但顾客只寥寥几人，连疫情之前的消费淡季都不及，到底如何才能实现顾客增长，餐饮企业运营为什么那么难？</p>
+                    </div>
+                </div>
+            </div>
+        <!--// Single Team End -->
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <!-- Single Team Start -->
+            <div class="single-team">
+                <div class="news-image">
+                    <img src="https://bdn.135editor.com/files/users/596/5968775/202003/BIO2gtCY_nfsI.jpg" alt="">
+                </div>
+                <div class="team-info">
+                    <div class="news-show">
+                        <div class="time">发布时间：2020-03-21 16:19:13</div>
+                        <div class="read-num">3257</div>
+                    </div>
+                    <div class="news-title"><a href="/Articles/view/513.html" target="_blank"><h3>想要客源不断，用户增长裂变，餐饮行业你需要这么做！</h3></a></div>
+                    <div class="new-introduce">
+                        <p>三月中下旬，餐饮业门店陆续开始营业，但顾客只寥寥几人，连疫情之前的消费淡季都不及，到底如何才能实现顾客增长，餐饮企业运营为什么那么难？</p>
+                    </div>
+                </div>
+            </div>
+        <!--// Single Team End -->
+        </div>
+            </div>
+        </div>
+    </div>
+    <!-- 资讯 End -->
+
+<div class="container" id="link-urls" style="background: #FFF;">
+ <div class="ui-portlet clearfix">
+  <div class="ui-portlet-header">
+   <span class="title">友情链接</span>
+  </div>
+  <ul class="clearfix ui-portlet-list transparent">
+   <a href="https://www.135editor.com" title="135编辑器" rel="external" target="_blank">
+    135编辑器 </a>
+   <a href="http://www.vpeitu.com" title="微配图" rel="external" target="_blank">
+    微配图 </a>
+  </ul>
+ </div>
+</div>
+
+
+<?php echo $this->view->getPartial('yyzncommon/footer'); ?>
+
+
