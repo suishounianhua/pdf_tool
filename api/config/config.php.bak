@@ -1,0 +1,102 @@
+<?php
+/*
+ * @Author: peterpang
+ * @Date: 2017-11-13 15:48:58
+ * @Last Modified by: peterpang
+ * @Last Modified time: 2017-11-16 10:58:23
+ */
+
+
+defined('APP_PATH') || define('APP_PATH', realpath('.'));
+
+static $_globalConfig;
+
+if (!$_globalConfig) {
+    $settings = include APP_PATH . "/api/config/settings.php";
+
+    $config = array(
+        'errorLog' => 1,   //0代表输出到错误日志,1代表直接输出
+        'productionDb' => 0,
+        'recordSqlLog' => 1,
+        'debugMode' => 1,
+        'productionCache' => 0,
+        'databaseMaster' => array(
+            'db'=>array(
+                'adapter' => 'Mysql',
+                'host' => '127.0.0.1',
+                'username' => 'root',
+                'password' => '',
+                'dbname' => '',
+                'charset' => '',
+                'persistent' => 'true',
+            ),
+            'prefix' => 'miao_'
+        ),
+        'databaseSlave' => array(
+            'db'=>array(
+                'adapter' => 'Mysql',
+                'host' => '',
+                'username' => 'root',
+                'password' => '',
+                'dbname' => '',
+                'charset' => 'utf8',
+                'persistent' => 'true',
+            ),
+            'prefix' => 'miao_'
+        ),
+        'databaseTest' => array(
+            'db'=>array(
+                'adapter' => 'Mysql',
+                'host' => '127.0.0.1',
+                'username' => 'root',
+                'password' => '',
+                'dbname' => '',
+                'charset' => 'utf8',
+                'persistent' => 'true',
+            ),
+            'prefix' => 'miao_'
+        ),
+        'redisCache' => array(
+            'prefix' => '',
+            'host' => '',
+            'port' => 6379,
+            'auth' => '',
+            'persistent' => false,
+            'index' => 0
+        ),
+        'redisTestCache' => array(
+            'prefix' => '',
+            'host' => '127.0.0.1',
+            'port' => 6379,
+            'auth' => '',
+            'persistent' => false,
+            'index' => 0
+        ),
+        'application' => array(
+            'controllersDir' => APP_PATH . '/api/controllers/',
+            'modelsDir' => APP_PATH . '/api/models/',
+            'viewsDir' => APP_PATH . '/api/views/',
+            'servicesDir' => APP_PATH . '/api/services/',
+            'libraryDir' => APP_PATH . '/library/',
+            'baseUri' => '',
+            'validatorsDir' => APP_PATH . '/api/validators/',
+            'utilitiesDir' => APP_PATH . '/api/utilities/',
+            'pluginsDir' => APP_PATH . '/api/plugins/',
+            'IOFactoryDir' => APP_PATH . '/api/plugins/PHPExcel/',
+            'behaviorDir' =>  APP_PATH . '/api/behavior/',
+            'taskDir' => APP_PATH . '/api/tasks/',
+            'encryptKey' => '',
+            'jwt_key' => ''
+        ),
+        'imgPath' => '',
+        'excelPath' => '',
+        'serverPath'=> '',
+        'computerPath'=>  '',
+        'filePath'=>  '',
+        'qrcodePath'=>'',
+        'url' => '',
+    );
+    $_globalConfig = new \Phalcon\Config( array_merge($config,$settings) );
+}
+
+return $_globalConfig;
