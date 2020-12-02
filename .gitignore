@@ -14,6 +14,6 @@ api/storage/*
 api/cache/*
 public/images/*
 data/*
-api/config/*
+# api/config/*
 api/views/*/*.php
 
